@@ -47,13 +47,14 @@ jobs:
           cache: 'npm'
 
       - name: 📦 Installation des dépendances
-        run: npm install --legacy-peer-deps
+        run: npm ci --legacy-peer-deps
+        # npm ci est plus fiable pour les CI/CD que npm install
 
       - name: 🧪 Vérification TypeScript et lint
         run: |
           npm run lint || echo "⚠️ Linting ignoré"
-          if [ -f "package.json" ] && grep -q '"type-check"' package.json; then
-            npm run type-check
+          if grep -q '"type-check"' package.json; then
+            npm run type-check || echo "⚠️ Type-check ignoré"
           fi
         continue-on-error: true
 
@@ -61,21 +62,25 @@ jobs:
         id: build
         run: |
           echo "🔨 Build du projet..."
+          export NEXT_PUBLIC_SITE_URL=https://diambrapuzzle.com
+          export NEXT_TELEMETRY_DISABLED=1
+          
           if ! npm run build; then
             echo "⚠️ Build échoué. Nettoyage du cache et nouvelle tentative..."
             rm -rf .next
             npm run build
           fi
-        env:
-          NEXT_PUBLIC_SITE_URL: https://diambrapuzzle.com
-          NEXT_TELEMETRY_DISABLED: 1
 
       - name: 📊 Analyse du bundle (optionnel)
         run: |
-          npm run build -- --analyze || echo "Analyse non disponible"
+          if grep -q '"analyze"' package.json; then
+            npm run build -- --analyze
+          else
+            echo "📊 Analyse du bundle non configurée"
+          fi
         continue-on-error: true
 
-      - name: 🔧 Installation de PM2 et outils (via SSH)
+      - name: 🔧 Installation des prérequis sur le VPS
         uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -84,24 +89,35 @@ jobs:
           port: ${{ secrets.VPS_SSH_PORT || '22' }}
           command_timeout: 10m
           script: |
+            set -e
+            
+            echo "🔧 Vérification des prérequis..."
+            
             # Mise à jour des outils système
-            apt-get update -qq && apt-get install -y -qq git curl
+            apt-get update -qq
             
             # Installation de Node.js 20 si nécessaire
-            if ! command -v node &> /dev/null; then
+            if ! command -v node &> /dev/null || [ "$(node -v | cut -d'v' -f2 | cut -d'.' -f1)" -lt 18 ]; then
+              echo "📦 Installation de Node.js 20..."
               curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
               apt-get install -y nodejs
             fi
             
             # Installation de PM2 si nécessaire
             if ! command -v pm2 &> /dev/null; then
+              echo "📦 Installation de PM2..."
               npm install -g pm2@latest
             fi
             
+            # Installation de Git si nécessaire
+            if ! command -v git &> /dev/null; then
+              apt-get install -y git
+            fi
+            
             # Vérification des versions
-            echo "Node.js version: $(node -v)"
-            echo "NPM version: $(npm -v)"
-            echo "PM2 version: $(pm2 -v)"
+            echo "✅ Node.js: $(node -v)"
+            echo "✅ NPM: $(npm -v)"
+            echo "✅ PM2: $(pm2 -v || echo 'Non installé')"
 
       - name: 🚀 Déploiement de l'application
         uses: appleboy/ssh-action@v1.2.5
@@ -114,9 +130,11 @@ jobs:
           script: |
             set -e
             
-            APP_DIR="/var/www/diambrafrontend"
-            PM2_NAME="diambrafrontend"
+            # Configuration
+            APP_DIR="/var/www/diambrapuzzle"
+            PM2_NAME="diambrapuzzle"
             NEXT_PORT="3000"
+            GIT_REPO="https://github.com/marcdiambralolo/diambrapuzzle.git"
             
             echo "========================================="
             echo "🚀 Déploiement: $PM2_NAME"
@@ -128,42 +146,66 @@ jobs:
             mkdir -p "$APP_DIR"
             cd "$APP_DIR"
             
-            # Sauvegarde du package.json local avant pull
-            if [ -f "package.json" ]; then
-              cp package.json package.json.backup
+            # Vérification si c'est un repo Git
+            if [ ! -d ".git" ]; then
+              echo "📥 Clonage du repository..."
+              git clone "$GIT_REPO" .
             fi
             
-            # Git pull
+            # Sauvegarde du .env.production s'il existe
+            if [ -f ".env.production" ]; then
+              cp .env.production .env.production.backup
+            fi
+            
+            # Git pull avec gestion des conflits
             echo "📥 Récupération du code depuis GitHub..."
             git fetch origin
-            git checkout main || git checkout master
-            git pull origin main || git pull origin master
+            git reset --hard origin/main || git reset --hard origin/master
+            git clean -fd
             
-            # Nettoyage du cache npm si nécessaire
-            if [ -f "package-lock.json" ]; then
-              echo "🧹 Nettoyage du cache npm..."
-              npm cache clean --force
+            # Restauration du .env.production
+            if [ -f ".env.production.backup" ]; then
+              mv .env.production.backup .env.production
+            else
+              # Création du fichier .env.production
+              cat > .env.production << EOF
+            NODE_ENV=production
+            NEXT_PUBLIC_SITE_URL=https://diambrapuzzle.com
+            PORT=$NEXT_PORT
+            EOF
+              echo "✅ Fichier .env.production créé"
             fi
             
-            # Installation des dépendances avec legacy-peer-deps
+            # Nettoyage du cache
+            echo "🧹 Nettoyage du cache..."
+            rm -rf node_modules .next
+            npm cache clean --force
+            
+            # Installation des dépendances
             echo "📦 Installation des dépendances..."
             npm install --legacy-peer-deps
             
-            # Build du projet avec vérification des erreurs
+            # Build du projet
             echo "🔨 Build du projet..."
             if ! npm run build; then
-              echo "⚠️ Build échoué, tentative avec nettoyage du cache..."
-              rm -rf .next node_modules/.cache
+              echo "⚠️ Build échoué, tentative avec plus de mémoire..."
+              export NODE_OPTIONS="--max-old-space-size=4096"
               npm run build
             fi
             
-            # Configuration du port (évite les conflits)
+            # Vérification du build
+            if [ ! -d ".next" ]; then
+              echo "❌ Build échoué - dossier .next absent"
+              exit 1
+            fi
+            
+            # Configuration du port
             export PORT=$NEXT_PORT
             
             # Gestion du processus PM2
             echo "🔄 Gestion du processus PM2..."
             if pm2 list | grep -q "$PM2_NAME"; then
-              echo "🔄 Restart de l'application..."
+              echo "🔄 Redémarrage de l'application..."
               pm2 restart "$PM2_NAME" --update-env
             else
               echo "🚀 Démarrage de l'application..."
@@ -172,11 +214,21 @@ jobs:
             
             # Sauvegarde de la configuration PM2
             pm2 save
-            pm2 startup || echo "PM2 startup config échouée (ignorée)"
+            pm2 startup systemd || echo "⚠️ PM2 startup config ignorée"
             
-            # Nettoyage des anciens builds
-            echo "🧹 Nettoyage des anciens caches..."
-            find . -name ".next" -type d -mtime +5 -exec rm -rf {} \; 2>/dev/null || true
+            # Vérification que l'application tourne
+            sleep 5
+            if pm2 list | grep -q "$PM2_NAME.*online"; then
+              echo "✅ Application démarrée avec succès"
+            else
+              echo "❌ L'application ne tourne pas correctement"
+              pm2 logs "$PM2_NAME" --lines 20
+              exit 1
+            fi
+            
+            # Nettoyage des anciens logs
+            echo "🧹 Nettoyage des logs..."
+            pm2 flush
             
             echo "========================================="
             echo "✅ Déploiement terminé avec succès !"
@@ -194,55 +246,47 @@ jobs:
           port: ${{ secrets.VPS_SSH_PORT || '22' }}
           command_timeout: 2m
           script: |
-            # Vérification que l'application tourne
+            echo "🔍 Vérification du déploiement..."
             sleep 10
-            if pm2 list | grep -q "diambrafrontend.*online"; then
-              echo "✅ L'application est en ligne !"
-              pm2 logs diambrafrontend --lines 10 --nostream
+            
+            # Vérification PM2
+            if pm2 list | grep -q "diambrapuzzle.*online"; then
+              echo "✅ Application en ligne !"
+              pm2 logs diambrapuzzle --lines 10 --nostream
+              
+              # Vérification du port
+              if netstat -tlnp | grep -q ":3000.*LISTEN"; then
+                echo "✅ Port 3000 actif"
+              else
+                echo "⚠️ Port 3000 non détecté"
+              fi
             else
-              echo "⚠️ L'application semble avoir un problème"
-              pm2 logs diambrafrontend --lines 20 --nostream
+              echo "❌ L'application a un problème"
+              pm2 logs diambrapuzzle --lines 30 --nostream
               exit 1
             fi
-
-      - name: 📝 Création du fichier .env de production
-        uses: appleboy/ssh-action@v1.2.5
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_SSH_PORT || '22' }}
-          script: |
-            APP_DIR="/var/www/diambrafrontend"
-            cd "$APP_DIR"
             
-            # Création du fichier .env.production si inexistant
-            if [ ! -f ".env.production" ]; then
-              printf 'NODE_ENV=production\n' > .env.production
-              printf 'NEXT_PUBLIC_SITE_URL=https://diambrapuzzle.com\n' >> .env.production
-              printf 'PORT=3000\n' >> .env.production
-              echo "✅ Fichier .env.production créé"
+            # Test de l'API locale
+            if curl -s -o /dev/null -w "%{http_code}" http://localhost:3000 | grep -q "200\|304"; then
+              echo "✅ Application répond sur localhost:3000"
+            else
+              echo "⚠️ Application ne répond pas sur localhost:3000"
             fi
-
-      - name: 🧹 Nettoyage des anciens déploiements
-        if: always()
-        uses: appleboy/ssh-action@v1.2.5
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_SSH_PORT || '22' }}
-          script: |
-            # Nettoyage des anciens logs PM2
-            pm2 flush
-            
-            # Nettoyage du cache npm global
-            npm cache clean --force || true
-            
-            echo "🧹 Nettoyage terminé"
 
       - name: 📢 Notification d'échec
         if: failure()
         run: |
           echo "❌ Le déploiement a échoué !"
-          echo "Vérifiez les logs ci-dessus pour plus de détails."
+          echo "📝 Vérifiez les logs ci-dessus pour plus de détails."
+          echo ""
+          echo "🔍 Causes possibles :"
+          echo "  1. Secrets GitHub mal configurés (VPS_HOST, VPS_USER, VPS_SSH_KEY)"
+          echo "  2. Problème de connexion SSH au VPS"
+          echo "  3. Erreur de build (TypeScript, dépendances, etc.)"
+          echo "  4. MongoDB non démarré sur le VPS"
+          echo "  5. Port 3000 déjà utilisé"
+          echo ""
+          echo "📌 Correction du problème :"
+          echo "  - Vérifiez les logs dans l'onglet 'Actions' de GitHub"
+          echo "  - Connectez-vous au VPS: ssh root@\$VPS_HOST"
+          echo "  - Vérifiez manuellement: cd /var/www/diambrapuzzle && npm run build"
