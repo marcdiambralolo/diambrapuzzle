@@ -48,7 +48,7 @@ jobs:
 
       - name: 📦 Installation des dépendances
         run: npm ci --legacy-peer-deps
-        # npm ci est plus fiable pour les CI/CD que npm install
+        # npm ci est plus fiable pour les CI/CD  et que npm install
 
       - name: 🧪 Vérification TypeScript et lint
         run: |
