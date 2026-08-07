@@ -50,22 +50,6 @@ const useScrollReveal = () => {
   }, []);
 };
 
-// ============================================================
-// STYLES
-// ============================================================
-
-const btnPrimary =
-  "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold text-white transition-all duration-300 " +
-  "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-md hover:shadow-lg active:scale-95 " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2";
-
-// ============================================================
-// COMPOSANTS UI
-// ============================================================
-
-/**
- * Carte "Pilule" avec icône, titre, description et tooltip.
- */
 function Pill({
   icon,
   title,
@@ -505,7 +489,6 @@ export function WelcomePageClientContent() {
           </div>
         </section>
 
-        {/* ===== FOOTER ===== */}
         <div className="mt-12 text-center">
           <p className="text-xs text-gray-400">© 2026 Diambra - Tous droits réservés.</p>
         </div>

@@ -1,10 +1,9 @@
 'use client';
 import { useEndGameGenerator } from "@/hooks/learning/endgame/useEndGameGenerator";
-import { memo } from 'react';
 import CompetitionDetails from "./CompetitionDetails";
 import LoadMoreButton from "./LoadMoreButton";
 
-const FeuilleDeMatch = memo(() => {
+const FeuilleDeMatch = () => {
     const {
         handleLoadMoreClick, competitionList, hasMore, remainingCount, isLoadingMore, user,
     } = useEndGameGenerator();
@@ -31,6 +30,6 @@ const FeuilleDeMatch = memo(() => {
             </div>
         </div>
     );
-});
+};
 
 export default FeuilleDeMatch;

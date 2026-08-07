@@ -163,7 +163,7 @@ export default function ConsultationsPage() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-8">
           <h1 className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 bg-clip-text text-transparent">
-            Édition Learning
+           DIAMBRA PUZZLE 
           </h1>
 
           <div className="flex items-center gap-3">
@@ -176,7 +176,7 @@ export default function ConsultationsPage() {
             </button>
 
             <CacheLink
-              href="/admin/consultations/archives"
+              href="/admin/competitions/archives"
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:shadow-md transition-all group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />

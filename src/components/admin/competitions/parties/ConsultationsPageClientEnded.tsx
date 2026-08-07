@@ -262,7 +262,7 @@ export default function ConsultationsPage() {
               </motion.button>
 
               <CacheLink
-                href="/admin/consultations/archives"
+                href="/admin/competitions/archives"
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-700 dark:text-gray-300 font-semibold hover:shadow-md transition-all group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
