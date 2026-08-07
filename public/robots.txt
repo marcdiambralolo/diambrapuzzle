@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+Allow: /
+Sitemap: https://www.diambrapuzzle.com/sitemap.xml
