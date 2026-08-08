@@ -7,7 +7,7 @@ interface SecuredMainProps {
 }
 
 const SecuredMain = memo<SecuredMainProps>(({ children }) => {
-  
+
   return (
     <ProtectedRoute>
       <main
@@ -21,7 +21,5 @@ const SecuredMain = memo<SecuredMainProps>(({ children }) => {
     </ProtectedRoute>
   );
 });
-
-SecuredMain.displayName = 'SecuredMain';
 
 export default SecuredMain;

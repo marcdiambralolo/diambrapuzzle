@@ -171,7 +171,6 @@ export default function AboutPageClient() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-purple-50/30 to-indigo-50/50 text-purple-900 overflow-x-hidden">
-      {/* ===== NAVBAR ===== */}
       <nav className="sticky top-0 z-30 border-b border-purple-100 bg-white/90 backdrop-blur-md shadow-sm">
         <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-3">
           <CacheLink
@@ -190,7 +189,6 @@ export default function AboutPageClient() {
       </nav>
 
       <div className="mx-auto max-w-5xl px-4 py-4 sm:py-8">
-        {/* ===== HERO ===== */}
         <section className="text-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700">
           <h1 className="text-balance text-4xl font-black tracking-tight bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent sm:text-6xl">
             DIAMBRA PUZZLE
@@ -205,7 +203,6 @@ export default function AboutPageClient() {
           </div>
         </section>
 
-        {/* ===== OBJECTIFS ===== */}
         <section className="mt-10 sm:mt-12 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-100">
           <ConicPanel>
             <SectionHeader title="🎯 Objectifs du jeu" />
@@ -213,7 +210,6 @@ export default function AboutPageClient() {
           </ConicPanel>
         </section>
 
-        {/* ===== PRINCIPE ===== */}
         <section id="principe" className="mt-10 sm:mt-12 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
           <SectionHeader
             title="📌 Principe du jeu"
@@ -222,7 +218,6 @@ export default function AboutPageClient() {
           {renderPrinciples()}
         </section>
 
-        {/* ===== COMMENT JOUER ===== */}
         <section id="jeu" className="mt-10 sm:mt-12 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-300">
           <ConicPanel>
             <SectionHeader title="🎮 Comment jouer" />
@@ -230,7 +225,6 @@ export default function AboutPageClient() {
           </ConicPanel>
         </section>
 
-        {/* ===== MODES ===== */}
         <section id="modes" className="mt-10 sm:mt-12 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-400">
           <SectionHeader
             title="🎨 Modes de jeu"
@@ -239,7 +233,6 @@ export default function AboutPageClient() {
           {renderModes()}
         </section>
 
-        {/* ===== DIFFICULTÉ ===== */}
         <section id="difficulte" className="mt-10 sm:mt-12 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-500">
           <ConicPanel>
             <SectionHeader
@@ -255,7 +248,6 @@ export default function AboutPageClient() {
           </ConicPanel>
         </section>
 
-        {/* ===== ÉVALUATION ===== */}
         <section id="evaluation" className="mt-10 sm:mt-12 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-600">
           <ConicPanel>
             <SectionHeader title="⏱️ Évaluation et classement" />
@@ -263,6 +255,7 @@ export default function AboutPageClient() {
               Votre performance est mesurée par le temps écoulé entre le début et la fin du match.
               Plus vous êtes rapide et précis, meilleur sera votre score.
             </p>
+
             <div className="mt-4 flex items-center gap-4 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 p-4">
               <Award className="h-8 w-8 text-purple-600" />
               <div>
@@ -280,7 +273,6 @@ export default function AboutPageClient() {
           </ConicPanel>
         </section>
 
-        {/* ===== CTA ===== */}
         {renderCTA()}
       </div>
     </main>

@@ -3,8 +3,7 @@ import Loader from '@/app/admin/loading';
 import { LearningConfiguration } from '@/lib/interfaces';
 import { AnimatePresence, LayoutGroup, motion, Reorder } from 'framer-motion';
 import {
-  CalendarIcon, ChevronLeft, ChevronRight,
-  FlagIcon,
+  CalendarIcon, ChevronLeft, ChevronRight, FlagIcon,
   GiftIcon, LockIcon, PencilIcon, PlusIcon, SparklesIcon, TrashIcon, TrophyIcon
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -69,7 +68,6 @@ function ConfigCard({ config, onEdit, onDelete, onEnd }: {
   const isEnded = config.status === 'ended';
   const isActive = config.isActive;
 
-  // Mapping des types de jeu
   const getGameTypeLabel = (tpsglobal: number) => {
     switch (tpsglobal) {
       case 0: return { label: 'Nombre', icon: '🔢', color: 'bg-blue-100 text-blue-700' };
@@ -108,7 +106,6 @@ function ConfigCard({ config, onEdit, onDelete, onEnd }: {
         <div className="p-5 md:p-6">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex-1">
-              {/* Badges */}
               <div className="mb-4 flex flex-wrap items-center gap-2">
                 <motion.div whileHover={{ scale: 1.03 }} className={`rounded-full border px-3 py-1 text-xs font-bold ${status.bg} ${status.text} ${status.border}`}>
                   <span className="mr-1">{status.icon}</span>
@@ -141,7 +138,6 @@ function ConfigCard({ config, onEdit, onDelete, onEnd }: {
                 )}
               </div>
 
-              {/* Informations principales */}
               <div className="grid grid-cols-1 gap-3 mb-4">
                 {config.sequence && (
                   <div className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-50 to-indigo-50 p-3">
@@ -174,7 +170,6 @@ function ConfigCard({ config, onEdit, onDelete, onEnd }: {
                 )}
               </div>
 
-              {/* Dates */}
               <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 <div className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3 text-gray-600">
                   <CalendarIcon className="h-5 w-5 text-purple-500" />
@@ -200,7 +195,6 @@ function ConfigCard({ config, onEdit, onDelete, onEnd }: {
               </div>
             </div>
 
-            {/* Actions */}
             <div className="ml-0 flex flex-col items-end gap-2 lg:ml-4">
               <div className="flex gap-2">
                 {!isEnded && onEnd && (

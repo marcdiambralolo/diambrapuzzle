@@ -38,6 +38,7 @@ const InputField: React.FC<{
       className={`w-full border-2 rounded-xl px-4 py-3 transition-all ${error ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-[#2E5AA6] dark:border-gray-700 dark:focus:border-[#4F83D1]'
         } focus:outline-none focus:ring-2 focus:ring-[#4F83D1]/10 dark:bg-gray-900 dark:text-white`}
     />
+
     {error && <ErrorMessage message={error} />}
   </div>
 );

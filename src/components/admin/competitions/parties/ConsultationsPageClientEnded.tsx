@@ -143,32 +143,27 @@ export default function ConsultationsPage() {
     const activePlayers = consultations.filter(c => c.clientId?.username).length;
     const avgGamesPerPlayer = uniquePlayers > 0 ? (consultations.length / uniquePlayers).toFixed(1) : 0;
 
-    // Combinaisons uniques
     const combinaisonsMap = new Map();
     consultations.forEach(c => {
       const comb = c.timeSpent;
-      if (comb ) {
+      if (comb) {
         combinaisonsMap.set(comb, (combinaisonsMap.get(comb) || 0) + 1);
       }
     });
     const uniqueCombinaisons = combinaisonsMap.size;
 
-    // Top combinaisons
     const topCombinaisons = Array.from(combinaisonsMap.entries())
       .sort((a, b) => b[1] - a[1])
       .slice(0, 15);
 
-    // Top joueurs
     const topPlayers = Array.from(playersMap.entries())
       .map(([username, data]) => ({ username, games: data.games, combinaisons: data.combinaisons.size }))
       .sort((a, b) => b.games - a.games)
       .slice(0, 15);
 
-    // Taux de complétion
-    const completedGames = consultations.filter(c => c.timeSpent ).length;
+    const completedGames = consultations.filter(c => c.timeSpent).length;
     const completionRate = consultations.length > 0 ? Math.round((completedGames / consultations.length) * 100) : 0;
 
-    // Statistiques de temps
     let totalTime = 0;
     consultations.forEach(c => {
       if (c.timeSpent) {
@@ -246,7 +241,6 @@ export default function ConsultationsPage() {
               Jeux
             </h1>
             <div>
-
             </div>
 
             <div className="flex items-center gap-3">
@@ -432,7 +426,6 @@ export default function ConsultationsPage() {
                       );
                     })}
                   </div>
-
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}

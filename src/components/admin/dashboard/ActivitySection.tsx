@@ -155,6 +155,7 @@ const ActivitySection = memo<ActivitySectionProps>(({ stats, derivedStats }) => 
         border border-blue-400/20 dark:border-blue-500/20"
     >
       <ActivityBackground />
+
       <div className="relative z-10 space-y-4">
         <ActivityHeader />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">

@@ -7,7 +7,7 @@ interface SecuredMainSuspenseProps {
 }
 
 export function SecuredMainSuspense({ children }: SecuredMainSuspenseProps) {
-  
+
   return (
     <Suspense fallback={<LoadingFallback />}>
       {children}

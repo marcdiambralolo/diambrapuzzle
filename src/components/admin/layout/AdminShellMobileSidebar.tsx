@@ -8,7 +8,7 @@ import { colorClasses, navItems } from "../commons/AdminNavConfig";
 import { useAuth } from "@/lib/hooks";
 
 export const AdminSidebarHeader = React.memo(function AdminSidebarHeader() {
- const { user } = useAuth();
+  const { user } = useAuth();
 
   return (
     <CacheLink
@@ -182,7 +182,6 @@ export const AdminSidebarNav = memo(function AdminSidebarNav({ pathname, onNav, 
                     )}
                   </AnimatePresence>
 
-                  {/* Underline active (soulignement centré) */}
                   {isActive && (
                     <motion.div
                       layoutId="admin-active-underline"
@@ -199,7 +198,6 @@ export const AdminSidebarNav = memo(function AdminSidebarNav({ pathname, onNav, 
     </nav>
   );
 },
-  // comparator anti-rerender : rerender uniquement si pathname/isMobile/onNav changent
   (prev, next) =>
     prev.pathname === next.pathname &&
     prev.isMobile === next.isMobile &&

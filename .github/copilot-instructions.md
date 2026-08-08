@@ -85,12 +85,6 @@ Diambra is built with Next.js 14 App Router, TypeScript, and a separate backend 
 - **Animations**: Tailwind `animate-pulse`, `animate-spin`; custom keyframes (`float`, `glow`) in `globals.css`
 - **Icons**: Import from `lucide-react` individually; standard sizing `w-6 h-6`
 
-## External Integrations
-- **Payment**: MoneyFusion service (`lib/api/services/moneyfusion.service.ts`); uses `/api/payments/moneyfusion/verify` for server-side verification
-- **PDF generation**: `@react-pdf/renderer` for reports
-- **Charts**: `recharts` for analytics/stats visualizations
-- **Markdown**: `react-markdown` + `remark-gfm` for content rendering
-
 ## Environment Variables
 Required environment variables (add to `.env.local`):
 ```bash

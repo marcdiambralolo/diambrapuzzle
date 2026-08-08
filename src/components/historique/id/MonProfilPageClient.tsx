@@ -51,7 +51,7 @@ interface ConsultationCardProps {
 export function ConsultationCard({ consultation, index, isDuplicate = false, duplicateCount = 0 }: ConsultationCardProps) {
   const nomJoueur = consultation.clientId?.username || 'Diambra';
   const country = consultation.clientId?.country || 'Côte d\'Ivoire';
-  const combinaison = consultation.timeSpent ;
+  const combinaison = consultation.timeSpent;
   const timeSpent = consultation.timeSpent;
   const relativeDate = formatEditionDate(new Date(consultation.createdAt || ''));
 
@@ -285,6 +285,4 @@ function HistoriquePageClientImpl() {
   );
 }
 
-const HistoriquePageClient = memo(HistoriquePageClientImpl);
-
-export default HistoriquePageClient;
+export default HistoriquePageClientImpl;

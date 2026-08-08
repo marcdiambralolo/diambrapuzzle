@@ -1,20 +1,9 @@
-"use client"; 
+"use client";
 import { useConsultationCard } from "@/hooks/profil/useConsultationCard";
-import { cx, formatEditionDate, getRelativeTime } from "@/lib/functions";
+import { cx } from "@/lib/functions";
 import type { Consultation } from "@/lib/interfaces";
-import { motion } from "framer-motion";
-import { Award, Calendar, CheckCircle, Eye, Gamepad2, Globe, Timer, Trophy, UserRound, Zap } from "lucide-react";
-import { memo, useState } from "react";
-
-const getEditionStatus = (status: string, isActive: boolean) => {
-    if (isActive && status === 'active') {
-        return { label: 'En cours', color: 'text-green-600 dark:text-green-400', bg: 'bg-green-100 dark:bg-green-900/30', icon: <Zap className="w-3 h-3" /> };
-    }
-    if (status === 'ended') {
-        return { label: 'Terminée', color: 'text-gray-600 dark:text-gray-400', bg: 'bg-gray-100 dark:bg-gray-800', icon: <Award className="w-3 h-3" /> };
-    }
-    return { label: 'À venir', color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-100 dark:bg-amber-900/30', icon: <Calendar className="w-3 h-3" /> };
-};
+import { Calendar, Eye, Globe, Timer, UserRound } from "lucide-react";
+import { memo } from "react";
 
 interface ConsultationCardProps {
     consultation: Consultation;
@@ -23,32 +12,18 @@ interface ConsultationCardProps {
     showState?: boolean;
 }
 
-
- 
- 
 const ConsultationCard = memo(
-    ({ consultation, index, showDate = true, showState = true }: ConsultationCardProps) => {
-        // Utilisation du hook personnalisé pour récupérer les données formatées
-        const {
-            nomJoueur,
-            country,
-            relativeDate,
-            formattedTime,
-            nombredevues,
-            
-        } = useConsultationCard(consultation);
-
-        
+    ({ consultation }: ConsultationCardProps) => {
+        const { nomJoueur, country, relativeDate, formattedTime, nombredevues, } = useConsultationCard(consultation);
 
         return (
             <article
                 className={cx(
                     "group relative overflow-hidden rounded-2xl p-4 my-3 transition-all duration-300",
                     "bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800",
-                    "shadow-sm hover:shadow-lg hover:-translate-y-0.5" )}
+                    "shadow-sm hover:shadow-lg hover:-translate-y-0.5")}
             >
                 <div className="relative z-10 flex flex-col gap-3">
-                    {/* Ligne supérieure : Joueur + statut */}
                     <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2.5 min-w-0">
                             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 shrink-0">
@@ -59,16 +34,12 @@ const ConsultationCard = memo(
                                 <div className="flex items-center gap-1.5">
                                     <h4 className="text-sm font-bold text-gray-900 dark:text-gray-100 truncate">
                                         {nomJoueur}
-                                    </h4> 
+                                    </h4>
                                 </div>
                             </div>
                         </div>
-  
                     </div>
 
-                    
-
-                    {/* Grille d'informations */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
                         <div className="flex items-center gap-2 p-2 rounded-xl bg-gray-50/80 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-800/60">
                             <Timer className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
@@ -106,7 +77,7 @@ const ConsultationCard = memo(
                             </div>
                         </div>
 
-                        {country  &&  (
+                        {country && (
                             <div className="flex items-center gap-2 p-2 rounded-xl bg-gray-50/80 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-800/60">
                                 <Globe className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 shrink-0" />
                                 <div className="flex flex-col min-w-0">
@@ -118,10 +89,8 @@ const ConsultationCard = memo(
                                     </span>
                                 </div>
                             </div>
-                        ) }
+                        )}
                     </div>
-
-                    
                 </div>
             </article>
         );

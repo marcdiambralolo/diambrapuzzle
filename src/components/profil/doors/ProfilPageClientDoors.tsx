@@ -376,7 +376,6 @@ export default function ProfilPageClientDoors() {
               <button type="submit" className={submitClass}>
                 Valider et continuer
               </button>
-
               <button type="button" onClick={handleReset} className={cancelClass}>
                 <span className="inline-flex items-center justify-center gap-2">
                   <X className="h-4 w-4" />

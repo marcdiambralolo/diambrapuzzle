@@ -31,7 +31,6 @@ const addCacheBusting = (url: string, timestamp?: number): string => {
   const bustTimestamp = timestamp || Date.now();
   const separator = url.includes('?') ? '&' : '?';
 
-  // Éviter d'ajouter plusieurs fois le même paramètre
   if (url.includes('_cb=')) {
     return url.replace(/_cb=\d+/, `_cb=${bustTimestamp}`);
   }
@@ -77,7 +76,6 @@ export default function CacheLink({
     if (props.prefetch === false) {
       return;
     }
-    // Utiliser l'URL sans cache busting pour la préfetch
     void router.prefetch(prefetchHref);
     void prefetchRouteData(queryClient, prefetchHref, isAuthenticated);
   }, [prefetchHref, isAuthenticated, props.prefetch, queryClient, router]);

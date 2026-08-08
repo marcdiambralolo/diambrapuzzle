@@ -19,7 +19,7 @@ const Loader = memo(function Loader() {
           "border-[#4F83D1]/20 dark:border-white/10",
           "bg-white/80 dark:bg-slate-950/70 backdrop-blur-xl",
           "shadow-[0_18px_60px_rgba(0,0,0,0.10)] dark:shadow-[0_18px_60px_rgba(0,0,0,0.45)]",
-          "px-5 py-6",
+          "px-5 py-5",
           "flex flex-col items-center justify-center text-center gap-3",
         ].join(" ")}
         role="status"

@@ -4,7 +4,7 @@ import { useAuth } from '@/lib/hooks';
 import { dispatchLoginNavigation } from '@/lib/navigation/clientNavigation';
 import { AnimatePresence } from 'framer-motion';
 import React, { memo, useEffect, useMemo } from 'react';
-import { motion,Variants  } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Lock, Shield, Sparkles, Star, Zap } from 'lucide-react';
 
 const particleVariants: Variants = {
@@ -414,7 +414,6 @@ function ProtectedRouteComponent({
     if (!isAuthenticated) {
       const [, query = ''] = loginUrl.split('?');
       const params = new URLSearchParams(query);
-
       dispatchLoginNavigation(params.get('returnTo') || undefined);
     }
   }, [isAuthenticated, isLoading, loginUrl]);
@@ -435,7 +434,5 @@ function ProtectedRouteComponent({
 export const ProtectedRoute = memo(ProtectedRouteComponent, (prev, next) => {
   return prev.redirectTo === next.redirectTo;
 });
-
-ProtectedRoute.displayName = 'ProtectedRoute';
 
 export default ProtectedRoute; 

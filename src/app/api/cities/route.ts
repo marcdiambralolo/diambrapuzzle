@@ -26,9 +26,7 @@ export async function GET(request: NextRequest) {
 
   const cityApiKey = getCityApiKey();
 
-  if (cityApiKey) {
-    headers.set('Authorization', `Bearer ${cityApiKey}`);
-  }
+  if (cityApiKey) { headers.set('Authorization', `Bearer ${cityApiKey}`); }
 
   try {
     const upstreamResponse = await fetch(upstreamUrl.toString(), {

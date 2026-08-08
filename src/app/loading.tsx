@@ -21,8 +21,7 @@ const Loader = memo(function Loader() {
         className={[
           "w-full max-w-sm rounded-3xl border",
           "border-[#4F83D1]/20 dark:border-white/10",
-          "bg-white/90 dark:bg-slate-950/80",
-          "px-6 py-8",
+          "bg-white/90 dark:bg-slate-950/80 px-6 py-8",
           "flex flex-col items-center justify-center text-center gap-4",
         ].join(" ")}
         role="status"
@@ -43,7 +42,7 @@ const Loader = memo(function Loader() {
               className="object-contain drop-shadow-xl"
               priority
             />
-          </div>           
+          </div>
 
           <motion.div
             className="absolute inset-0 -z-20 rounded-full border-2 border-purple-500/10"
@@ -60,7 +59,6 @@ const Loader = memo(function Loader() {
           />
         </motion.div>
 
-        {/* ===== BARRE DE PROGRESSION ===== */}
         <motion.div
           initial={reduce ? undefined : { width: 0, opacity: 0 }}
           animate={reduce ? undefined : { width: "100%", opacity: 1 }}
@@ -68,7 +66,6 @@ const Loader = memo(function Loader() {
           className="h-1 w-32 rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500"
         />
 
-        {/* ===== TITRE ===== */}
         <motion.div
           initial={reduce ? undefined : { opacity: 0, y: 8 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -89,9 +86,7 @@ const Loader = memo(function Loader() {
           </motion.div>
         </motion.div>
 
-        {/* ===== SPINNER AVEC POINTS ===== */}
         <div className="relative grid place-items-center mt-1">
-          {/* ===== SPINNER ROTATIF ===== */}
           <motion.div
             className="absolute h-16 w-16 rounded-full opacity-30"
             animate={reduce ? undefined : {
@@ -117,7 +112,6 @@ const Loader = memo(function Loader() {
             }}
           />
 
-          {/* ===== POINTS ANIMÉS ===== */}
           <div className="absolute inset-0 flex items-center justify-center gap-1.5" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <motion.span
@@ -142,10 +136,10 @@ const Loader = memo(function Loader() {
           initial={reduce ? undefined : { opacity: 0 }}
           animate={reduce ? undefined : { opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.5 }}
-          className="mt-1"
+          className="mt-2"
         >
           <motion.p
-            className="text-[12px] text-purple-400 dark:text-purple-400/70 font-medium"
+            className="text-[14px] text-purple-400 dark:text-purple-400/70 font-medium"
             animate={reduce ? undefined : {
               opacity: [0.4, 1, 0.4],
             }}

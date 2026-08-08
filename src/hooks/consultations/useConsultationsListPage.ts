@@ -13,6 +13,7 @@ interface EditionInfo {
   winningCombination: string | null;
 }
 
+
 export function useConsultationsListPage() {
   const [activeTab, setActiveTab] = useState<'history' | 'games'>('games');
   const [consultations, setConsultations] = useState<Consultation[]>([]);

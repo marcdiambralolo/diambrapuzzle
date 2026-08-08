@@ -1,4 +1,5 @@
-export type DateLike = Date | string | number | null | undefined;
+export type DateLike = Date | string | number | null | undefined; 
+
 export type ConfigStatus = 'pending' | 'active' | 'ended' | 'cancelled';
 
 export interface StatusConfigItem {

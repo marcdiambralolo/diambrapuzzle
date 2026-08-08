@@ -200,6 +200,7 @@ function MobileMenu({
                     Se connecter
                   </a>
                 )}
+                
                 <div className="h-2" />
               </div>
             </div>

@@ -5,14 +5,14 @@ import SecuredMain from "@/components/layout/ProtectedLayout/SecuredMain";
 import { ErrorBoundary } from "@/components/layout/ErrorBoundary";
 import { SecuredHeaderSuspense } from "@/components/layout/ProtectedLayout/SecuredHeaderSuspense";
 import { SecuredMainSuspense } from "@/components/layout/ProtectedLayout/SecuredMainSuspense";
+import { memo } from "react";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
 }
 
-import { memo } from "react";
-
 const ProtectedLayout = memo(function ProtectedLayout({ children }: ProtectedLayoutProps) {
+
   return (
     <ErrorBoundary>
       <SecuredHeader>

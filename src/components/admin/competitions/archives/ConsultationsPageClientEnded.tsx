@@ -1,21 +1,15 @@
 'use client';
+import Loader from '@/app/admin/loading';
 import ConsultationCard from '@/components/commons/ConsultationCard';
 import { useAdminConsultationsPageFinished } from '@/hooks/admin/competitions/archives/useAdminConsultationsPageFinished';
-import { 
-  ChevronLeft, ChevronRight, FileText, RefreshCw, 
-  Archive, Calendar, Trophy, Award, Clock, TrendingUp,
-  Users, Crown, Sparkles, ArrowLeft, Medal, Star, 
-  Zap, BarChart3, Activity, Gem, Target,
-  Hash, BookOpen, Grid3x3, List
-} from 'lucide-react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { useMemo, useState } from 'react';
-import Link from 'next/link';
 import { formatEditionDate } from '@/lib/functions';
-
-// ============================================================================
-// ANIMATIONS
-// ============================================================================
+import { AnimatePresence, motion, Variants } from 'framer-motion';
+import {
+  Archive, ArrowLeft, Award, BarChart3, BookOpen, Calendar, ChevronLeft, ChevronRight,
+  Crown, FileText, Grid3x3, Hash, RefreshCw, Trophy, Users, Zap
+} from 'lucide-react';
+import Link from 'next/link';
+import { useMemo, useState } from 'react';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -29,10 +23,6 @@ const staggerContainer = {
     transition: { staggerChildren: 0.05, delayChildren: 0.1 }
   }
 };
-
-// ============================================================================
-// COMPOSANT STATISTIQUE
-// ============================================================================
 
 interface StatCardProps {
   icon: React.ReactNode;
@@ -55,16 +45,13 @@ const StatCard = ({ icon, label, value, subValue, color }: StatCardProps) => (
           {icon}
         </div>
       </div>
+
       <div className="text-3xl font-black tracking-tight">{value}</div>
       <div className="text-xs font-medium opacity-90 mt-1">{label}</div>
       {subValue && <div className="text-[10px] opacity-75 mt-2">{subValue}</div>}
     </div>
   </motion.div>
 );
-
-// ============================================================================
-// COMPOSANT ONGLET
-// ============================================================================
 
 interface TabButtonProps {
   active: boolean;
@@ -112,32 +99,17 @@ const TabButton = ({ active, onClick, icon, label, count }: TabButtonProps) => (
   </motion.button>
 );
 
-// ============================================================================
-// COMPOSANT PRINCIPAL
-// ============================================================================
-
 export default function ConsultationsArchivePage() {
   const {
-    consultations,
-    totalPages,
-    currentPage,
-    loading,
-    error,
-    isRefreshing,
-    editions,
-    handleRefresh,
-    handlePageChange,
+    handleRefresh, handlePageChange,
+    consultations, totalPages, currentPage, loading, error, isRefreshing, editions,
   } = useAdminConsultationsPageFinished();
 
   const [activeTab, setActiveTab] = useState<'editions' | 'games'>('editions');
 
-  // ============================================================================
-  // STATISTIQUES AVANCÉES
-  // ============================================================================
-
   const stats = useMemo(() => {
     const totalGames = consultations.length;
-    
+
     const playersMap = new Map();
     consultations.forEach(c => {
       const username = c.clientId?.username;
@@ -149,14 +121,14 @@ export default function ConsultationsArchivePage() {
       }
     });
     const uniquePlayers = playersMap.size;
-    
-    const completedGames = consultations.filter(c => c.timeSpent ).length;
+
+    const completedGames = consultations.filter(c => c.timeSpent).length;
     const completionRate = totalGames > 0 ? Math.round((completedGames / totalGames) * 100) : 0;
-    
+
     const combinaisonsMap = new Map();
     consultations.forEach(c => {
       const comb = c.timeSpent;
-      if (comb ) {
+      if (comb) {
         combinaisonsMap.set(comb, (combinaisonsMap.get(comb) || 0) + 1);
       }
     });
@@ -170,21 +142,10 @@ export default function ConsultationsArchivePage() {
     };
   }, [consultations]);
 
-  // Affichage du chargement
   if (loading && consultations.length === 0 && editions.length === 0) {
-    return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 p-6">
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-700 animate-pulse">
-            <div className="h-48" />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
-          </div>
-        ))}
-      </div>
-    );
+    return (<Loader />);
   }
 
-  // Affichage de l'erreur
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-[60vh] p-6">
@@ -212,7 +173,6 @@ export default function ConsultationsArchivePage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950/20">
-      {/* Effet de fond animé */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], y: [0, 30, 0] }}
@@ -227,8 +187,7 @@ export default function ConsultationsArchivePage() {
       </div>
 
       <div className="relative max-w-7xl mx-auto p-6">
-        
-        {/* En-tête premium */}
+
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -236,7 +195,7 @@ export default function ConsultationsArchivePage() {
         >
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             <div>
-              <motion.div 
+              <motion.div
                 animate={{ rotate: [0, 5, -5, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 px-4 py-1.5 mb-3 shadow-sm"
@@ -274,7 +233,6 @@ export default function ConsultationsArchivePage() {
           </div>
         </motion.div>
 
-        {/* Onglets */}
         <div className="mb-8">
           <div className="flex gap-3 p-1.5 bg-gray-100/50 dark:bg-gray-800/30 rounded-2xl">
             <TabButton
@@ -294,7 +252,6 @@ export default function ConsultationsArchivePage() {
           </div>
         </div>
 
-        {/* Contenu des onglets */}
         <AnimatePresence mode="wait">
           {activeTab === 'editions' && (
             <motion.div
@@ -343,9 +300,9 @@ export default function ConsultationsArchivePage() {
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 mb-2">
                           <Calendar className="w-4 h-4" />
-                           <span  >
-                                              Du {formatEditionDate(new Date(edition.startDate))} {' '} au {formatEditionDate(new Date(edition.endDate))}
-                                            </span>
+                          <span  >
+                            Du {formatEditionDate(new Date(edition.startDate))} {' '} au {formatEditionDate(new Date(edition.endDate))}
+                          </span>
                         </div>
                       </div>
                     </motion.div>
@@ -363,7 +320,6 @@ export default function ConsultationsArchivePage() {
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Statistiques */}
               {consultations.length > 0 && (
                 <motion.div
                   variants={staggerContainer}
@@ -393,12 +349,11 @@ export default function ConsultationsArchivePage() {
                     icon={<Hash className="w-4 h-4" />}
                     label="Combinaisons uniques"
                     value={stats.uniqueCombinaisons}
-                      color="from-emerald-600 to-teal-600"
+                    color="from-emerald-600 to-teal-600"
                   />
                 </motion.div>
               )}
 
-              {/* Grille des consultations */}
               {consultations.length === 0 ? (
                 <motion.div
                   variants={fadeInUp}
@@ -436,7 +391,6 @@ export default function ConsultationsArchivePage() {
                     </AnimatePresence>
                   </div>
 
-                  {/* Pagination */}
                   {totalPages > 1 && (
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -450,7 +404,7 @@ export default function ConsultationsArchivePage() {
                       >
                         <ChevronLeft className="w-5 h-5" />
                       </button>
-                      
+
                       <div className="flex gap-1">
                         {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                           let pageNum: number;
@@ -463,18 +417,17 @@ export default function ConsultationsArchivePage() {
                           } else {
                             pageNum = currentPage - 2 + i;
                           }
-                          
+
                           return (
                             <motion.button
                               key={pageNum}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={() => handlePageChange(pageNum)}
-                              className={`min-w-[40px] h-10 px-2 rounded-lg font-medium transition-all ${
-                                pageNum === currentPage
-                                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md scale-105'
-                                  : 'border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800'
-                              }`}
+                              className={`min-w-[40px] h-10 px-2 rounded-lg font-medium transition-all ${pageNum === currentPage
+                                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md scale-105'
+                                : 'border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                }`}
                             >
                               {pageNum}
                             </motion.button>
@@ -497,7 +450,6 @@ export default function ConsultationsArchivePage() {
           )}
         </AnimatePresence>
 
-        {/* Pied de page */}
         <div className="mt-8 text-center">
           <motion.p
             initial={{ opacity: 0 }}

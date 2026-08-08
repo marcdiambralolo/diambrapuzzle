@@ -1,9 +1,7 @@
 'use client';
 import CacheLink from '@/components/commons/CacheLink';
 import { useNotificationsWithCache } from '@/hooks/cache/useNotificationsWithCache';
-import { useNotificationSound } from '@/hooks/notifications/useNotificationSound';
 import type { Notification } from '@/lib/types/notification.types';
-import { useQueryClient } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Bell, CheckCheck } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -22,9 +20,6 @@ const notificationColors: Record<string, string> = {
 };
 
 export default function NotificationBell() {
-  // Hook pour jouer le son de notification
-
-
   const [hasHydrated, setHasHydrated] = useState(false);
 
   useEffect(() => {
@@ -43,20 +38,14 @@ export default function NotificationBell() {
     markAllAsRead,
   } = notificationsProps;
 
-  // Référence pour suivre les IDs des notifications déjà vues
   const lastSeenIdsRef = useRef<string[]>([]);
 
   useEffect(() => {
-    // On ne joue le son que si une nouvelle notification non lue arrive
     if (!notifications || notifications.length === 0) {
       lastSeenIdsRef.current = [];
       return;
     }
     const unread = notifications.filter((n) => !n.isRead);
-    const lastSeen = lastSeenIdsRef.current;
-    // Détecte si une nouvelle notification non lue est arrivée
-
-    // Met à jour la liste des notifications non lues
     lastSeenIdsRef.current = unread.map((n) => n._id);
   }, [notifications,]);
 
@@ -73,20 +62,18 @@ export default function NotificationBell() {
     }
   }, [isOpen]);
 
- 
-
   const handleNotificationClick = async (notification: Notification) => {
-    setIsOpen(false); // Ferme la popover dès le clic
+    setIsOpen(false);
     if (!notification.isRead) {
       await markAsRead(notification._id);
     }
 
     if (notification.type === 'CONSULTATION_RESULT' && notification.metadata?.consultationId) {
-       router.push(`/star/consultations/${notification.metadata.consultationId}`);
+      router.push(`/star/consultations/${notification.metadata.consultationId}`);
       return;
     }
     if (notification.metadata?.url) {
-       router.push(notification.metadata.url);
+      router.push(notification.metadata.url);
     }
   };
 
@@ -128,7 +115,6 @@ export default function NotificationBell() {
             transition={{ duration: 0.2 }}
             className="absolute right-0 mt-2 w-96 max-h-[600px] bg-gradient-to-br from-[#0F1C3F]/95 to-[#162A56]/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#1C3A6B] overflow-hidden z-50"
           >
-            {/* Header */}
             <div className="px-4 py-3 border-b border-[#1C3A6B] flex items-center justify-between bg-[#0F1C3F]">
               <CacheLink
                 href="/star/notifications"
@@ -149,7 +135,6 @@ export default function NotificationBell() {
               )}
             </div>
 
-            {/* Liste des notifications */}
             <div className="overflow-y-auto max-h-[500px] custom-scrollbar bg-[#0F1C3F]">
               {!true ? (
                 <div className="p-8 text-center text-[#4F83D1]">
@@ -178,12 +163,10 @@ export default function NotificationBell() {
                       className={`p-4 cursor-pointer transition-all duration-200 rounded-xl hover:bg-[#162A56]/80 ${!notification.isRead ? 'bg-[#162A56]/60 border border-[#2E5AA6]' : ''}`}
                     >
                       <div className="flex items-start gap-3">
-                        {/* Icône */}
                         <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br ${notificationColors[notification.type] || 'from-[#2E5AA6]/20 to-[#4F83D1]/20'} flex items-center justify-center text-xl shadow-md`}>
                           {notificationIcons[notification.type] || '🔔'}
                         </div>
 
-                        {/* Contenu */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between gap-2">
                             <h4 className={`text-sm font-medium ${notification.isRead ? 'text-[#D1D5DB]' : 'text-white'}`}>

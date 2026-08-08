@@ -2,22 +2,11 @@
 import CacheLink from '@/components/commons/CacheLink';
 import { useAdminConsultationsPageFinished } from '@/hooks/admin/competitions/useAdminConsultationsPageFinished';
 import { formatEditionDate, formatTime } from '@/lib/functions';
-import { motion, Variant } from 'framer-motion';
 import {
   ArrowLeft, Clock, FileText, Flame, Medal, RefreshCw, Sparkles,
-  TrendingUp, Trophy, Users, Zap,
+  Trophy, Users, Zap
 } from 'lucide-react';
 import { useMemo } from 'react';
-
-// ============================================================================
-// ANIMATIONS
-// ============================================================================
-
-
-
-// ============================================================================
-// COMPOSANTS
-// ============================================================================
 
 const LoadingSkeleton = () => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 p-6">
@@ -32,8 +21,6 @@ const LoadingSkeleton = () => (
 
 const StatCard = ({ icon, label, value, subValue, color }: any) => (
   <div
-  
-
     className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${color} p-5 text-white shadow-xl group cursor-pointer`}
   >
     <div className="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-white/10 group-hover:scale-150 transition-transform duration-700" />
@@ -50,7 +37,6 @@ const StatCard = ({ icon, label, value, subValue, color }: any) => (
 
 const TopCard = ({ title, icon, items, color }: any) => (
   <div
-
     className="relative overflow-hidden rounded-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-100 dark:border-gray-700 shadow-xl group"
   >
     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-indigo-500/10 rounded-full blur-2xl" />
@@ -60,7 +46,7 @@ const TopCard = ({ title, icon, items, color }: any) => (
         <h3 className="text-lg font-bold text-gray-800 dark:text-white">{title}</h3>
       </div>
       <div className="space-y-3">
-        {items.map((item : any) => (
+        {items.map((item: any) => (
           <div
             key={item.name}
             className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-800 hover:shadow-md transition-all"
@@ -81,10 +67,6 @@ const TopCard = ({ title, icon, items, color }: any) => (
     </div>
   </div>
 );
-
-// ============================================================================
-// COMPOSANT PRINCIPAL
-// ============================================================================
 
 export default function ConsultationsPage() {
   const { consultations, loading, error, isRefreshing, activeEdition, handleRefresh } = useAdminConsultationsPageFinished();
@@ -160,10 +142,9 @@ export default function ConsultationsPage() {
       </div>
 
       <div className="relative max-w-7xl mx-auto p-6">
-        {/* Header */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-8">
           <h1 className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 bg-clip-text text-transparent">
-           DIAMBRA PUZZLE 
+            DIAMBRA PUZZLE
           </h1>
 
           <div className="flex items-center gap-3">
@@ -185,7 +166,6 @@ export default function ConsultationsPage() {
           </div>
         </div>
 
-        {/* Édition active */}
         {activeEdition && stats && (
           <div className="mb-8 overflow-hidden rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 p-5 shadow-xl">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -207,7 +187,6 @@ export default function ConsultationsPage() {
           </div>
         )}
 
-        {/* Statistiques */}
         {stats && (
           <>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
@@ -239,7 +218,6 @@ export default function ConsultationsPage() {
           </>
         )}
 
-        {/* Aucune partie */}
         {!stats && (
           <div className="text-center py-20 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl">
             <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
@@ -250,7 +228,6 @@ export default function ConsultationsPage() {
           </div>
         )}
       </div>
-
       <style jsx>{`
         @keyframes shimmer {
           0% { transform: translateX(-100%); }

@@ -67,8 +67,6 @@ const RootSkipLink = memo(function RootSkipLink() {
     );
 });
 
-RootSkipLink.displayName = 'RootSkipLink';
-
 const RootPortals = memo(function RootPortals() {
     return (
         <>
@@ -78,9 +76,8 @@ const RootPortals = memo(function RootPortals() {
     );
 });
 
-RootPortals.displayName = 'RootPortals';
-
 export function Providers({ children }: { children: React.ReactNode }) {
+    
     return (
         <ThemeProvider
             attribute="class"

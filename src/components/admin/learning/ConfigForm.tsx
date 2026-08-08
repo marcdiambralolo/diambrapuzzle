@@ -1,6 +1,5 @@
-// components/learning/LearningConfigForm.tsx
 'use client';
- import { generateNumeromatch, normalizeConfigDates, normalizeStatus, showToast, toSafeDate } from '@/lib/learning/configUtils';
+import { generateNumeromatch, normalizeConfigDates, normalizeStatus, showToast, toSafeDate } from '@/lib/learning/configUtils';
 import { motion } from 'framer-motion';
 import { CheckIcon, LockIcon, RefreshCwIcon, XIcon } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -133,7 +132,7 @@ export default function LearningConfigForm({
                         />
                     </div>
 
-                     <div>
+                    <div>
                         <label className="mb-2 block text-sm font-semibold text-gray-700">
                             🏁 Date de proclamtion des resultats
                         </label>
@@ -250,7 +249,7 @@ export default function LearningConfigForm({
                         className={`w-full rounded-2xl border-2 px-4 py-3 transition-all focus:ring-4 ${isEnded
                             ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
                             : 'border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100'
-                        }`}
+                            }`}
                     >
                         <option value="pending">⏳ En attente</option>
                         <option value="active">⚡ Actif</option>
@@ -316,9 +315,10 @@ export default function LearningConfigForm({
                         Annuler
                     </motion.button>
                 </div>
-                    <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
             </form>
-            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+
+            <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
         </motion.div>
     );
 }

@@ -1,4 +1,5 @@
 'use client';
+import { DateLike } from '@/lib/interfaces';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CalendarIcon, ClockIcon, ChevronLeftIcon, ChevronRightIcon, Edit3, Check, X } from 'lucide-react';
 import React from 'react';
@@ -13,8 +14,6 @@ interface CustomDateTimePickerProps {
   disabled?: boolean;
   className?: string;
 }
-
-type DateLike = Date | string | number | null | undefined;
 
 function toSafeDate(value: DateLike, fallback?: Date): Date {
   if (value instanceof Date && !Number.isNaN(value.getTime())) {
@@ -442,7 +441,6 @@ export function CustomDateTimePicker({
             className="absolute z-50 mt-3 w-[480px] max-w-[calc(100vw-2rem)] rounded-2xl bg-white shadow-2xl ring-1 ring-black/5"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* En-tête avec onglets */}
             <div className="border-b border-gray-100">
               <div className="flex">
                 <button
@@ -483,7 +481,6 @@ export function CustomDateTimePicker({
             <div className="p-4">
               {activeTab === 'date' ? (
                 <>
-                  {/* Navigation mois/année */}
                   <div className="mb-4 flex items-center justify-between">
                     <div className="flex gap-1">
                       <motion.button
@@ -535,14 +532,12 @@ export function CustomDateTimePicker({
                     </div>
                   </div>
 
-                  {/* Jours de la semaine */}
                   <div className="mb-2 grid grid-cols-7 gap-1">
                     {DAYS.map((day) => (
                       <div key={day} className="text-center text-xs font-semibold text-gray-400">{day}</div>
                     ))}
                   </div>
 
-                  {/* Calendrier */}
                   <Calendar
                     viewMonth={viewMonth}
                     tempDate={tempDate}
@@ -550,7 +545,6 @@ export function CustomDateTimePicker({
                     onDateSelect={(day, month, year) => updateDate({ day, month, year })}
                   />
 
-                  {/* Bouton Aujourd'hui */}
                   <motion.button
                     type="button"
                     whileHover={{ scale: 1.02 }}
@@ -563,7 +557,6 @@ export function CustomDateTimePicker({
                 </>
               ) : (
                 <div className="space-y-4">
-                  {/* Sélecteur de mode */}
                   <div className="flex gap-2 p-1 bg-gray-100 rounded-xl">
                     <button
                       type="button"
@@ -581,7 +574,6 @@ export function CustomDateTimePicker({
                     </button>
                   </div>
 
-                  {/* Contenu selon le mode */}
                   {inputMode === 'manual' ? (
                     <div className="flex justify-center py-4">
                       <ManualTimeInput value={tempDate} onChange={updateTime} />
@@ -593,7 +585,6 @@ export function CustomDateTimePicker({
                     </div>
                   )}
 
-                  {/* Affichage de l'heure sélectionnée */}
                   <div className="text-center pt-2 border-t border-gray-100">
                     <p className="text-sm text-gray-500">Heure sélectionnée</p>
                     <p className="text-2xl font-black text-purple-700">
@@ -604,7 +595,6 @@ export function CustomDateTimePicker({
               )}
             </div>
 
-            {/* Boutons de confirmation */}
             <div className="flex gap-2 border-t border-gray-100 p-4">
               <motion.button
                 type="button"
@@ -625,6 +615,7 @@ export function CustomDateTimePicker({
                 Annuler
               </motion.button>
             </div>
+
           </motion.div>
         )}
       </AnimatePresence>

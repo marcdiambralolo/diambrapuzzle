@@ -78,7 +78,6 @@ export default function ClientProviders({ children }: { children: React.ReactNod
             <ClientNavigationEvents />
             {children}
           </Suspense>
-
           <ServiceWorkerInitializer />
         </AuthProvider>
       </ErrorBoundary>

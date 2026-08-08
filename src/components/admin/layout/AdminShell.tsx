@@ -7,15 +7,14 @@ import { useAuth } from '@/lib/hooks';
 import { Role } from '@/lib/interfaces';
 import { dispatchClientNavigation, dispatchLoginNavigation } from '@/lib/navigation/clientNavigation';
 import { AnimatePresence, motion, useReducedMotion, Variants } from 'framer-motion';
-import { Activity, ChevronRight, Loader2, LogOut, Menu, ShieldAlert, Sparkles, X } from 'lucide-react';
+import { Activity, ChevronRight, Loader2, LogOut, Menu, Shield, ShieldAlert, Sparkles, X } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { colorClasses, navItems } from "../commons/AdminNavConfig";
 import { AdminShellMobileSidebar } from './AdminShellMobileSidebar';
-import { Shield } from 'lucide-react';
 
 export const AdminSidebarHeader = React.memo(function AdminSidebarHeader() {
-   const { user } = useAuth();
+  const { user } = useAuth();
 
   return (
     <CacheLink
@@ -126,11 +125,9 @@ export function MobileNav() {
         </AnimatePresence>
       </motion.button>
 
-      {/* Menu Mobile */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Overlay avec blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -149,7 +146,6 @@ export function MobileNav() {
                          shadow-2xl overflow-y-auto"
             >
               <div className="flex flex-col h-full">
-                {/* Header avec Logo */}
                 <motion.div
                   variants={itemVariants}
                   className="px-6 pt-10 pb-4 bg-gradient-to-r from-amber-50 to-orange-50 
@@ -183,7 +179,6 @@ export function MobileNav() {
 
                 </motion.div>
 
-                {/* Navigation */}
                 <nav className="flex-1 px-6 py-4 space-y-1.5 overflow-y-auto">
                   {navItems.map((item, index) => {
                     const Icon = item.icon;
@@ -217,7 +212,6 @@ export function MobileNav() {
                             </div>
                             <span className="font-medium text-sm">{item.label}</span>
 
-                            {/* Badge "Active" */}
                             <AnimatePresence>
                               {isActive && (
                                 <motion.div
@@ -595,7 +589,7 @@ const AccessDenied: React.FC<{ message: string; }> = ({
   message, }) => {
   const router = useRouter();
 
- const { user } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className="flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-red-50 p-4 dark:from-[#070B1A] dark:via-[#0F1C3F] dark:to-[#1A0C16]">

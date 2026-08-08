@@ -242,7 +242,7 @@ export default function TermsPageClient() {
                     transition={{ delay: 0.5 }}
                     className="text-center text-[10px] text-purple-400 mt-8"
                 >
-                    © 2026 Diambra · Tous droits réservés.
+                    © 2026 Diambra puzzle · Tous droits réservés.
                 </motion.p>
             </div>
         </div>

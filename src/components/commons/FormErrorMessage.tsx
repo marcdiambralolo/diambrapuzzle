@@ -1,6 +1,6 @@
 'use client';
 import { memo } from 'react';
-import { motion,Variants  } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { AlertCircle } from 'lucide-react';
 
 export const alertVariants: Variants = {
@@ -31,6 +31,7 @@ export const FormErrorMessage = memo<FormErrorMessageProps>(({ message }) => (
       >
         <AlertCircle className="h-5 w-5 text-rose-600 dark:text-rose-400" />
       </motion.div>
+
       <p className="leading-snug text-rose-800 dark:text-rose-200 font-medium">{message}</p>
     </div>
   </motion.div>

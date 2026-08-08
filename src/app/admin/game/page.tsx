@@ -1,6 +1,6 @@
-import HistoriquePageClient from "@/components/learning/historique/id/MonProfilPageClient";
+import HistoriquePageClient from "@/components/admin/historique/MonProfilPageClient";
 
-export default function ConsultationsPage() {    
-  
+export default function ConsultationsPage() {
+
   return <HistoriquePageClient />;
 }

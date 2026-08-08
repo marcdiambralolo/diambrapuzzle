@@ -2,9 +2,9 @@ import { CreditCard, FileText, LayoutDashboard, Settings, Shield, Users } from '
 
 export const navItems = [
   { href: '/admin', label: 'Tableau de bord', icon: LayoutDashboard, color: 'amber' },
-  { href: '/admin/game', label: 'Jeu en cours', icon: Settings, color: 'gray' },
   { href: '/admin/learning', label: 'Configuration', icon: FileText, color: 'green' },
   { href: '/admin/competitions', label: 'Competitions', icon: FileText, color: 'green' },
+  { href: '/admin/game', label: 'Suivi', icon: Settings, color: 'gray' },
   { href: '/admin/users', label: 'Utilisateurs', icon: Users, color: 'blue' },
   { href: '/admin/payments', label: 'Paiements', icon: CreditCard, color: 'ocean' },
   { href: '/admin/offrandes', label: 'Jetons', icon: Shield, color: 'cyan' },
