@@ -354,7 +354,7 @@ const RegisterForm: React.FC = () => {
             </CacheLink>
           </div>
         </div>
-        <WelcomePageClient /> 
+        <WelcomePageClient />
       </div>
     </div>
   );

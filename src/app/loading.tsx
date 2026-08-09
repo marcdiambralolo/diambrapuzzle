@@ -7,10 +7,10 @@ const Loader = memo(function Loader() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center px-4">
+    <div className="fixed inset-0 z-50 grid place-items-center">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#EEF4FF] via-[#DDE7FA] to-indigo-50 dark:from-[#070B1A] dark:via-[#0F1C3F] dark:to-slate-900" />
 
-      <div className="absolute -z-10 h-[520px] w-[520px] rounded-full blur-3xl opacity-40 dark:opacity-30 bg-[radial-gradient(circle_at_center,rgba(46,90,166,0.35),rgba(79,131,209,0.20),transparent_65%)]" />
+      <div className="absolute -z-10 h-[400px] w-[400px] rounded-full blur-3xl opacity-40 dark:opacity-30 bg-[radial-gradient(circle_at_center,rgba(46,90,166,0.35),rgba(79,131,209,0.20),transparent_65%)]" />
       <div className="absolute -z-10 bottom-0 right-0 h-[300px] w-[300px] rounded-full blur-3xl opacity-20 dark:opacity-15 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.30),rgba(79,131,209,0.15),transparent_65%)]" />
       <div className="absolute -z-10 top-0 left-0 h-[250px] w-[250px] rounded-full blur-3xl opacity-15 dark:opacity-10 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.25),rgba(139,92,246,0.15),transparent_65%)]" />
 
@@ -19,9 +19,8 @@ const Loader = memo(function Loader() {
         animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={[
-          "w-full max-w-sm rounded-3xl border",
-          "border-[#4F83D1]/20 dark:border-white/10",
-          "bg-white/90 dark:bg-slate-950/80 px-6 py-8",
+          "w-full max-w-sm rounded-3xl border border-[#4F83D1]/20 ",
+          "bg-white dark:bg-slate-950/80 px-4 py-4",
           "flex flex-col items-center justify-center text-center gap-4",
         ].join(" ")}
         role="status"
@@ -60,27 +59,16 @@ const Loader = memo(function Loader() {
         </motion.div>
 
         <motion.div
-          initial={reduce ? undefined : { width: 0, opacity: 0 }}
-          animate={reduce ? undefined : { width: "100%", opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
-          className="h-1 w-32 rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500"
-        />
-
-        <motion.div
           initial={reduce ? undefined : { opacity: 0, y: 8 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.25 }}
           className="space-y-1"
         >
-          <div className="text-[15px] sm:text-[17px] font-black tracking-tight bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 bg-clip-text text-transparent">
-            DIAMBRA PUZZLE
-          </div>
-
           <motion.div
             initial={reduce ? undefined : { opacity: 0, y: 6 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.35 }}
-            className="text-[12px] leading-snug text-slate-600 dark:text-slate-300/85"
+            className="text-xl leading-snug text-slate-600 dark:text-slate-300/85 uppercase font-semibold tracking-wide"
           >
             Chargement en cours…
           </motion.div>
@@ -149,7 +137,7 @@ const Loader = memo(function Loader() {
               ease: "easeInOut",
             }}
           >
-            ✨ MEMORISER . JOUER . GAGNER
+            MEMORISER . JOUER . GAGNER
           </motion.p>
         </motion.div>
       </motion.section>

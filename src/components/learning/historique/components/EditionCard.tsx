@@ -4,7 +4,7 @@ import { Trophy } from "lucide-react";
 import { memo } from 'react';
 
 const EditionCard = memo(({ activeEdition }: { activeEdition: { startDate: string; endDate: string; name?: string } }) => (
-    <div className="mb-4 mt-4 overflow-hidden rounded-2xl bg-gradient-to-r from-blue-800 via-indigo-600 to-gray-600 p-5 shadow-xl">
+    <div className="mb-4 mt-4 overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 p-5 shadow-xl">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">

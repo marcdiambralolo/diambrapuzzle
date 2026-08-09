@@ -30,8 +30,8 @@ const PodiumItem = ({
                 <p className="text-xs text-gray-400 dark:text-gray-500">{winner.country}</p>
             )}
         </div>
-        <div className={`mt-1 ${rank === 1 ? 'w-24 h-20' : rank === 2 ? 'w-20 h-16' : 'w-20 h-14'} bg-gradient-to-t from-${color}-500 to-${color}-400 rounded-t-lg flex items-center justify-center shadow-lg`}>
-            <span className="text-2xl font-black text-white">{rank}</span>
+        <div className={`mt-1 ${rank === 1 ? 'w-24 h-20' : rank === 2 ? 'w-20 h-16' : 'w-20 h-14'} bg-gradient-to-t from-${color}-600 to-${color}-400 rounded-t-lg flex items-center justify-center shadow-lg`}>
+            <span className="text-2xl font-black text-white/90">{rank}</span>
         </div>
     </div>
 );

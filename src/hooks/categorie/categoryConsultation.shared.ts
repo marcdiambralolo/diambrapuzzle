@@ -29,22 +29,6 @@ export function getCategoryErrorMessage(error: unknown, fallback: string): strin
     return fallback;
 }
 
-export async function createCategoryConsultation(monidjeu: string): Promise<string> {
-    const payload: Record<string, unknown> = {
-        idjeu: monidjeu,
-        status: 'pending',
-    };
-
-    const response = await api.post<ConsultationCreateResponse>("/consultations", payload);
-    const consultationId = response.data?.consultation?.consultationId || response.data?.consultation?.id;
-
-    if (!consultationId) {
-        throw new Error("ID de consultation manquant");
-    }
-
-    return consultationId;
-}
-
 export async function createCategoryConsultationLearning(
     monidjeu: string
 ): Promise<string> {

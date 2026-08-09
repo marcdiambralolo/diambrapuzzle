@@ -129,14 +129,7 @@ export function useSlide4SectionDoors() {
 
       if (response.data.success && response.data.user) {
         updateUser(response.data.user);
-        if (retour === "learning") {
-          router.push(`/star/learning`);
-        } else
-          if (monjeu) {
-            router.push(`/star/choix/${monjeu}`);
-          } else {
-            router.push(`/star/profil`);
-          }
+         router.push(`/star/profil`);
       } else {
         setApiError(response.data.error || "Une erreur est survenue");
       }

@@ -9,10 +9,10 @@ import { Providers, RootPortals, RootSkipLink } from "./providers";
 const SITE_CONFIG = {
   name: "Diambra",
   url: "https://www.diambrapuzzle.com",
-  description: "🎯 Diambra ",
+  description: "🎯 Diambra Puzzle",
   twitterHandle: "@DiambraCorporation",
   ogImage: "/logo.png",
-  ogImageAlt: "Diambra Puzzle Logo",
+  ogImageAlt: "Diambra Puzzle",
   ogImageWidth: 512,
   ogImageHeight: 512,
 } as const;
@@ -72,8 +72,6 @@ const RootHeadMeta = memo(function RootHeadMeta() {
   );
 });
 
-RootHeadMeta.displayName = 'RootHeadMeta';
-
 const ThemeScript = memo(function ThemeScript() {
   return (
     <script
@@ -100,8 +98,6 @@ const ThemeScript = memo(function ThemeScript() {
   );
 });
 
-ThemeScript.displayName = 'ThemeScript';
-
 const SchemaScript = memo(function SchemaScript() {
   const schema = {
     "@context": "https://schema.org",
@@ -127,7 +123,7 @@ const SchemaScript = memo(function SchemaScript() {
         "@id": `${SITE_CONFIG.url}/#webapplication`,
         name: SITE_CONFIG.name,
         url: SITE_CONFIG.url,
-        description: "Jeu  - Entraînez votre cerveau avec ce puzzle de chiffres addictif",
+        description: "Entraînez votre cerveau avec diambra puzzle",
         applicationCategory: "Game",
         operatingSystem: "All",
         offers: {

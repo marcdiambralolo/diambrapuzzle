@@ -56,7 +56,7 @@ export function WelcomePageClientContent() {
                         <CacheLink href="/" className="block relative group">
                             <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto transition-transform duration-300 group-hover:scale-110">
                                 <Image
-                                    src="/logolearning.png"
+                                    src="/logo.png"
                                     alt="Diambra"
                                     fill
                                     sizes="(max-width: 768px) 256px, 384px"

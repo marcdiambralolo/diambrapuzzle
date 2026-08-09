@@ -2,7 +2,6 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.diambrapuzzle.com';
-
   const lastModified = new Date().toISOString();
 
   const publicRoutes = [
@@ -10,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/about', priority: 0.5, changefreq: 'yearly' },
     { path: '/a-propos', priority: 0.5, changefreq: 'yearly' },
     { path: '/terms', priority: 0.5, changefreq: 'yearly' },
-    { path: '/callback', priority: 0.3, changefreq: 'yearly' },
     { path: '/auth/login', priority: 0.4, changefreq: 'yearly' },
     { path: '/auth/register', priority: 0.4, changefreq: 'yearly' },
   ];

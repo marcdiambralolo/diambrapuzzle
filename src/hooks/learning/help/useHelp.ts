@@ -6,7 +6,7 @@ export function useHelp() {
     const router = useRouter();
 
     const handleCloseHelp = useCallback(() => {
-        router.back();
+        router.push('/star/profil');
     }, [router]);
 
     return { handleCloseHelp };

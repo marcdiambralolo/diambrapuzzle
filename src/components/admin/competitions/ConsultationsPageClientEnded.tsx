@@ -144,7 +144,7 @@ export default function ConsultationsPage() {
       <div className="relative max-w-7xl mx-auto p-6">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-8">
           <h1 className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 bg-clip-text text-transparent">
-            DIAMBRA PUZZLE
+            COMPETITIONS TERMINÉES
           </h1>
 
           <div className="flex items-center gap-3">

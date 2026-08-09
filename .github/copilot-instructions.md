@@ -1,6 +1,6 @@
-# Copilot Instructions for Diambra
+# Copilot Instructions for Diambra Puzzle
 
-Diambra is built with Next.js 14 App Router, TypeScript, and a separate backend API. These instructions help AI agents be immediately productive in this codebase.
+Diambra Puzzle is built with Next.js 14 App Router, TypeScript, and a separate backend API. These instructions help AI agents be immediately productive in this codebase.
 
 ## Project Overview
 - **Framework**: Next.js 14 (App Router) with TypeScript strict mode

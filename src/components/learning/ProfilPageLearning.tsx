@@ -6,7 +6,6 @@ import LaMise from "./choix/LaMise";
 import { FooterSection } from "./commons/Features";
 import Historique from "./historique/Historique";
 import Horloge from "./home/dashboard/Horloge";
-import { HeaderSection } from "./home/fixedcontent/HeaderSection";
 import { HelpButton } from "./home/fixedcontent/HelpButton";
 import { StatsSection } from "./home/fixedcontent/StatsSection";
 import CompetitionDetails from "./home/matchsheet/CompetitionDetails";
@@ -34,15 +33,16 @@ const ProfilPageLearning = memo(() => {
   } = useEndGameGenerator();
 
   return (
-    <div className="w-full mx-auto max-w-md mb-8 mt-4">
-      <HeaderSection />
+    <div className="w-full mx-auto max-w-md mb-8 mt-8">
       {hasContent && (
         <div className="mt-4">
           <ContentRenderer showChoix={afficheChoix} showGame={afficheGame} />
         </div>
       )}
+
       <footer className="fixed-bottom-content w-full mx-auto max-w-md space-y-4 space-x-2">
         <Horloge />
+
         <div className="w-full mx-auto max-w-md px-4 sm:px-0">
           <div className="space-y-4">
             {competitionList?.map((competition, idx) => (
@@ -63,6 +63,7 @@ const ProfilPageLearning = memo(() => {
             )}
           </div>
         </div>
+
         <StatsSection />
         <Historique />
         <FooterSection />

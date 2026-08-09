@@ -97,6 +97,4 @@ const ConsultationCard = memo(
     }
 );
 
-ConsultationCard.displayName = "ConsultationCard";
-
 export default ConsultationCard;

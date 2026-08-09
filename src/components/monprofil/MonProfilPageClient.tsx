@@ -2,11 +2,10 @@
 import Loader from "@/app/loading";
 import { useConsultationsListPage } from "@/hooks/consultations/useConsultationsListPage";
 import { cx, formatEditionDate } from "@/lib/functions";
-import { AlertCircle, CalendarDays, ChevronRight, Crown, Flame, Gamepad2, History, Plus, Trophy, UserRound } from "lucide-react";
+import { AlertCircle, CalendarDays, ChevronRight, Crown, Flame, Gamepad2, History, Trophy, UserRound } from "lucide-react";
 import Link from "next/link";
 import { memo, type ReactNode } from "react";
-import ConsultationCard from "../commons/ConsultationCard";
- 
+import ConsultationCard from "../commons/ConsultationCard"; 
 
 interface TabButtonProps {
   active: boolean;
@@ -106,16 +105,7 @@ const EditionCard = memo(({ edition, gamesCount }: EditionCardProps) => {
                   <div className="text-2xl font-bold text-white">{gamesCount}</div>
                   <div className="text-[10px] text-white/70">parties</div>
                 </div>
-              )}
-
-              {edition.winningCombination && (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm">
-                  <Trophy className="w-4 h-4 text-yellow-400" />
-                  <span className="text-xs font-semibold text-white">
-                    {edition.winningCombination}
-                  </span>
-                </div>
-              )}
+              )}              
 
               <ChevronRight className="w-5 h-5 text-white/70" />
             </div>
@@ -247,7 +237,7 @@ function MonProfilPageClientImpl() {
             active={activeTab === 'games'}
             onClick={() => setActiveTab('games')}
             icon={<Gamepad2 className="w-4 h-4" />}
-            label="Mes Éditions"
+            label="Mes Jeux"
             count={editions.length}
           />
           <TabButton

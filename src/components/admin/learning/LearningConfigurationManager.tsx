@@ -339,7 +339,7 @@ export default function LearningConfigurationManager() {
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <h1 className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-2xl font-black tracking-tight text-transparent md:text-6xl">
-                  COMPETITIONS
+                  CONFIGURATION DES JEUX
                 </h1>
               </div>
               {!isCreating && (

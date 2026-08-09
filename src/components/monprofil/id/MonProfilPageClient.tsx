@@ -127,7 +127,6 @@ function MonProfilPageClientImpl() {
       </AnimatePresence>
       {isEditionActive && <GameButton gameId={gameId} />}
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
       {isEditionActive && <NewGameButton gameId={gameId} />}
     </main>
   );

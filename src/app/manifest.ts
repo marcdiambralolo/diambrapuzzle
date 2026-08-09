@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
     name: "Diambra Puzzle",
-    short_name: "Diambra",
+    short_name: "diambrapuzzle",
     description:
       "Jeu Diambra Puzzle",
     start_url: "/",

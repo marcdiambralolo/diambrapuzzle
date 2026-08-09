@@ -70,7 +70,7 @@ function ConsultationsEmpty() {
       </motion.div>
 
       <h3 className="text-2xl font-bold text-white mb-3">
-        📜 Aucun jeu
+        📜 Aucune competition
       </h3>
     </motion.div>
   );

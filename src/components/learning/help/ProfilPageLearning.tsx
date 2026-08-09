@@ -2,15 +2,13 @@
 import { useHelp } from '@/hooks/learning/help/useHelp';
 import { memo } from 'react';
 import { FooterSection } from "../commons/Features";
-import HeaderSection from "./HeaderSection";
 import HelpPanel from "./HelpPanel";
 
 const HelpPage = () => {
   const { handleCloseHelp } = useHelp();
 
   return (
-    <div className="container mx-auto max-w-md">
-      <HeaderSection />
+    <div className="container mx-auto max-w-md mt-8">
       <HelpPanel onClose={handleCloseHelp} />
       <div className="mt-4">
         <FooterSection />
