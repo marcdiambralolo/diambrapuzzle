@@ -627,7 +627,7 @@ export default function WelcomePageClient() {
         {/* ===== FOOTER ===== */}
         <div className="text-center pt-4">
           <p className="text-xs text-gray-400 dark:text-gray-500">
-            © 2026 Diambra - Tous droits réservés.
+            © 2026 Diambra Corporation - Tous droits réservés.
           </p>
         </div>
       </div>

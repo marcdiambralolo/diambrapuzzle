@@ -1,7 +1,7 @@
 {
-  "name": "Diambra",
-  "short_name": "Diambra",
-  "description": "Jeu en ligne",
+  "name": "diambrapuzzle",
+  "short_name": "diambrapuzzle",
+  "description": "Diambra Puzzle est un jeu en ligne",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

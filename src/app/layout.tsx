@@ -7,7 +7,7 @@ import "./globals.css";
 import { Providers, RootPortals, RootSkipLink } from "./providers";
 
 const SITE_CONFIG = {
-  name: "Diambra",
+  name: "Diambra Puzzle",
   url: "https://www.diambrapuzzle.com",
   description: "🎯 Diambra Puzzle",
   twitterHandle: "@DiambraCorporation",
@@ -66,7 +66,7 @@ const RootHeadMeta = memo(function RootHeadMeta() {
       <meta name="twitter:image:alt" content={SITE_CONFIG.ogImageAlt} />
 
       <meta name="keywords" content="jeu,  chiffres, réflexion, en ligne" />
-      <meta name="author" content="Diambra" />
+      <meta name="author" content="Diambra Corporation" />
       <meta name="robots" content="index, follow" />
     </>
   );
@@ -181,7 +181,7 @@ SchemaScript.displayName = 'SchemaScript';
 
 const RootMain = memo(function RootMain({ children }: { children: React.ReactNode }) {
   return (
-    <main id="main-content" className="relative" role="main" aria-label="DIAMBRA">
+    <main id="main-content" className="relative" role="main" aria-label="DIAMBRA PUZZLE">
       {children}
     </main>
   );

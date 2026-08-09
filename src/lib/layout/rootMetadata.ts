@@ -3,31 +3,31 @@ const faviconAnySize = `${'an'}y`;
 export function getRootMetadata() {
   return {
     title: {
-      default: "Diambra",
+      default: "Diambra Puzzle",
       template: "%s | Diambra",
     },
     description:
-      "✨ Jouez DIAMBRA dès maintenant!",
+      "✨ Jouez DIAMBRA Puzzle dès maintenant!",
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.diambrapuzzle.com"),
     openGraph: {
       type: "website",
       locale: "fr_FR",
       url: "/",
       siteName: "Diambra Puzzle",
-      title: "Diambra",
+      title: "Diambra Puzzle",
       description:
-        "🔮 Jeu .",
+        "🔮 Jeu Diambra Puzzle.",
       images: [
-        { url: "/og-image.jpg", width: 1200, height: 630, alt: "Diambra", type: "image/jpeg" },
-        { url: "/og-image-square.jpg", width: 800, height: 800, alt: "Diambra", type: "image/jpeg" },
+        { url: "/og-image.jpg", width: 1200, height: 630, alt: "Diambra Puzzle", type: "image/jpeg" },
+        { url: "/og-image-square.jpg", width: 800, height: 800, alt: "Diambra Puzzle", type: "image/jpeg" },
       ],
     },
     twitter: {
       card: "summary_large_image",
       site: "@DiambraApp",
       creator: "@DiambraApp",
-      title: "Diambra",
-      description: "🔮 Jeu.",
+      title: "Diambra Puzzle",
+      description: "🔮 Jeu Diambra Puzzle.",
       images: ["/twitter-image.jpg"],
     },
     icons: {
@@ -42,7 +42,7 @@ export function getRootMetadata() {
       other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#8b5cf6" }],
     },
     manifest: "/site.webmanifest",
-    appleWebApp: { capable: true, title: "Diambra", statusBarStyle: "black-translucent" as const },
+    appleWebApp: { capable: true, title: "Diambra Puzzle", statusBarStyle: "black-translucent" as const },
     other: { "mobile-web-app-capable": "yes", "apple-mobile-web-app-capable": "yes" },
   };
 }

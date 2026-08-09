@@ -49,7 +49,7 @@ interface ConsultationCardProps {
 }
 
 export function ConsultationCard({ consultation, index, isDuplicate = false, duplicateCount = 0 }: ConsultationCardProps) {
-  const nomJoueur = consultation.clientId?.username || 'Diambra';
+  const nomJoueur = consultation.clientId?.username || 'Diambra Puzzle';
   const country = consultation.clientId?.country || 'Côte d\'Ivoire';
   const combinaison = consultation.timeSpent;
   const timeSpent = consultation.timeSpent;

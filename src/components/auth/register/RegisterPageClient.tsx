@@ -243,7 +243,7 @@ const RegisterForm: React.FC = () => {
 
                   <Image
                     src="/logo.png"
-                    alt="Diambra"
+                    alt="Diambra Puzzle"
                     fill
                     sizes="(max-width: 768px) 120px, 160px"
                     className="object-contain p-3"

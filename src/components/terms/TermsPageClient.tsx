@@ -180,7 +180,7 @@ export default function TermsPageClient() {
                             </div>
                             <div>
                                 <p className="text-sm font-semibold text-purple-800 mb-1">
-                                    En jouant à <span className="text-purple-600">Diambra</span>, vous acceptez ces conditions.
+                                    En jouant à <span className="text-purple-600">Diambra Puzzle </span>, vous acceptez ces conditions.
                                 </p>
                                 <p className="text-xs text-purple-600">
                                     Ce jeu est un divertissement purement ludique.

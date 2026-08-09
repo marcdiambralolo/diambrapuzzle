@@ -1,6 +1,6 @@
   {
-    "name": "DIAMBRA",
-    "short_name": "DIAMBRA",
+    "name": "diambrapuzzle",
+    "short_name": "diambrapuzzle",
     "description": "DIAMBRA PUZZLE",
     "start_url": "/",
     "display": "standalone",
