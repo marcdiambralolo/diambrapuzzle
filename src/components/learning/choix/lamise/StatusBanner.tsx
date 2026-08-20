@@ -25,7 +25,7 @@ const STATUS_BANNER_CONFIG: Record<'sufficient' | 'insufficient', StatusConfig> 
         title: 'Prêt à valider',
     },
     insufficient: {
-        bgGradient: 'from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20', // Correction de from-red-60 -> from-red-50
+        bgGradient: 'from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20',
         borderColor: 'border-red-300 dark:border-red-800',
         iconBg: 'bg-red-100 dark:bg-red-900/40',
         iconColor: 'text-red-600 dark:text-red-400',
@@ -68,17 +68,17 @@ export const StatusBanner = memo(
         return (
             <div
                 role={isSufficient ? 'status' : 'alert'}
-                className={`relative overflow-hidden mb-1 flex items-start gap-3 p-2.5 rounded-2xl bg-gradient-to-r ${config.bgGradient} border ${config.borderColor} w-full transition-colors duration-200`}
+                className={`relative overflow-hidden mb-1 flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-r ${config.bgGradient} border ${config.borderColor} w-full transition-colors duration-200`}
             >
-                <div className={`rounded-full ${config.iconBg} p-2 flex-shrink-0`}>
-                    <Icon className={`w-5 h-5 ${config.iconColor}`} aria-hidden="true" />
+                <div className={`rounded-full ${config.iconBg} p-3 flex-shrink-0`}>
+                    <Icon className={`w-7 h-7 ${config.iconColor}`} aria-hidden="true" />
                 </div>
 
                 <div className="flex-1 min-w-0">
-                    <h4 className={`text-sm font-semibold ${config.titleColor} flex items-center gap-2`}>
+                    <h4 className={`text-xl font-semibold ${config.titleColor} flex items-center gap-2`}>
                         {config.title}
                     </h4>
-                    <p className={`text-xs ${config.textColor} mt-0.5 leading-relaxed`}>
+                    <p className={`text-xl ${config.textColor} mt-1 leading-relaxed`}>
                         {message}
                     </p>
                 </div>

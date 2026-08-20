@@ -8,7 +8,7 @@ interface ButtonSpinnerProps {
 
 const ButtonSpinner = ({ className = 'border-white' }: ButtonSpinnerProps) => (
     <div
-        className={`w-4 h-4 border-2 border-t-transparent rounded-full animate-spin ${className}`}
+        className={`w-5 h-5 border-2 border-t-transparent rounded-full animate-spin ${className}`}
         aria-hidden="true"
     />
 );
@@ -30,12 +30,12 @@ export const PlayButton = memo(({ isSufficient, isPending, onClick }: PlayButton
             aria-busy={isPending}
             aria-label={isPending ? 'Chargement en cours...' : 'Jouer maintenant'}
             className={`
-        w-full h-12 rounded-xl text-sm font-bold flex items-center justify-center gap-2
+        w-full h-14 rounded-xl text-xl font-bold flex items-center justify-center gap-3
         transition-all duration-200
         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
         disabled:cursor-not-allowed
         ${isEnabled
-                    ? 'bg-gradient-to-r from-[#2E5AA6] via-[#3A6BB8] to-[#4F83D1] text-white shadow-md active:scale-[0.99] cursor-pointer'
+                    ? 'bg-gradient-to-r from-green-500 via-green-700 to-green-600 text-white shadow-md active:scale-[0.99] cursor-pointer'
                     : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 opacity-60'
                 }
       `}
@@ -48,7 +48,7 @@ export const PlayButton = memo(({ isSufficient, isPending, onClick }: PlayButton
             ) : (
                 <>
                     <span>Jouer Maintenant</span>
-                    <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                    <ChevronRight className="w-5 h-5" aria-hidden="true" />
                 </>
             )}
         </button>
@@ -67,14 +67,14 @@ export const MarketButton = memo(({ onClick, isPending }: MarketButtonProps) => 
         disabled={isPending}
         aria-busy={isPending}
         aria-label={isPending ? 'Chargement en cours...' : 'Acquérir des jetons'}
-        className="
-      w-full h-11 my-2 flex items-center justify-center gap-2 rounded-xl border-2 
-      border-[#DDE7FA] bg-[#EEF4FF] text-sm font-semibold text-[#2E5AA6]
+        className={`
+      w-full h-13 my-3 flex items-center justify-center gap-3 rounded-xl border-2 
+      border-[#DDE7FA] bg-blue-600 text-base font-semibold text-white
       dark:border-[#2E5AA6]/45 dark:bg-[#0F1C3F]/35 dark:text-[#9BC2FF]
-      transition-all duration-200
+      transition-all duration-200 p-4
       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
       disabled:opacity-50 disabled:cursor-not-allowed
-    "
+    `}
     >
         {isPending ? (
             <>
@@ -83,9 +83,9 @@ export const MarketButton = memo(({ onClick, isPending }: MarketButtonProps) => 
             </>
         ) : (
             <>
-                <ShoppingBag className="w-4 h-4" aria-hidden="true" />
-                <span>Acquérir des jetons</span>
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                <ShoppingBag className="w-5 h-5" aria-hidden="true" />
+                <span className='text-xl font-bold'>Acquérir des jetons</span>
+                <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </>
         )}
     </button>

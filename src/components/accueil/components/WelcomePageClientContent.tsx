@@ -49,7 +49,7 @@ export function WelcomePageClientContent() {
     }
 
     return (
-        <main className="w-full mx-auto max-w-6xl px-2 py-2  bg-white overflow-x-hidden">
+        <main className="w-full mx-auto max-w-4xl px-2 py-2  bg-white overflow-x-hidden">
             <section className="text-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700">
                 <div className="flex justify-center">
                     <CacheLink href="/" className="text-center">
@@ -64,18 +64,11 @@ export function WelcomePageClientContent() {
                             />
                         </div>
                     </CacheLink>
-                </div>
-
-                <div className="relative">
-                    <h1 className="text-3xl sm:text-3xl lg:text-3xl font-black bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
-                        DIAMBRA PUZZLE
-                    </h1>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-shimmer" />
-                </div>
-                <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                </div> 
+                <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                     <CacheLink
                         href="/star/profil"
-                        className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-orange-600 to-orange-700 px-8 py-4 text-white font-bold shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300 hover:-translate-y-1"
+                        className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-orange-600 to-orange-700 px-4 py-4 text-white font-bold shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300 hover:-translate-y-1"
                     >
                         <span className="relative z-10 flex items-center gap-2 text-base sm:text-lg">
                             <span className="text-xl">🎮</span>
@@ -98,7 +91,7 @@ export function WelcomePageClientContent() {
 
             <section className="mt-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-100">
                 <div className="text-center mb-8">
-                    <h2 className="text-3xl font-black text-gray-800">🎯 Objectifs du jeu</h2>
+                    <h2 className="text-3xl font-black text-gray-800">🎯 Objectifs du jeu DIAMBRA PUZZLE</h2>
                     <p className="text-gray-500 mt-2">Ce que vous allez développer</p>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -119,7 +112,7 @@ export function WelcomePageClientContent() {
 
             <section id="principe" className="mt-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
                 <div className="text-center mb-8">
-                    <h2 className="text-3xl font-black text-gray-800">📌 Principe du jeu</h2>
+                    <h2 className="text-3xl font-black text-gray-800">📌 Principe du jeu DIAMBRA PUZZLE</h2>
                     <p className="text-gray-500 mt-2">Déplacez les éléments du plateau P2 pour reproduire le plateau P1</p>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -173,7 +166,7 @@ export function WelcomePageClientContent() {
 
             <section id="modes" className="mt-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-400">
                 <div className="text-center mb-8">
-                    <h2 className="text-3xl font-black text-gray-800">🎨 Modes de jeu</h2>
+                    <h2 className="text-3xl font-black text-gray-800">🎨 Modes de jeu DIAMBRA PUZZLE</h2>
                     <p className="text-gray-500 mt-2">Variété de défis pour tous les goûts</p>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
