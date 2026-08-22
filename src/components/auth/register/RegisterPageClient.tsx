@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { Loader2, Lock, User } from 'lucide-react';
 import Image from "next/image";
 import { default as React } from 'react';
-import WelcomePageClient from '../login/welcome/WelcomePageClient';
-import { RegisterErrorMessage } from './components/RegisterErrorMessage';
+ import { RegisterErrorMessage } from './components/RegisterErrorMessage';
 import { RegisterInputField } from './components/RegisterInputField';
 import { RegisterPasswordStrengthIndicator } from './components/RegisterPasswordStrengthIndicator';
+import { WelcomePageClientContent } from '../login/welcome/WelcomePageClient';
 
 const RegisterForm: React.FC = () => {
   const {
@@ -164,7 +164,7 @@ const RegisterForm: React.FC = () => {
         </div>
 
       </div>
-      <WelcomePageClient />
+      <WelcomePageClientContent />
     </div>
   );
 };

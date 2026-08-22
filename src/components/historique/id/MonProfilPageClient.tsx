@@ -1,5 +1,6 @@
 "use client";
 import Loader from "@/app/loading";
+import Historique from "@/components/learning/historique/Historique";
 import { staggerContainer } from "@/lib/animations";
 import { api } from "@/lib/api/client";
 import { cx, formatEditionDate } from "@/lib/functions";
@@ -190,6 +191,7 @@ function HistoriquePageClientImpl() {
           </span>
         </div>
       </motion.div>
+       <Historique />
 
       {stats && (
         <motion.div

@@ -156,6 +156,7 @@ const useMatchManagement = (
             updateState({ isGameover: true });
             saveFinalResults();
             setAfficheGame(false);
+          window.location.reload();  
         }
     }, [allMatchesFinished, state.infomatch, state.isGameover, saveFinalResults, setAfficheGame, updateState]);
 

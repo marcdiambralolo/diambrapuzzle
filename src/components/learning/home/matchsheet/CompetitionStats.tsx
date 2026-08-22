@@ -14,9 +14,6 @@ interface CompetitionStatsProps {
     user: User | null;
 }
 
-// Fonction pour convertir un nombre total de secondes en "Xh Ym Zs"
-
-
 const CompetitionStats = memo(function CompetitionStats({
     startDate,
     finishedDate,
@@ -26,18 +23,18 @@ const CompetitionStats = memo(function CompetitionStats({
     user
 }: CompetitionStatsProps) {
 
-    const getElapsedTime = () => {
-        if (!startDate || !finishedDate) return null;
+    const getElapsedTime = (): string => {
+        if (!startDate || !finishedDate) return 'N/A';
 
         const start = new Date(startDate).getTime();
         const end = new Date(finishedDate).getTime();
 
-        if (Number.isNaN(start) || Number.isNaN(end)) return null;
+        if (Number.isNaN(start) || Number.isNaN(end)) return 'N/A';
 
         const diffSeconds = Math.floor((end - start) / 1000);
-        if (diffSeconds < 0) return 'Négatif';
+        if (diffSeconds < 0) return 'N/A';
 
-        return formatToHMS(diffSeconds);
+        return formatToHMS(diffSeconds) || 'N/A';
     };
 
     const elapsedTime = getElapsedTime();
@@ -48,9 +45,11 @@ const CompetitionStats = memo(function CompetitionStats({
     return (
         <div className="w-full dark:from-gray-800/30 dark:to-gray-900/30 p-3 dark:border-gray-700/50 mt-1">
             {showUserInfo && user && (
-                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800/30">
+                <div className="mb-3 p-3 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30 shadow-sm">
                     <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-2 flex items-center gap-2">
-                        <UserIcon className="w-4 h-4" />
+                        <div className="rounded-full bg-blue-100 dark:bg-blue-800/30 p-1">
+                            <UserIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                        </div>
                         Informations du joueur
                     </h4>
                     <InfoRow
@@ -60,7 +59,7 @@ const CompetitionStats = memo(function CompetitionStats({
                     />
                     <InfoRow
                         label="Téléphone"
-                        value={phoneNumber!}
+                        value={phoneNumber}
                         icon={<Phone className="w-3.5 h-3.5" />}
                     />
                 </div>
@@ -77,14 +76,12 @@ const CompetitionStats = memo(function CompetitionStats({
                     value={finishedDate}
                     icon={<Calendar className="w-3.5 h-3.5" />}
                 />
-                {elapsedTime && (
-                    <InfoRow
-                        label="Temps écoulé"
-                        value={elapsedTime}
-                        highlight
-                        icon={<span aria-hidden="true">⏱️</span>}
-                    />
-                )}                
+                <InfoRow
+                    label="Temps écoulé"
+                    value={timeSpent !== undefined ? formatToHMS(timeSpent) : 'N/A'}
+                    highlight
+                    icon={<Clock className="w-3.5 h-3.5" />}
+                />           
                 {punChangeCount !== undefined && (
                     <InfoRow
                         label="Nombre de vues"

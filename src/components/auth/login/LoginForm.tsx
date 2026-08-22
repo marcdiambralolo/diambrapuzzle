@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { AlertCircle, Eye, EyeOff, Loader2, Lock } from 'lucide-react';
 import Image from "next/image";
 import React, { memo } from "react";
-import WelcomePageClient from './welcome/WelcomePageClient';
+import { WelcomePageClientContent } from './welcome/WelcomePageClient';
 
 interface InputFieldProps {
   label: string;
@@ -135,7 +135,7 @@ const LoginForm = () => {
 
           <div className="text-center mb-6">
             <h1 className="mb-2 text-2xl font-bold text-blue-900 sm:text-3xl">
-              Se connecter 
+              Se connecter
             </h1>
 
             <p className="mx-auto max-w-md text-xs text-gray-600 sm:text-sm">
@@ -167,10 +167,10 @@ const LoginForm = () => {
               {isHydrated && (isLoading || isPending) ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Connexion...</span>
+                  <span>Connexion en cours...</span>
                 </>
               ) : (
-                'Se connecter'
+                'Connexion'
               )}
             </motion.button>
           </form>
@@ -178,7 +178,7 @@ const LoginForm = () => {
           <div className="mt-6 space-y-4">
             <div className="text-center">
               <p className="text-sm text-gray-700">
-                Pas encore de compte ?{' '}
+                Si vous n'avez pas encore de compte Diambra cliquez sur {' '}
                 <CacheLink
                   href="/auth/register"
                   className="text-blue-700 font-semibold hover:underline transition-colors"
@@ -187,12 +187,8 @@ const LoginForm = () => {
                 </CacheLink>
               </p>
             </div>
-            <div className="flex items-center justify-center gap-2 text-xs text-blue-400">
-              <Lock className="w-3 h-3" />
-              <span>Connexion sécurisée et cryptée.</span>
-            </div>
           </div>
-          <WelcomePageClient />
+          <WelcomePageClientContent />
         </div>
       </div>
     </div>

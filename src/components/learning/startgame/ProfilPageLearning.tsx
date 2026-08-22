@@ -33,7 +33,6 @@ const TheGame = () => {
             <GameInfo
                 currentGameType={currentGameType}
                 progression={progression}
-                niveau={niveau!}
                 lockedCount={lockedCount}
                 totalCount={totalCount}
                 hasCases={hasCases}

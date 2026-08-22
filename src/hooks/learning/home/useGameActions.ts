@@ -1,10 +1,12 @@
 import { useDiambraStore } from '@/lib/store/diambra.store';
 import { CompetitionInfo } from '@/lib/interfaces';
 import { useCallback, useRef, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
 
 export function useGameActions(gameConfig: any) {
   const [, startTransition] = useTransition();
   const hasRedirectedRef = useRef(false);
+  const router = useRouter();
 
   const {
     gameIsFinished, afficheChoix, afficheGame, competitions,
@@ -30,11 +32,20 @@ export function useGameActions(gameConfig: any) {
     startTransition(() => {
       if (!hasActiveCompetition) {
         setAfficheChoix(true);
+        router.push(`/star/play/?puzzle=${configId}`);
       } else {
         setAfficheGame(true);
       }
     });
   }, [gameConfig, competitions, setAfficheChoix, setAfficheGame]);
 
-  return { completeGameCleanup, demarrerJeu };
+  const demarrerJeuInit = useCallback(() => {
+    const configId = gameConfig?._id || gameConfig?.id;
+    startTransition(() => {
+      setAfficheChoix(true);
+      router.push(`/star/play/?puzzle=${configId}`);
+    });
+  }, [gameConfig, setAfficheChoix,]);
+
+  return { completeGameCleanup, demarrerJeu, demarrerJeuInit };
 }

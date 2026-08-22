@@ -1,9 +1,9 @@
 // Service Worker avancé pour Diambra Puzzle
-// - Cache-First pour assets statiques/images, Network-Only pour pages/API/auth
+// - Cache-First pour assets statiques/images, 
 // - Fallback offline, gestion fine de l'expiration, éviction LRU, sécurité headers
 // - Incrémentez CACHE_VERSION pour forcer la mise à jour
 
-const CACHE_VERSION = 'v9';
+const CACHE_VERSION = 'v11';
 const CACHE_STATIC = `diambrapuzzle-${CACHE_VERSION}-static`;
 const CACHE_IMAGES = `diambrapuzzle-${CACHE_VERSION}-images`;
 

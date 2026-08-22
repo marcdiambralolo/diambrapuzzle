@@ -13,7 +13,7 @@ const ObjectiveCard = memo(() => (
                         <TrophyOutlined className="text-xxs text-white" />
                     </div>
                     <p className="flex-1 text-sm font-medium text-gray-800 dark:text-gray-200">
-                        Objectif : Réorganisez P2 pour qu'il corresponde à P1!
+                        Objectif du jeu : Réorganisez P2 pour qu'il corresponde à P1!
                     </p>
                 </div>
             </div>

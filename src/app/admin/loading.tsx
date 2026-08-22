@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -6,81 +7,139 @@ const Loader = memo(function Loader() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center px-4">
+    <div className="fixed inset-0 z-50 grid place-items-center">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#EEF4FF] via-[#DDE7FA] to-indigo-50 dark:from-[#070B1A] dark:via-[#0F1C3F] dark:to-slate-900" />
-      <div className="absolute -z-10 h-[520px] w-[520px] rounded-full blur-3xl opacity-40 dark:opacity-30 bg-[radial-gradient(circle_at_center,rgba(46,90,166,0.35),rgba(79,131,209,0.20),transparent_65%)]" />
+
+      <div className="absolute -z-10 h-[400px] w-[400px] rounded-full blur-3xl opacity-40 dark:opacity-30 bg-[radial-gradient(circle_at_center,rgba(46,90,166,0.35),rgba(79,131,209,0.20),transparent_65%)]" />
+      <div className="absolute -z-10 bottom-0 right-0 h-[300px] w-[300px] rounded-full blur-3xl opacity-20 dark:opacity-15 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.30),rgba(79,131,209,0.15),transparent_65%)]" />
+      <div className="absolute -z-10 top-0 left-0 h-[250px] w-[250px] rounded-full blur-3xl opacity-15 dark:opacity-10 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.25),rgba(139,92,246,0.15),transparent_65%)]" />
 
       <motion.section
-        initial={reduce ? undefined : { opacity: 0, y: 10, filter: "blur(6px)" }}
-        animate={reduce ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        initial={reduce ? undefined : { opacity: 0, y: 20, scale: 0.95 }}
+        animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={[
-          "w-full max-w-xs rounded-3xl border",
-          "border-[#4F83D1]/20 dark:border-white/10",
-          "bg-white/80 dark:bg-slate-950/70 backdrop-blur-xl",
-          "shadow-[0_18px_60px_rgba(0,0,0,0.10)] dark:shadow-[0_18px_60px_rgba(0,0,0,0.45)]",
-          "px-5 py-5",
-          "flex flex-col items-center justify-center text-center gap-3",
+          "w-full max-w-sm rounded-3xl border border-[#4F83D1]/20 ",
+          "bg-white dark:bg-slate-950/80 px-4 py-4",
+          "flex flex-col items-center justify-center text-center gap-4",
         ].join(" ")}
         role="status"
         aria-live="polite"
         aria-busy="true"
       >
-        <div className="h-[3px] w-20 rounded-full bg-gradient-to-r from-[#2E5AA6] via-[#4F83D1] to-indigo-500/90 opacity-90" />
+        <motion.div
+          initial={reduce ? undefined : { scale: 0.8, opacity: 0 }}
+          animate={reduce ? undefined : { scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+          className="relative"
+        >
+          <div className="relative w-80 h-20 sm:w-96 sm:h-24">
+            <Image
+              src="/logo.png"
+              alt="Diambra Puzzle"
+              fill
+              className="object-contain drop-shadow-xl"
+              priority
+            />
+          </div>
 
-        <div className="relative grid place-items-center">
-          <div className="absolute h-16 w-16 rounded-full opacity-30 animate-pulse bg-gradient-to-r from-[#4F83D1] via-[#9BC2FF] to-indigo-400 dark:from-[#2E5AA6] dark:via-[#4F83D1] dark:to-indigo-700" />
-          <div className="h-12 w-12 rounded-full border-[3px] border-transparent border-t-[#2E5AA6] dark:border-t-[#9BC2FF] border-r-[#4F83D1]/70 dark:border-r-[#9BC2FF]/70 animate-spin" />
+          <motion.div
+            className="absolute inset-0 -z-20 rounded-full border-2 border-purple-500/10"
+            animate={reduce ? undefined : {
+              scale: [1, 1.5, 1],
+              opacity: [0.2, 0, 0.2],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.3,
+            }}
+          />
+        </motion.div>
 
-          <motion.svg
-            width="30"
-            height="30"
-            viewBox="0 0 32 32"
-            fill="none"
-            className="absolute text-[#2E5AA6] dark:text-[#DDE7FA]"
-            initial={reduce ? undefined : { y: 0, scale: 1 }}
-            animate={reduce ? undefined : { y: [0, -6, 0], scale: [1, 1.03, 1] }}
-            transition={reduce ? undefined : { duration: 2.1, repeat: Infinity, ease: "easeInOut" }}
-            aria-hidden="true"
-          >
-            <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="2" opacity="0.18" />
-            <circle cx="16" cy="16" r="7" stroke="currentColor" strokeWidth="2" opacity="0.45" />
-            <circle cx="16" cy="16" r="2" fill="currentColor" opacity="0.95" />
-          </motion.svg>
-        </div>
-
-        <div className="space-y-1">
+        <motion.div
+          initial={reduce ? undefined : { opacity: 0, y: 8 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.25 }}
+          className="space-y-1"
+        >
           <motion.div
             initial={reduce ? undefined : { opacity: 0, y: 6 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, delay: 0.05 }}
-            className="text-[14px] sm:text-[15px] font-extrabold tracking-tight text-[#16315F] dark:text-[#DDE7FA]"
+            transition={{ duration: 0.35, delay: 0.35 }}
+            className="text-xl leading-snug text-slate-600 dark:text-slate-300/85 uppercase font-semibold tracking-wide"
           >
-            Chargement…
+            Chargement en cours…
           </motion.div>
+        </motion.div>
+
+        <div className="relative grid place-items-center mt-1">
           <motion.div
-            initial={reduce ? undefined : { opacity: 0, y: 6 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, delay: 0.12 }}
-            className="text-[12px] leading-snug text-slate-600 dark:text-slate-300/85"
+            className="absolute h-16 w-16 rounded-full opacity-30"
+            animate={reduce ? undefined : {
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           >
-            Préparation de vos données, merci de patienter
+            <div className="h-full w-full rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 blur-xl" />
           </motion.div>
 
-          <div className="mt-2 flex items-center justify-center gap-1.5" aria-hidden="true">
+          <motion.div
+            className="h-14 w-14 rounded-full border-[3px] border-transparent border-t-purple-600 border-r-indigo-500 dark:border-t-purple-400 dark:border-r-indigo-400"
+            animate={reduce ? undefined : { rotate: 360 }}
+            transition={{
+              duration: 1.2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+
+          <div className="absolute inset-0 flex items-center justify-center gap-1.5" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <motion.span
                 key={i}
-                className="h-1.5 w-1.5 rounded-full bg-[#2E5AA6]/70 dark:bg-[#9BC2FF]/70"
-                initial={reduce ? undefined : { opacity: 0.35, scale: 0.9 }}
-                animate={reduce ? undefined : { opacity: [0.35, 1, 0.35], scale: [0.9, 1.15, 0.9] }}
+                className="h-4 w-4 rounded-full bg-purple-600 dark:bg-purple-400"
+                initial={reduce ? undefined : { opacity: 0.3, scale: 0.8 }}
+                animate={reduce ? undefined : {
+                  opacity: [0.3, 1, 0.3],
+                  scale: [0.8, 1.2, 0.8],
+                }}
                 transition={
-                  reduce ? undefined : { duration: 1.05, repeat: Infinity, ease: "easeInOut", delay: i * 0.14 }
+                  reduce
+                    ? undefined
+                    : { duration: 1.2, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }
                 }
               />
             ))}
           </div>
         </div>
+
+        <motion.div
+          initial={reduce ? undefined : { opacity: 0 }}
+          animate={reduce ? undefined : { opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.5 }}
+          className="mt-2"
+        >
+          <motion.p
+            className="text-[14px] text-purple-400 dark:text-purple-400/70 font-medium"
+            animate={reduce ? undefined : {
+              opacity: [0.4, 1, 0.4],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            MEMORISER . JOUER . GAGNER
+          </motion.p>
+        </motion.div>
       </motion.section>
     </div>
   );

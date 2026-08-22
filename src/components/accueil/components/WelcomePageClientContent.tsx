@@ -64,7 +64,7 @@ export function WelcomePageClientContent() {
                             />
                         </div>
                     </CacheLink>
-                </div> 
+                </div>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                     <CacheLink
                         href="/star/profil"

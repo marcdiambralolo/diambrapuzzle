@@ -1,60 +1,51 @@
 import Loader from "@/app/loading";
+import { Stats } from "@/hooks/cache/useStatsDataWithCache";
 import { useAdminConsultationsPageFinished } from "@/hooks/learning/home/useAdminConsultationsPageFinished";
 import { memo } from 'react';
-import ActiveBanner from "./ActiveBanner";
+import ActiveBannerPlay from "./ActiveBannerPlay";
 import NoCompetitionBanner from "./NoCompetitionBanner";
-import NotStartedBanner from "./NotStartedBanner";
 
 type GameStatus = 'results_available' | 'no_competition' | 'not_started' | 'ended_no_proclamation' | 'active';
 
 interface DashboardContentProps {
   status: GameStatus;
-  startDate: Date | null;
   endDate: Date | null;
   countdown: number | null;
-  showBandeauButton: boolean;
-  onDemarrerJeu: () => void;
   onCompleteGameCleanup: () => void;
+  stats: Stats | null;
+  showButton: boolean;
+  demarrerJeu: () => void;
 }
 
 const DashboardContent = memo(({
   status,
-  startDate,
   endDate,
   countdown,
-  showBandeauButton,
-  onDemarrerJeu,
   onCompleteGameCleanup,
+  stats,
+  showButton,
+  demarrerJeu
 }: DashboardContentProps) => {
   switch (status) {
     case 'no_competition':
       return <NoCompetitionBanner />;
 
     case 'not_started':
-      if (startDate) {
-        return (
-          <NotStartedBanner
-            startDate={startDate}
-            onFinish={onDemarrerJeu}
-            countdown={countdown}
-          />
-        );
-      }
       return <NoCompetitionBanner />;
 
     case 'active':
       if (endDate) {
         return (
-          <ActiveBanner
-            demarrerJeu={onDemarrerJeu}
+          <ActiveBannerPlay
             endDate={endDate}
-            showButton={showBandeauButton}
             countdown={countdown}
             onFinish={onCompleteGameCleanup}
+            stats={stats!}
+            showBandeauButton={showButton}
+            demarrerJeu={demarrerJeu}
           />
         );
       }
-
       return <NoCompetitionBanner />;
 
     default:
@@ -64,8 +55,7 @@ const DashboardContent = memo(({
 
 const Horloge = memo(() => {
   const {
-    demarrerJeu, completeGameCleanup,
-    startDate, endDate, isLoading, gameState, showBandeauButton, countdown,
+    completeGameCleanup, endDate, isLoading, gameState, countdown, stats,showBandeauButton,demarrerJeu
   } = useAdminConsultationsPageFinished();
 
   if (isLoading) return <Loader />;
@@ -73,12 +63,12 @@ const Horloge = memo(() => {
   return (
     <DashboardContent
       status={gameState.status}
-      startDate={startDate}
       endDate={endDate}
       countdown={countdown}
-      showBandeauButton={showBandeauButton}
-      onDemarrerJeu={demarrerJeu}
       onCompleteGameCleanup={completeGameCleanup}
+      stats={stats}
+      showButton={showBandeauButton}
+      demarrerJeu={demarrerJeu}
     />
   );
 });

@@ -1,19 +1,19 @@
 "use client";
 import {
-  Award, Brain, ChevronRight, Clock, Eye, Grid, Image as ImageIcon,
+  Award, Brain, Clock, Eye, Grid, Image as ImageIcon,
   Layers, Lock, Palette, Shuffle, Sparkles, Target, Trophy, Type, Zap
 } from "lucide-react";
 import { useEffect } from "react";
-import CacheLink from "../commons/CacheLink";
-import BackButton from "./components/BackButton";
 import ConicSection from "./components/ConicSection";
+import CTASection from "./components/CTASection";
 import DifficultyBadge from "./components/DifficultyBadge";
-import FeatureCard from "./components/FeatureCard";
-import NavLink from "./components/NavLink";
-import Pill from "./components/Pill";
-import Section from "./components/Section";
-import SectionHeader from "./components/SectionHeader";
-import TipCard from "./components/TipCard";
+import FeatureGrid from "./components/FeatureGrid";
+import HeroSection from "./components/HeroSection";
+import NavigationAbout from "./components/Navigation";
+import PillGrid from "./components/PillGrid";
+import PlainSection from "./components/PlainSection";
+import StepGrid from "./components/StepGrid";
+import TipGrid from "./components/TipGrid";
 
 const CONFIG = {
   NAV_ITEMS: [
@@ -60,15 +60,6 @@ const CONFIG = {
   ],
 };
 
-const BUTTON_CLASSES = {
-  primary: [
-    "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold text-white",
-    "transition-all duration-300 bg-gradient-to-r from-purple-600 to-indigo-600",
-    "hover:from-purple-700 hover:to-indigo-700 shadow-md hover:shadow-lg active:scale-95",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2",
-  ].join(" "),
-};
-
 const useScrollReveal = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -90,214 +81,6 @@ const useScrollReveal = () => {
   }, []);
 };
 
-interface GridRendererProps<T> {
-  items: T[];
-  renderItem: (item: T, index: number) => React.ReactNode;
-  className?: string;
-  columns?: {
-    sm?: number;
-    lg?: number;
-  };
-}
-
-function GridRenderer<T>({
-  items,
-  renderItem,
-  className = "",
-  columns = { sm: 2, lg: 4 }
-}: GridRendererProps<T>) {
-  const colClasses = [
-    "grid gap-3",
-    `sm:grid-cols-${columns.sm}`,
-    `lg:grid-cols-${columns.lg}`,
-  ].join(" ");
-
-  return (
-    <div className={`${colClasses} ${className}`}>
-      {items.map((item, index) => renderItem(item, index))}
-    </div>
-  );
-}
-
-interface SectionProps {
-  id?: string;
-  className?: string;
-  children: React.ReactNode;
-}
-
-interface PlainSectionProps extends SectionProps {
-  headerTitle: string;
-  headerSubtitle?: string;
-}
-
-function PlainSection({ id, headerTitle, headerSubtitle, children }: PlainSectionProps) {
-  return (
-    <Section id={id}>
-      <SectionHeader title={headerTitle} subtitle={headerSubtitle} />
-      {children}
-    </Section>
-  );
-}
-
-interface NavProps {
-  items: Array<{ id: string; label: string }>;
-}
-
-interface FeatureItem {
-  icon: React.ElementType;
-  title: string;
-  desc: string;
-}
-
-interface PillItem {
-  icon: React.ElementType;
-  title: string;
-  desc: string;
-  tooltip?: string;
-}
-
-function Navigation({ items }: NavProps) {
-  return (
-    <nav className="sticky top-0 z-30 border-b border-purple-100 bg-white/90 backdrop-blur-md shadow-sm">
-      <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-3">
-        <BackButton href="/star/profil">Retour au jeu</BackButton>
-        <NavLinks items={items} />
-      </div>
-    </nav>
-  );
-}
-
-function NavLinks({ items }: NavProps) {
-  return (
-    <div className="hidden sm:flex items-center gap-2 text-[13px] font-bold">
-      {items.map((item) => (
-        <NavLink key={item.id} href={`#${item.id}`} label={item.label} />
-      ))}
-    </div>
-  );
-}
-
-function HeroSection() {
-  return (
-    <section className="text-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700">
-      <h1 className="text-balance text-4xl font-black tracking-tight bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent sm:text-6xl">
-        DIAMBRA PUZZLE
-      </h1>
-      <p className="mx-auto mt-4 max-w-2xl text-sm text-purple-600">
-        Développez votre mémoire visuelle et votre logique en replaçant les éléments du plateau P2.
-      </p>
-      <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <CacheLink href="/star/profil" className={BUTTON_CLASSES.primary}>
-          Jouez maintenant ! <ChevronRight className="h-4 w-4" />
-        </CacheLink>
-      </div>
-    </section>
-  );
-}
-
-interface FeatureGridProps {
-  items: FeatureItem[];
-}
-
-function FeatureGrid({ items }: FeatureGridProps) {
-  return (
-    <GridRenderer
-      items={items}
-      columns={{ sm: 2, lg: 4 }}
-      renderItem={(item) => (
-        <FeatureCard key={item.title} icon={<item.icon className="h-5 w-5" />} title={item.title}>
-          {item.desc}
-        </FeatureCard>
-      )}
-    />
-  );
-}
-
-interface PillGridProps {
-  items: PillItem[];
-  columns?: { sm?: number; lg?: number };
-}
-
-function PillGrid({ items, columns = { sm: 2, lg: 4 } }: PillGridProps) {
-  return (
-    <GridRenderer
-      items={items}
-      columns={columns}
-      renderItem={(item) => (
-        <Pill
-          key={item.title}
-          icon={<item.icon className="h-5 w-5" />}
-          title={item.title}
-          desc={item.desc}
-          tooltip={item.tooltip}
-        />
-      )}
-    />
-  );
-}
-
-interface StepItem {
-  icon: React.ElementType;
-  title: string;
-  desc: string;
-}
-
-function StepGrid({ items }: { items: StepItem[] }) {
-  return (
-    <GridRenderer
-      items={items}
-      columns={{ sm: 2, lg: 3 }}
-      renderItem={(item) => (
-        <FeatureCard key={item.title} icon={<item.icon className="h-5 w-5" />} title={item.title}>
-          {item.desc}
-        </FeatureCard>
-      )}
-    />
-  );
-}
-
-interface TipItem {
-  icon: React.ElementType;
-  title: string;
-  desc: string;
-  color: "purple" | "indigo";
-}
-
-function TipGrid({ items }: { items: TipItem[] }) {
-  return (
-    <GridRenderer
-      items={items}
-      columns={{ sm: 2 }}
-      renderItem={(item) => (
-        <TipCard
-          key={item.title}
-          icon={item.icon}
-          title={item.title}
-          desc={item.desc}
-          color={item.color}
-        />
-      )}
-    />
-  );
-}
-
-function CTASection() {
-  return (
-    <section className="mt-12 text-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-800">
-      <div className="rounded-3xl bg-gradient-to-r from-purple-600 to-indigo-600 p-8 text-white">
-        <h2 className="text-2xl font-black">Prêt à relever le défi ?</h2>
-        <p className="mt-2 text-sm text-purple-100">Mémorisez, échangez, verrouillez et gagnez !</p>
-        <CacheLink
-          href="/star/profil"
-          className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-white text-purple-700 rounded-2xl font-bold hover:shadow-lg transition-all hover:scale-105"
-        >
-          Commencez ! <ChevronRight className="h-4 w-4" />
-        </CacheLink>
-      </div>
-    </section>
-  );
-}
-
 export default function AboutPageClient() {
   useScrollReveal();
 
@@ -305,32 +88,28 @@ export default function AboutPageClient() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-purple-50/30 to-indigo-50/50 text-purple-900 overflow-x-hidden">
-      <Navigation items={NAV_ITEMS} />
+
+      <NavigationAbout items={NAV_ITEMS} />
 
       <div className="mx-auto max-w-5xl px-4 py-4 sm:py-8">
         <HeroSection />
 
-        {/* Objectives - Conic Section */}
         <ConicSection id="objectifs" headerTitle="🎯 Objectifs du jeu">
           <FeatureGrid items={OBJECTIVES} />
         </ConicSection>
 
-        {/* Principles - Plain Section */}
         <PlainSection id="principe" headerTitle="📌 Principe du jeu" headerSubtitle="Déplacez les éléments du plateau P2 pour reproduire le plateau P1.">
           <PillGrid items={PRINCIPLES} columns={{ sm: 3 }} />
         </PlainSection>
 
-        {/* How to Play - Conic Section */}
         <ConicSection id="jeu" headerTitle="🎮 Comment jouer">
           <StepGrid items={STEPS} />
         </ConicSection>
 
-        {/* Modes - Plain Section */}
         <PlainSection id="modes" headerTitle="🎨 Modes de jeu" headerSubtitle="Variété de défis">
           <PillGrid items={MODES} />
         </PlainSection>
 
-        {/* Difficulty - Conic Section */}
         <ConicSection id="difficulte" headerTitle="📊 Niveaux de difficulté" headerSubtitle="Choisissez votre niveau, de 2×2 (débutant) à 10×10 (expert).">
           <div className="mt-4 flex flex-wrap gap-2">
             {DIFFICULTIES.map((diff) => (
@@ -342,7 +121,6 @@ export default function AboutPageClient() {
           </p>
         </ConicSection>
 
-        {/* Evaluation - Conic Section */}
         <ConicSection id="evaluation" headerTitle="⏱️ Évaluation et classement">
           <p className="mt-3 text-sm leading-relaxed text-purple-700">
             Votre performance est mesurée par le temps écoulé entre le début et la fin du match.

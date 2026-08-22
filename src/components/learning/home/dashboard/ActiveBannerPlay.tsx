@@ -1,31 +1,31 @@
 'use client';
+import { Stats } from "@/hooks/cache/useStatsDataWithCache";
 import { useDiambraStore } from "@/lib/store/diambra.store";
 import { AlertCircle, History, Trophy } from "lucide-react";
 import Link from 'next/link';
 import { memo, useEffect, useState } from 'react';
-import { GlowButton } from '../../commons/Boutons';
 import { CountdownTimer } from './CountdownTimer';
-import { GameStatsGrid } from './GameStatsGrid';
-import { Stats } from "@/hooks/cache/useStatsDataWithCache";
+import { GameStatsGridPlay } from "./GameStatsGridPlay";
+import { GlowButton } from "../../commons/Boutons";
 
 interface ActiveBannerProps {
-    demarrerJeu: () => void;
     endDate: Date;
-    showButton: boolean;
     onFinish: () => void;
     countdown?: number | null;
     isTimeUp?: boolean;
     stats: Stats;
+    showBandeauButton: boolean;
+    demarrerJeu: () => void;
 }
 
-const ActiveBanner = ({
-    demarrerJeu,
+const ActiveBannerPlay = ({
     endDate,
-    showButton,
     onFinish,
     countdown,
     isTimeUp = false,
-    stats
+    stats,
+    showBandeauButton,
+        demarrerJeu,
 }: ActiveBannerProps) => {
     const { gameConfig } = useDiambraStore();
     const [showHistory, setShowHistory] = useState(false);
@@ -67,28 +67,20 @@ const ActiveBanner = ({
     }
 
     return (
-        <div className="w-full rounded-3xl bg-gradient-to-br from-yellow-600 to-red-400 p-3 mb-6 shadow-xl">
+        <div className="w-full rounded-3xl bg-gradient-to-br from-indigo-600 to-indigo-800 p-3 mb-6 shadow-xl">
             <div className="flex flex-col items-center gap-3">
-                <div className="flex items-center gap-3">
-                    <div className="rounded-full bg-white/20 p-2">
-                        <Trophy className="w-4 h-4 text-white" aria-hidden="true" />
-                    </div>
-                    <div>
-                        <p className="text-white font-bold uppercase">Competition en cours</p>
-                     </div>
-                </div>
-
-                <div className="text-center w-full">
-                    <CountdownTimer targetDate={endDate} onFinish={onFinish} />
-                </div>
-
-                 {showButton && countdown !== 0 && (
-                    <GlowButton onClick={demarrerJeu} variant="success" size="lg">
-                         JOUER MAINTENANT
+                {showBandeauButton && countdown !== 0 && (
+                    <GlowButton onClick={demarrerJeu} variant="danger" size="lg">
+                        JOUER A NOUVEAU
                     </GlowButton>
                 )}
 
-                <GameStatsGrid  gameConfig={gameConfig!} stats={stats} demarrerJeu={demarrerJeu} />               
+
+                <div className="text-center w-full">
+                    <CountdownTimer targetDate={endDate} onFinish={onFinish} />
+                </div> 
+
+                <GameStatsGridPlay gameConfig={gameConfig!} stats={stats} />
 
                 {countdown !== null && countdown! < 300 && countdown! > 0 && (
                     <div className="flex items-center gap-2 text-yellow-200 text-xs animate-pulse">
@@ -101,4 +93,4 @@ const ActiveBanner = ({
     );
 };
 
-export default memo(ActiveBanner);
+export default memo(ActiveBannerPlay);

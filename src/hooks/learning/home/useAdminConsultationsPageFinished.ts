@@ -8,6 +8,7 @@ import { api } from '@/lib/api/client';
 import { LearningConfiguration } from '@/lib/interfaces';
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo } from 'react';
+import { useStatsDataWithCache } from '@/hooks/cache/useStatsDataWithCache';
 
 const QUERY_STALE_TIME = 1000;
 const RETRY_ATTEMPTS = 2;
@@ -17,7 +18,7 @@ export function useAdminConsultationsPageFinished() {
   const setGameConfig = useDiambraStore((state) => state.setGameConfig);
   const afficheChoix = useDiambraStore((state) => state.afficheChoix);
   const afficheGame = useDiambraStore((state) => state.afficheGame);
-
+ const { stats, isLoading: isStatsLoading, error } = useStatsDataWithCache();
   const { data: gameConfig = null, isLoading } = useQuery<LearningConfiguration | null>({
     queryKey: ['game', 'config'],
     queryFn: async () => {
@@ -47,7 +48,7 @@ export function useAdminConsultationsPageFinished() {
     lastEndedGame,
   });
 
-  const { completeGameCleanup, demarrerJeu } = useGameActions(gameConfig);
+  const { completeGameCleanup, demarrerJeu,demarrerJeuInit } = useGameActions(gameConfig);
 
   const showBandeauButton = !!(gameState.canUserPlay && !afficheChoix && !afficheGame);
 
@@ -57,10 +58,13 @@ export function useAdminConsultationsPageFinished() {
     startDate: dates.startDate,
     countdown: gameState.countdown,
     endDate: dates.endDate,
-    isLoading: isLastEndedLoading || isLoading,
+    isLoading: isLastEndedLoading || isLoading  || isStatsLoading,
     lastEndedGame,
     gameState,
     showBandeauButton,
+    stats,
+    error,
+    demarrerJeuInit
   }), [
     demarrerJeu,
     completeGameCleanup,
@@ -69,7 +73,10 @@ export function useAdminConsultationsPageFinished() {
     gameState,
     isLastEndedLoading,
     isLoading,
+    isStatsLoading,
     lastEndedGame,
-    showBandeauButton
+    showBandeauButton,
+    stats,
+    error,demarrerJeuInit
   ]);
 }
