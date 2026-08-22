@@ -45,7 +45,7 @@ export const GameStatsGrid = memo(function GameStatsGrid({ gameConfig, stats, de
     ];
 
     return (
-        <div className="grid grid-cols-3 gap-3 w-full mt-3" onClick={demarrerJeu}>
+        <div className="grid grid-cols-3 gap-3 w-full mt-3 cursor-pointer" onClick={demarrerJeu} >
             {statsData.map((stat, index) => (
                 <div
                     key={stat.id}
@@ -54,48 +54,31 @@ export const GameStatsGrid = memo(function GameStatsGrid({ gameConfig, stats, de
                         animationDelay: `${index * 100}ms`,
                     }}
                 >
-                    {/* Effet de brillance au survol */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
-                    {/* Cercles lumineux en arrière-plan */}
                     <div className={`absolute -right-4 -top-4 h-16 w-16 rounded-full ${stat.bgGlow} blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                     <div className={`absolute -bottom-4 -left-4 h-16 w-16 rounded-full ${stat.bgGlow} blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100`} />
 
-                    {/* Icône avec dégradé */}
                     <div className="relative mb-2 flex justify-center">
                         <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${stat.gradient} shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl ${stat.textGlow}`}>
                             {stat.icon}
                         </div>
-                        {/* Petite étincelle */}
                         <Sparkles className="absolute -right-1 -top-1 h-3 w-3 text-yellow-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     </div>
 
-                    {/* Label */}
-                    <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-white/50 transition-colors duration-300 group-hover:text-white/70">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-white transition-colors duration-300 group-hover:text-white/70">
                         {stat.label}
                     </p>
 
-                    {/* Valeur avec animation */}
                     <div className="relative">
                         <p className={`text-[11px] font-black text-white transition-all duration-300 group-hover:scale-110 ${stat.id === 'match' ? 'bg-gradient-to-r from-amber-200 to-orange-200 bg-clip-text text-transparent' :
-                                stat.id === 'subscribers' ? 'bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent' :
-                                    'bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent'
+                            stat.id === 'subscribers' ? 'bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent' :
+                                'bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent'
                             }`}>
                             {stat.value}
                         </p>
-                        {/* Soulignement animé */}
                         <div className={`mx-auto mt-0.5 h-0.5 w-8 rounded-full bg-gradient-to-r ${stat.gradient} opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:w-12`} />
                     </div>
-
-                    {/* Badge de statut optionnel */}
-                    {stat.id === 'subscribers' && Number(stat.value) > 0 && (
-                        <div className="absolute right-1 top-1">
-                            <span className="flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                            </span>
-                        </div>
-                    )}
                 </div>
             ))}
         </div>

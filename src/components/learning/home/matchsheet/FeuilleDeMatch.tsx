@@ -9,8 +9,8 @@ const FeuilleDeMatch = () => {
     } = useEndGameGenerator();
 
     return (
-        <div className="w-full mx-auto max-w-md px-4 sm:px-0">
-            <div className="space-y-4">
+        <div className="w-full mx-auto max-w-md">
+            <div className="space-y-2">
                 {competitionList?.map((competition, idx) => (
                     <CompetitionDetails
                         key={competition.id}

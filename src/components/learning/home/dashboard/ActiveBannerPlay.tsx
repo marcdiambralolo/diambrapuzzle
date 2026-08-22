@@ -25,7 +25,7 @@ const ActiveBannerPlay = ({
     isTimeUp = false,
     stats,
     showBandeauButton,
-        demarrerJeu,
+    demarrerJeu,
 }: ActiveBannerProps) => {
     const { gameConfig } = useDiambraStore();
     const [showHistory, setShowHistory] = useState(false);
@@ -69,17 +69,15 @@ const ActiveBannerPlay = ({
     return (
         <div className="w-full rounded-3xl bg-gradient-to-br from-indigo-600 to-indigo-800 p-3 mb-6 shadow-xl">
             <div className="flex flex-col items-center gap-3">
+                <div className="text-center w-full">
+                    <CountdownTimer targetDate={endDate} onFinish={onFinish} />
+                </div>
+
                 {showBandeauButton && countdown !== 0 && (
                     <GlowButton onClick={demarrerJeu} variant="danger" size="lg">
                         JOUER A NOUVEAU
                     </GlowButton>
                 )}
-
-
-                <div className="text-center w-full">
-                    <CountdownTimer targetDate={endDate} onFinish={onFinish} />
-                </div> 
-
                 <GameStatsGridPlay gameConfig={gameConfig!} stats={stats} />
 
                 {countdown !== null && countdown! < 300 && countdown! > 0 && (

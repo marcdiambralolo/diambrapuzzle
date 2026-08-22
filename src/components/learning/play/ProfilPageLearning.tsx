@@ -41,7 +41,7 @@ const ProfilPageLearning = memo(() => {
       <footer className="fixed-bottom-content w-full mx-auto max-w-md space-y-4 space-x-2">
         <Horloge />
 
-        <div className="w-full mx-auto max-w-md px-4 sm:px-0">
+        <div className="w-full mx-auto max-w-md px-2 sm:px-0">
           <div className="space-y-4">
             {competitionList?.map((competition, idx) => (
               <CompetitionDetails

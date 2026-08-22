@@ -43,7 +43,7 @@ const CompetitionStats = memo(function CompetitionStats({
     const phoneNumber = user?.phone || 'Non renseigné';
 
     return (
-        <div className="w-full dark:from-gray-800/30 dark:to-gray-900/30 p-3 dark:border-gray-700/50 mt-1">
+        <div className="w-full dark:from-gray-800/30 dark:to-gray-900/30 dark:border-gray-700/50 mt-1">
             {showUserInfo && user && (
                 <div className="mb-3 p-3 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30 shadow-sm">
                     <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-2 flex items-center gap-2">

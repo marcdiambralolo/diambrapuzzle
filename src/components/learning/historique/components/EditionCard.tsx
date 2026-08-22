@@ -12,7 +12,7 @@ const EditionCard = memo(({ activeEdition }: { activeEdition: { startDate: strin
                 </div>
                 <div>
                     <p className="text-white text-sm font-semibold">
-                        {activeEdition.name || 'Édition Précédente'}
+                        {activeEdition.name || 'Competition'}
                     </p>
                     <p className="text-white/80 text-xs">
                         Du {formatEditionDate(new Date(activeEdition.startDate))} au {formatEditionDate(new Date(activeEdition.endDate))}

@@ -19,7 +19,7 @@ const InfoRow = memo(function InfoRow({ label, value, highlight = false, icon }:
             </span>
             <span
                 className={`font-mono transition-all ${highlight
-                    ? 'text-red-800 dark:text-red-400 font-bold text-2xl sm:text-2xl'
+                    ? 'text-red-800 dark:text-red-400 font-bold text-xl sm:text-2xl'
                     : 'text-xs sm:text-sm text-gray-900 dark:text-gray-100'
                     }`}
             >

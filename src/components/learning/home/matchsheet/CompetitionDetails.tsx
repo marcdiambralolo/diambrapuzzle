@@ -24,7 +24,7 @@ const CompetitionDetails = memo(function CompetitionDetails({
     showPermanentMessage, formattedFinishedDate,
   } = useCompetitionValidation(competition);
 
-  const containerClass = `bg-white dark:bg-gray-800/50 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-800 ${priority ? 'ring-2 ring-purple-500/20 shadow-lg border-purple-100' : ''}`;
+  const containerClass = `bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-800 ${priority ? 'ring-2 ring-purple-500/20 shadow-lg border-purple-100' : ''}`;
 
   return (
     <div className={containerClass}>
@@ -32,7 +32,7 @@ const CompetitionDetails = memo(function CompetitionDetails({
         <MessageToast message={validationMessage} onClose={handleCloseMessage} />
       )}
 
-      <div className="p-3 space-y-3">
+      <div className="p-2 space-y-2">
         <CompetitionHeader
           name={competition.displayName ?? ''}
           onValidate={handleValidate}

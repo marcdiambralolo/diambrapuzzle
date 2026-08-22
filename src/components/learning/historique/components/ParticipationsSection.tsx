@@ -16,12 +16,11 @@ const ParticipationsSection = memo(({ consultations, activeEditionId }: { consul
             </div>
         ) : (
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-4">
-                <CacheLink
-                    href={`/star/learning/historique/${activeEditionId || ''}`}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 text-white hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-auto justify-center"
+                <div
+                     className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 text-white hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-auto justify-center"
                 >
                     📋 LISTE DES PARTICIPATIONS ({consultations.length})
-                </CacheLink>
+                </div>
             </div>
         )}
     </div>
