@@ -8,8 +8,8 @@ import { default as React } from 'react';
  import { RegisterErrorMessage } from './components/RegisterErrorMessage';
 import { RegisterInputField } from './components/RegisterInputField';
 import { RegisterPasswordStrengthIndicator } from './components/RegisterPasswordStrengthIndicator';
-import { WelcomePageClientContent } from '../login/welcome/WelcomePageClient';
-
+import WelcomePageClientContent from '../login/welcome/WelcomePageClient';
+ 
 const RegisterForm: React.FC = () => {
   const {
     showPassword, showConfirmPassword, isSubmitDisabled, isLoading, isPending,

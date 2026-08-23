@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import { AlertCircle, Eye, EyeOff, Loader2, Lock } from 'lucide-react';
 import Image from "next/image";
 import React, { memo } from "react";
-import { WelcomePageClientContent } from './welcome/WelcomePageClient';
-
+import WelcomePageClientContent from './welcome/WelcomePageClient';
+ 
 interface InputFieldProps {
   label: string;
   name: string;

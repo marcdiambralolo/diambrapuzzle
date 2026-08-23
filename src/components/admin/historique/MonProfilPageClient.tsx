@@ -1,67 +1,35 @@
 "use client";
 import Loader from "@/app/loading";
-import {  useHistoriqueConsultations } from "@/hooks/learning/historique/useHistoriqueConsultations";
+import { useAdminConsultationsPageFinished } from "@/hooks/learning/historique/useAdminConsultationsPageFinished";
+import { useHistoriqueConsultations } from "@/hooks/learning/historique/useHistoriqueConsultations";
 import { memo } from "react";
+
 import { BackButton } from "./components/BackButton";
 import { ConsultationList } from "./components/ConsultationList";
 import EditionBadge from "./components/EditionBadge";
 import EditionHeader from "./components/EditionHeader";
 import { StatisticsSection } from "./components/StatisticsSection";
-import { Edition } from "@/lib/learning/interface";
 import ErrorMessage from "@/components/learning/commons/ErrorMessage";
+import EditionCard from "@/components/learning/historique/components/EditionCard";
+import ParticipationsSection from "@/components/learning/historique/components/ParticipationsSection";
+import TitleSection from "@/components/learning/historique/components/TitleSection";
+import WinnersSection from "@/components/learning/historique/components/WinnersSection";
 
-interface HistoriquePageData {
-  isLoading: boolean;
-  hasError: boolean;
-  hasConsultations: boolean;
-  edition: Edition | undefined;
-  startDate: string;
-  endDate: string;
-  participantsCount?: number;
-  rankedConsultations: any[];
-  duplicateMap: any;
-  advancedStats: any;
-  onGoBack: () => void;
-}
 
-const useHistoriquePageData = (): HistoriquePageData => {
+const HistoriquePageClient = memo(() => {
   const {
-    handleGoBack, loading, error, duplicateMap, hasConsultations, formattedEndDate,
-    formattedStartDate, edition, advancedStats, rankedConsultations,
+    handleGoBack, loading: historiqueLoading, error, duplicateMap, hasConsultations,
+    formattedEndDate, formattedStartDate, edition, advancedStats, rankedConsultations,
   } = useHistoriqueConsultations();
 
-  return {
-    isLoading: loading,
-    hasError: !!error,
-    hasConsultations,
-    edition,
-    startDate: formattedStartDate,
-    endDate: formattedEndDate,
-    participantsCount: advancedStats?.completedPlayers,
-    rankedConsultations,
-    duplicateMap,
-    advancedStats,
-    onGoBack: handleGoBack,
-  };
-};
+  const {
+    activeEdition, consultations, loading: adminLoading,
+  } = useAdminConsultationsPageFinished();
 
-function HistoriquePageClientImpl() {
-  const data = useHistoriquePageData();
+  const isLoading = historiqueLoading || adminLoading;
 
-  if (data.isLoading) return <Loader />;
-  if (data.hasError) return <ErrorMessage />;
-
-  const renderEditionHeader = () => {
-    if (!data.edition) return null;
-
-    return (
-      <EditionHeader
-        startDate={data.startDate}
-        endDate={data.endDate}
-        participantsCount={data.participantsCount}
-      />
-    );
-  };
+  if (isLoading) return <Loader />;
+  if (error) return <ErrorMessage />;
 
   return (
     <div className="max-w-4xl mx-auto px-3 py-4 sm:px-4 sm:py-8">
@@ -69,21 +37,36 @@ function HistoriquePageClientImpl() {
         <EditionBadge />
       </div>
 
-      {renderEditionHeader()}
+      {activeEdition && (
+        <div className="w-full mx-auto max-w-xl px-4">
+          <EditionCard activeEdition={activeEdition} />
+          <TitleSection />
+          <WinnersSection consultations={consultations} />
+          <ParticipationsSection
+            consultations={consultations}
+            activeEditionId={activeEdition?.id}
+          />
+        </div>
+      )}
+
+      {edition && (
+        <EditionHeader
+          startDate={formattedStartDate}
+          endDate={formattedEndDate}
+          participantsCount={advancedStats?.completedPlayers}
+        />
+      )}
 
       <ConsultationList
-        hasConsultations={data.hasConsultations}
-        rankedConsultations={data.rankedConsultations}
-        duplicateMap={data.duplicateMap}
+        hasConsultations={hasConsultations}
+        rankedConsultations={rankedConsultations}
+        duplicateMap={duplicateMap}
       />
 
-      <StatisticsSection advancedStats={data.advancedStats} />
-
-      <BackButton onClick={data.onGoBack} />
+      <StatisticsSection advancedStats={advancedStats} />
+      <BackButton onClick={handleGoBack} />
     </div>
   );
-}
-
-const HistoriquePageClient = memo(HistoriquePageClientImpl);
+});
 
 export default HistoriquePageClient;

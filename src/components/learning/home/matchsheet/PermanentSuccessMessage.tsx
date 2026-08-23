@@ -18,7 +18,7 @@ const PermanentSuccessMessage = memo(function PermanentSuccessMessage({
                 <div className="flex-1">
                     <p className="font-bold text-sm">✅ Jeu validé avec succès !</p>
                     <p className="text-xs text-green-100 mt-1">
-                      🏆  Votre participation à <span className="font-semibold">{competitionName}</span> a été enregistrée.
+                      🏆  Votre participation <span className="font-semibold">{competitionName}</span> a été enregistrée.
                     </p> 
                 </div>
                 <button

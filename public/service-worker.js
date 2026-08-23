@@ -3,7 +3,7 @@
 // - Fallback offline, gestion fine de l'expiration, éviction LRU, sécurité headers
 // - Incrémentez CACHE_VERSION pour forcer la mise à jour
 
-const CACHE_VERSION = 'v12';
+const CACHE_VERSION = 'v13';
 const CACHE_STATIC = `diambrapuzzle-${CACHE_VERSION}-static`;
 const CACHE_IMAGES = `diambrapuzzle-${CACHE_VERSION}-images`;
 
