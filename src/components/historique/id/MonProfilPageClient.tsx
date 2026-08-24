@@ -191,7 +191,7 @@ function HistoriquePageClientImpl() {
           </span>
         </div>
       </motion.div>
-       <Historique />
+      <Historique />
 
       {stats && (
         <motion.div

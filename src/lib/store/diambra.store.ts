@@ -17,7 +17,6 @@ interface StoredMatchInfo {
   numeromatch?: string;
   datedebut?: string | null;
   datefin?: string | null;
-  combinaisons?: string[];
   score?: number;
   numordrep?: number;
   entite?: number;
@@ -162,7 +161,6 @@ const decompressCompetition = (stored: StoredCompetition): CompetitionInfo => ({
     numeromatch: match.numeromatch || '',
     datedebut: match.datedebut || null,
     datefin: match.datefin || null,
-    combinaisons: match.combinaisons || [],
     numordrep: match.numordrep || 0,
     entite: match.entite || 0,
   })),

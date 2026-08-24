@@ -1,18 +1,16 @@
 import CacheLink from '@/components/commons/CacheLink';
-import { 
-  AlertCircle, 
-  FileText, 
-  Gamepad2, 
-  Shield,
-  Target,
-  Layers,
-  Eye,
-  Sparkles,
-  Trophy,
+import {
+  AlertCircle,
   Award,
-  Zap,
-  Clock,
-  Brain
+  Eye,
+  FileText,
+  Gamepad2,
+  Layers,
+  Shield,
+  Sparkles,
+  Target,
+  Trophy,
+  Zap
 } from 'lucide-react';
 import React from 'react';
 

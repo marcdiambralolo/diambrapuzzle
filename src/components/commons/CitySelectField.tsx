@@ -72,7 +72,7 @@ interface CitySelectFieldProps {
   id: string;
   label: string;
   value: string;
-  countryValue?: string; 
+  countryValue?: string;
   placeholder?: string;
 
   cityApiUrl: string;
@@ -194,7 +194,7 @@ function CitySelectFieldBase({
         const url = typeof window === 'undefined'
           ? new URL(cityApiUrl, 'http://localhost')
           : new URL(cityApiUrl, window.location.origin);
-        
+
         url.searchParams.set("query", query);
         url.searchParams.set("limit", String(limit));
         if (countryValue) url.searchParams.set("country", countryValue);
@@ -217,7 +217,7 @@ function CitySelectFieldBase({
       } catch (err: unknown) {
         // Ignorer si la requête n'est plus pertinente
         if (lastQueryRef.current !== qKey) return;
-        
+
         if (fallbackFiltered.length) {
           setItems(fallbackFiltered);
           setLoading(false);

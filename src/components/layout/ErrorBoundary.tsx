@@ -221,7 +221,7 @@ const LoadingFallbackComponent = () => {
               WebkitTextFillColor: 'transparent'
             }}
           >
-          DIAMBRA PUZZLE
+            DIAMBRA PUZZLE
           </motion.h2>
 
           <motion.p

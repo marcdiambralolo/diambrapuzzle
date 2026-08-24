@@ -148,7 +148,7 @@ export default function GlobalErrorUI({ error, reset, isGlobalError = false }: G
               Accueil
             </button>
           </motion.div>
-          
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

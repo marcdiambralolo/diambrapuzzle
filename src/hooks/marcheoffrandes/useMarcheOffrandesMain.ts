@@ -107,7 +107,7 @@ export function useMarcheOffrandesMain() {
   }, []);
 
   const getRedirectUrl = (monjeu: string | undefined, retour: string | null): string => {
-    if (retour === 'learning') return '/star/learning';
+    if (retour === 'learning') return '/star/play';
     if (monjeu) return `/star/choix/${monjeu}`;
     return '/star/profil';
   };

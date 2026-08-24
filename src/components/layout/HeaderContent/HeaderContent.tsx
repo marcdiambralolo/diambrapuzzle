@@ -20,9 +20,6 @@ export function MobileHeaderActions({
 }: MobileHeaderActionsProps) {
   return (
     <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
-
-
-
       <NotificationBell />
 
       <motion.button

@@ -7,7 +7,8 @@ import { useDiambraStore } from "@/lib/store/diambra.store";
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useTimer } from './useTimer';
 
-const GLOBAL_GAME_ORDER = [0, 3, 1, 2] as const;
+//const GLOBAL_GAME_ORDER = [0, 3, 1, 2] as const;
+const GLOBAL_GAME_ORDER = [3, 2, 1, 0] as const;
 const TRANSITION_DELAY = 100;
 const DEFAULT_IMAGE_PATH = "/ephotosept.jpg";
 

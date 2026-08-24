@@ -1,19 +1,20 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Clock, Cookie, FileText, Link, Lock, Mail, MapPin, Phone, Server, Shield, Target, Users } from 'lucide-react';
-import CacheLink from '../commons/CacheLink';
+import { Clock, Cookie, FileText, Link, Lock, Mail, Server, Target, Users } from 'lucide-react';
+import ContactCard from './components/ContactCard';
+import PageHeader from './components/PageHeader';
+import Section from './components/Section';
+import StickyHeader from './components/StickyHeader';
+import SubSection from './components/SubSection';
+import SecurityBadge from './components/SecurityBadge';
+import LegalNotice from './components/LegalNotice';
+import BulletList from './components/BulletList';
 
-// ============= CONSTANTES =============
 const CONTACT_INFO = {
     phone: '+225 07 58 38 53 87',
-    address: 'Abidjan, Côte d\'Ivoire', // À compléter
+    address: 'Abidjan, Côte d\'Ivoire',
     company: 'Diambra Puzzle'
 };
-
-const LAST_UPDATED = '23 août 2026';
-const EFFECTIVE_DATE = '23 août 2026';
-
-// ============= ANIMATIONS =============
 
 const staggerContainer = {
     hidden: { opacity: 0 },
@@ -24,182 +25,9 @@ const staggerContainer = {
             delayChildren: 0.2
         }
     }
-};
+}; 
 
-// ============= SOUS-COMPOSANTS =============
-
-/** En-tête sticky */
-const StickyHeader = () => (
-    <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-purple-100"
-    >
-        <div className="max-w-4xl mx-auto px-4 py-4">
-            <div className="flex items-center justify-between">
-                <motion.div whileHover={{ x: -4 }} className="flex items-center gap-2">
-                    <CacheLink
-                        href="/"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-purple-500 transition-colors hover:text-purple-700"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                        Retour à l'accueil
-                    </CacheLink>
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="flex items-center gap-2 text-xs text-purple-400"
-                >
-                    <Shield className="w-3.5 h-3.5" />
-                    <span>Confidentiel</span>
-                </motion.div>
-            </div>
-        </div>
-    </motion.div>
-);
-
-/** En-tête de page */
-const PageHeader = () => (
-    <div className="relative overflow-hidden">
-        <div className="relative max-w-4xl mx-auto px-4 pt-12 pb-8 text-center">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-1.5 mb-4"
-            >
-                <Shield className="w-4 h-4 text-purple-600" />
-                <span className="text-xs font-semibold text-purple-700">Protection des données</span>
-            </motion.div>
-
-            <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3"
-            >
-                Politique de confidentialité
-            </motion.h1>
-
-            <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-purple-500 text-sm"
-            >
-                Dernière mise à jour : <span className="font-semibold text-purple-700">{LAST_UPDATED}</span>
-            </motion.p>
-
-            <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="mt-2 text-xs text-purple-400"
-            >
-                Entrée en vigueur le {EFFECTIVE_DATE}
-            </motion.p>
-        </div>
-    </div>
-);
-
-/** Section de contenu */
-interface SectionProps {
-    title: string;
-    number?: number;
-    children: React.ReactNode;
-    icon?: React.ReactNode;
-}
-
-const Section = ({ title, number, children, icon }: SectionProps) => (
-    <motion.div
-         className="mb-8 last:mb-0"
-    >
-        <div className="flex items-start gap-3 mb-3">
-            <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-purple-100 to-indigo-100 flex items-center justify-center mt-0.5">
-                {icon || <FileText className="w-4 h-4 text-purple-600" />}
-            </div>
-            <h2 className="text-lg font-bold text-gray-800">
-                {number && <span className="text-purple-500 mr-2">{number}.</span>}
-                {title}
-            </h2>
-        </div>
-        <div className="pl-11 text-sm text-gray-600 leading-relaxed space-y-3">
-            {children}
-        </div>
-    </motion.div>
-);
-
-/** Section avec sous-sections */
-const SubSection = ({ title, children }: { title?: string; children: React.ReactNode }) => (
-    <div className={title ? "mt-4" : ""}>
-        {title && <h3 className="font-semibold text-purple-700 mb-2">{title}</h3>}
-        <div className="space-y-2">
-            {children}
-        </div>
-    </div>
-);
-
-/** Liste à puces */
-const BulletList = ({ items, className = "" }: { items: string[]; className?: string }) => (
-    <ul className={`list-disc pl-5 space-y-1.5 ${className}`}>
-        {items.map((item, index) => (
-            <li key={index} className="text-gray-600">{item}</li>
-        ))}
-    </ul>
-);
-
-/** Contact Card */
-const ContactCard = () => (
-    <motion.div
-         className="mt-8 rounded-xl bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-100 p-6"
-    >
-        <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-            <Users className="w-4 h-4 text-purple-600" />
-            Contact
-        </h3>
-        <div className="space-y-2 text-sm">
-            <div className="flex items-center gap-2 text-purple-700">
-                <Phone className="w-3.5 h-3.5" />
-                <span>{CONTACT_INFO.phone}</span>
-            </div>
-                       <div className="flex items-center gap-2 text-purple-700">
-                <MapPin className="w-3.5 h-3.5" />
-                <span>{CONTACT_INFO.address}</span>
-            </div>
-        </div>
-    </motion.div>
-);
-
-/** Mentions légales */
-const LegalNotice = () => (
-    <motion.div
-         className="mt-8 text-center text-xs text-gray-400 border-t border-purple-100 pt-6"
-    >
-        <p>© 2026 {CONTACT_INFO.company} — Tous droits réservés.</p>
-        <p className="mt-1">
-            Conformément à la réglementation ivoirienne sur la protection des données personnelles.
-        </p>
-    </motion.div>
-);
-
-/** Badge sécurité */
-const SecurityBadge = () => (
-    <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="mt-8 flex justify-center"
-    >
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-purple-200 shadow-sm">
-            <Lock className="w-3.5 h-3.5 text-purple-500" />
-            <span className="text-xs text-purple-600">Vos données sont protégées</span>
-        </div>
-    </motion.div>
-);
-
-// ============= COMPOSANT PRINCIPAL =============
-export default function PrivacyPolicyPageClient() {
+ export default function PrivacyPolicyPageClient() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-white via-purple-50/30 to-indigo-50/50">
             <StickyHeader />
@@ -223,7 +51,7 @@ export default function PrivacyPolicyPageClient() {
                             <p><strong>Pays :</strong> Côte d'Ivoire</p>
                             <p><strong>Téléphone du support :</strong> {CONTACT_INFO.phone}</p>
                         </div>
-                                            </Section>
+                    </Section>
 
                     {/* 2. Données collectées */}
                     <Section title="Données susceptibles d'être collectées" number={2} icon={<Server className="w-4 h-4 text-purple-600" />}>
@@ -273,7 +101,7 @@ export default function PrivacyPolicyPageClient() {
                         <p>
                             Nous ne collectons pas nécessairement les informations bancaires complètes utilisées pour effectuer un paiement.
                         </p>
-                      
+
                     </Section>
 
                     {/* 4. Finalités du traitement */}
@@ -362,7 +190,7 @@ export default function PrivacyPolicyPageClient() {
                         <p>
                             Ces prestataires sont sélectionnés en fonction de leurs capacités techniques et des garanties qu'ils offrent en matière de sécurité et de confidentialité.
                         </p>
-                      
+
                     </Section>
 
                     {/* 8. Conservation */}
@@ -499,7 +327,7 @@ export default function PrivacyPolicyPageClient() {
                     <Section title="Contact" number={18} icon={<Mail className="w-4 h-4 text-purple-600" />}>
                         <p>Pour toute question concernant cette Politique de confidentialité :</p>
                         <ContactCard />
-                     
+
                     </Section>
 
                     <SecurityBadge />

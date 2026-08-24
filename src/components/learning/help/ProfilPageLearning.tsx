@@ -2,7 +2,7 @@
 import { useHelp } from '@/hooks/learning/help/useHelp';
 import { memo } from 'react';
 import { FooterSection } from "../commons/Features";
-import HelpPanel from "./HelpPanel";
+import HelpPanel from "./components/HelpPanel";
 
 const HelpPage = () => {
   const { handleCloseHelp } = useHelp();

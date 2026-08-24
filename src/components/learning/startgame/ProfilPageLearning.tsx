@@ -29,7 +29,6 @@ const TheGame = () => {
                 onToggleShowPun={toggleShowPun}
                 onLockSelectedCase={lockSelectedCase}
             />
-
             <GameInfo
                 currentGameType={currentGameType}
                 progression={progression}

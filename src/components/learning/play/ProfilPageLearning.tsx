@@ -2,30 +2,18 @@
 import { useEndGameGenerator } from "@/hooks/learning/endgame/useEndGameGenerator";
 import { useDiambraStore } from "@/lib/store/diambra.store";
 import { memo } from 'react';
-import LaMise from "../choix/LaMise";
 import FooterSection from "../commons/Features";
 import Horloge from "../home/dashboard/Horloge";
 import { HelpButton } from "../home/fixedcontent/HelpButton";
 import CompetitionDetails from "../home/matchsheet/CompetitionDetails";
 import LoadMoreButton from "../home/matchsheet/LoadMoreButton";
-import TheGame from "../startgame/ProfilPageLearning";
-
-interface ContentRendererProps {
-  showChoix: boolean;
-  showGame: boolean;
-}
-
-const ContentRenderer = memo(({ showChoix, showGame }: ContentRendererProps) => {
-  if (showChoix) return <LaMise />;
-  if (showGame) return <TheGame />;
-
-  return null;
-});
+import ContentRenderer from "./components/ContentRenderer";
 
 const ProfilPageLearning = memo(() => {
   const afficheGame = useDiambraStore((state) => state.afficheGame);
   const afficheChoix = useDiambraStore((state) => state.afficheChoix);
   const hasContent = afficheChoix || afficheGame;
+
   const {
     handleLoadMoreClick, competitionList, hasMore, remainingCount, isLoadingMore, user,
   } = useEndGameGenerator();

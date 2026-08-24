@@ -75,20 +75,20 @@ const ActiveBanner = ({
                     </div>
                     <div>
                         <p className="text-white font-bold uppercase">Competition en cours</p>
-                     </div>
+                    </div>
                 </div>
 
                 <div className="text-center w-full">
                     <CountdownTimer targetDate={endDate} onFinish={onFinish} />
                 </div>
 
-                 {showButton && countdown !== 0 && (
+                {showButton && countdown !== 0 && (
                     <GlowButton onClick={demarrerJeu} variant="success" size="lg">
-                         JOUER MAINTENANT
+                        JOUER MAINTENANT
                     </GlowButton>
                 )}
 
-                <GameStatsGrid  gameConfig={gameConfig!} stats={stats} demarrerJeu={demarrerJeu} />               
+                <GameStatsGrid gameConfig={gameConfig!} stats={stats} demarrerJeu={demarrerJeu} />
 
                 {countdown !== null && countdown! < 300 && countdown! > 0 && (
                     <div className="flex items-center gap-2 text-yellow-200 text-xs animate-pulse">

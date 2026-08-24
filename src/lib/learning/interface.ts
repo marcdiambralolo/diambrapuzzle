@@ -16,7 +16,6 @@ export interface MatchDetailPayload {
     isgameover?: boolean;
     timeSpent?: number;
     niveau?: number;
-    combinaisons?: string[];
 }
 
 export interface LearningStatsPayload {
