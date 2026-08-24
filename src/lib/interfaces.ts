@@ -1,5 +1,6 @@
 export type DateLike = Date | string | number | null | undefined; 
-
+export type LearningConfigStatus = 'pending' | 'active' | 'ended' | 'cancelled';
+export type ToastType = 'success' | 'error' | 'info';
 export type ConfigStatus = 'pending' | 'active' | 'ended' | 'cancelled';
 
 export interface StatusConfigItem {
@@ -207,9 +208,6 @@ export interface LearningConfiguration {
   createdAt?: Date;
   updatedAt?: Date;
 }
-
-export type LearningConfigStatus = 'pending' | 'active' | 'ended' | 'cancelled';
-export type ToastType = 'success' | 'error' | 'info';
 
 export interface LastEndedGame {
   id: string;

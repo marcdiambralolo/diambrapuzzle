@@ -25,9 +25,9 @@ const staggerContainer = {
             delayChildren: 0.2
         }
     }
-}; 
+};
 
- export default function PrivacyPolicyPageClient() {
+export default function PrivacyPolicyPageClient() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-white via-purple-50/30 to-indigo-50/50">
             <StickyHeader />
@@ -41,7 +41,6 @@ const staggerContainer = {
                     className="bg-white rounded-2xl border border-purple-100 shadow-sm p-6 sm:p-8"
                 >
 
-                    {/* 1. Responsable du traitement */}
                     <Section title="Responsable du traitement" number={1} icon={<Users className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Le responsable du traitement des données collectées dans le cadre de Diambra Puzzle est l'éditeur du Jeu.
@@ -53,7 +52,6 @@ const staggerContainer = {
                         </div>
                     </Section>
 
-                    {/* 2. Données collectées */}
                     <Section title="Données susceptibles d'être collectées" number={2} icon={<Server className="w-4 h-4 text-purple-600" />}>
                         <SubSection title="2.1. Données fournies par l'utilisateur">
                             <BulletList items={[
@@ -93,7 +91,6 @@ const staggerContainer = {
                         </SubSection>
                     </Section>
 
-                    {/* 3. Données de paiement */}
                     <Section title="Données de paiement" number={3} icon={<Lock className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Lorsque Diambra Puzzle propose des fonctionnalités nécessitant un paiement, les opérations de paiement peuvent être traitées par un prestataire de paiement tiers.
@@ -104,7 +101,6 @@ const staggerContainer = {
 
                     </Section>
 
-                    {/* 4. Finalités du traitement */}
                     <Section title="Finalités du traitement" number={4} icon={<Target className="w-4 h-4 text-purple-600" />}>
                         <SubSection title="Fonctionnement du Jeu">
                             <BulletList items={[
@@ -156,7 +152,6 @@ const staggerContainer = {
                         </SubSection>
                     </Section>
 
-                    {/* 5. Base du traitement */}
                     <Section title="Base du traitement" number={5} icon={<FileText className="w-4 h-4 text-purple-600" />}>
                         <p>Les traitements de données personnelles sont réalisés conformément à la réglementation applicable en matière de protection des données personnelles.</p>
                         <p>Selon la nature du traitement, celui-ci peut notamment être fondé sur :</p>
@@ -169,7 +164,6 @@ const staggerContainer = {
                         ]} />
                     </Section>
 
-                    {/* 6. Destinataires */}
                     <Section title="Destinataires des données" number={6} icon={<Users className="w-4 h-4 text-purple-600" />}>
                         <p>Les données personnelles sont accessibles uniquement aux personnes ou prestataires qui en ont besoin pour assurer le fonctionnement du Jeu.</p>
                         <BulletList items={[
@@ -182,7 +176,6 @@ const staggerContainer = {
                         <p className="font-semibold text-purple-700 mt-2">Nous ne vendons pas les données personnelles des utilisateurs.</p>
                     </Section>
 
-                    {/* 7. Hébergement */}
                     <Section title="Hébergement et prestataires techniques" number={7} icon={<Server className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Pour assurer le fonctionnement de Diambra Puzzle, certaines données peuvent être hébergées ou traitées par des prestataires techniques.
@@ -193,7 +186,6 @@ const staggerContainer = {
 
                     </Section>
 
-                    {/* 8. Conservation */}
                     <Section title="Conservation des données" number={8} icon={<Clock className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Nous conservons les données personnelles uniquement pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées.
@@ -209,7 +201,6 @@ const staggerContainer = {
                         <p>Lorsque les données ne sont plus nécessaires, elles sont supprimées ou anonymisées.</p>
                     </Section>
 
-                    {/* 9. Cookies */}
                     <Section title="Cookies et technologies similaires" number={9} icon={<Cookie className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Diambra Puzzle peut utiliser des cookies, des mécanismes de stockage local ou des technologies similaires nécessaires au fonctionnement du Jeu.
@@ -224,7 +215,6 @@ const staggerContainer = {
                         ]} />
                     </Section>
 
-                    {/* 10. Sécurité */}
                     <Section title="Sécurité des données" number={10} icon={<Lock className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Nous mettons en œuvre des mesures techniques et organisationnelles raisonnables destinées à protéger les données personnelles contre :
@@ -242,7 +232,6 @@ const staggerContainer = {
                         </p>
                     </Section>
 
-                    {/* 11. Mineurs */}
                     <Section title="Données des mineurs" number={11} icon={<Users className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Diambra Puzzle n'a pas pour objectif de collecter volontairement des données personnelles de mineurs en dehors des conditions prévues par la réglementation applicable.
@@ -252,7 +241,6 @@ const staggerContainer = {
                         </p>
                     </Section>
 
-                    {/* 12. Vos droits */}
                     <Section title="Vos droits" number={12} icon={<FileText className="w-4 h-4 text-purple-600" />}>
                         <SubSection title="Droit d'accès">
                             <p>Vous pouvez demander à savoir quelles données personnelles vous concernant sont traitées et, dans les conditions prévues par la loi, obtenir une copie de ces données.</p>
@@ -271,7 +259,6 @@ const staggerContainer = {
                         </SubSection>
                     </Section>
 
-                    {/* 13. Exercice des droits */}
                     <Section title="Exercice de vos droits" number={13} icon={<Mail className="w-4 h-4 text-purple-600" />}>
                         <p>Pour exercer vos droits ou poser une question concernant la protection de vos données personnelles, vous pouvez contacter notre support :</p>
                         <div className="mt-2 p-3 bg-purple-50 rounded-lg text-sm">
@@ -282,7 +269,6 @@ const staggerContainer = {
                         </div>
                     </Section>
 
-                    {/* 14. Réclamations */}
                     <Section title="Réclamations" number={14} icon={<FileText className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Si vous estimez que vos droits relatifs à vos données personnelles ne sont pas respectés, nous vous invitons à nous contacter en premier lieu.
@@ -292,14 +278,12 @@ const staggerContainer = {
                         </p>
                     </Section>
 
-                    {/* 15. Transfert */}
                     <Section title="Transfert de données" number={15} icon={<Server className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Lorsque certains de nos prestataires techniques sont situés en dehors de la Côte d'Ivoire ou lorsque des données sont traitées depuis un autre pays, les transferts concernés seront réalisés conformément aux exigences légales et réglementaires applicables.
                         </p>
                     </Section>
 
-                    {/* 16. Liens tiers */}
                     <Section title="Liens vers des services tiers" number={16} icon={<Link className="w-4 h-4 text-purple-600" />}>
                         <p>
                             Diambra Puzzle peut éventuellement contenir des liens ou intégrer des services fournis par des tiers.
@@ -310,7 +294,6 @@ const staggerContainer = {
                         <p>Nous ne sommes pas responsables des pratiques de confidentialité de services tiers que nous ne contrôlons pas.</p>
                     </Section>
 
-                    {/* 17. Modifications */}
                     <Section title="Modification de la présente politique" number={17} icon={<Clock className="w-4 h-4 text-purple-600" />}>
                         <p>Nous pouvons modifier cette Politique de confidentialité afin de tenir compte :</p>
                         <BulletList items={[
@@ -323,13 +306,11 @@ const staggerContainer = {
                         <p>En cas de modification importante, une nouvelle date de mise à jour sera affichée.</p>
                     </Section>
 
-                    {/* 18. Contact */}
                     <Section title="Contact" number={18} icon={<Mail className="w-4 h-4 text-purple-600" />}>
                         <p>Pour toute question concernant cette Politique de confidentialité :</p>
                         <ContactCard />
 
                     </Section>
-
                     <SecurityBadge />
                     <LegalNotice />
                 </motion.div>

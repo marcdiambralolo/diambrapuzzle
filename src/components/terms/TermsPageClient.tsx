@@ -22,7 +22,9 @@ export default function TermsPageClient() {
                 <ContentContainer>
                     <AlertBanner />
                     <SectionsList sections={sections} />
+
                     <Divider />
+
                     <div className="px-6 pb-6">
                         <ContactCard />
                     </div>

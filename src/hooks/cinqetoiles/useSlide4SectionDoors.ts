@@ -43,7 +43,6 @@ const validateForm = (form: FormData): FormErrors => {
 export function useSlide4SectionDoors() {
   const searchParams = useSearchParams();
   const monjeu = searchParams?.get("monjeu");
-  const retour = searchParams?.get("retour");
   const countryOptions = useMemo(() => RUBRIQUE_COUNTRY_OPTIONS, []);
 
   const submitClass = useMemo(
@@ -144,6 +143,9 @@ export function useSlide4SectionDoors() {
   const handleReset = useCallback(() => {
     router.back();
   }, [router]);
+
+
+  
 
   return {
     handleChange, setForm, handleReset, handleSubmit,

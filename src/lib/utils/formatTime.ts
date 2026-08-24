@@ -1,4 +1,3 @@
-// lib/utils/formatTime.ts
 export function formatTimeHHMMSS(seconds: number): string {
   const safeSeconds = Math.max(0, Math.floor(seconds));
   const h = Math.floor(safeSeconds / 3600);

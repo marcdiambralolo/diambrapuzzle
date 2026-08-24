@@ -7,7 +7,7 @@ import NotificationSettingsModal from "./components/NotificationSettingsModal";
 
 export default function NotificationsPageClient() {
   const {
-    filter, filteredNotifications, showSettings, isLoading, unreadCount,
+    filter, filteredNotifications, showSettings, unreadCount, isLoading,
     setFilter, markAllAsRead, setShowSettings, handleNotificationClick, handleDelete,
   } = useNotificationsPage();
 

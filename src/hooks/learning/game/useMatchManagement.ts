@@ -7,8 +7,39 @@ import { useDiambraStore } from "@/lib/store/diambra.store";
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useTimer } from './useTimer';
 
-//const GLOBAL_GAME_ORDER = [0, 3, 1, 2] as const;
-const GLOBAL_GAME_ORDER = [3, 2, 1, 0] as const;
+const generateAllOrders = (): number[][] => {
+    const result: number[][] = [];
+    const elements = [0, 1, 2, 3];
+
+    const permute = (arr: number[], prefix: number[] = []) => {
+        if (arr.length === 0) {
+            result.push(prefix);
+            return;
+        }
+
+        for (let i = 0; i < arr.length; i++) {
+            const remaining = [...arr.slice(0, i), ...arr.slice(i + 1)];
+            permute(remaining, [...prefix, arr[i]]);
+        }
+    };
+
+    permute(elements);
+    return result;
+};
+
+const GLOBAL_GAME_ORDERS = generateAllOrders();
+const TOTAL_ORDERS = GLOBAL_GAME_ORDERS.length;
+
+const getOrderFromMatchId = (numeromatch: string | number | undefined): number[] => {
+    const matchNumber = typeof numeromatch === 'string'
+        ? parseInt(numeromatch, 10)
+        : numeromatch || 123456789;
+
+    const index = matchNumber % TOTAL_ORDERS;
+
+    return GLOBAL_GAME_ORDERS[index];
+};
+
 const TRANSITION_DELAY = 100;
 const DEFAULT_IMAGE_PATH = "/ephotosept.jpg";
 
@@ -21,6 +52,10 @@ const useMatchManagement = (
     const timeElapsed = useTimer(state.start);
     const lancementRef = useRef(false);
     const isLoadingMatch = useRef(false);
+
+    const GLOBAL_GAME_ORDER = useMemo(() => {
+        return getOrderFromMatchId(gameConfig?.numeromatch);
+    }, [gameConfig?.numeromatch]);
 
     const chargerMatch = useCallback((matchData: MatchInfo) => {
         if (!matchData) return;
@@ -36,8 +71,8 @@ const useMatchManagement = (
 
     const generateMatchList = useCallback((): MatchInfo[] => {
         const matchId = gameConfig?.numeromatch || "123456789";
-        return GLOBAL_GAME_ORDER.map((type, index) => createMatch(type, index, matchId));
-    }, [gameConfig?.numeromatch]);
+        return GLOBAL_GAME_ORDER.map((type, index) => createMatch(index, type, matchId));
+    }, [gameConfig?.numeromatch, GLOBAL_GAME_ORDER]);
 
     const loadMatch = useCallback(async (match: MatchInfo, niveau: number, piecesImages: string[]): Promise<MatchInfo> => {
         const totalCases = getTotalCases(match.tpsglobal!, niveau);
@@ -157,7 +192,7 @@ const useMatchManagement = (
             updateState({ isGameover: true });
             saveFinalResults();
             setAfficheGame(false);
-          window.location.reload();  
+            window.location.reload();
         }
     }, [allMatchesFinished, state.infomatch, state.isGameover, saveFinalResults, setAfficheGame, updateState]);
 

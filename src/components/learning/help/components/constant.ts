@@ -10,7 +10,7 @@ export const HELP_SECTIONS = [
             "Développer votre mémoire visuelle et votre concentration",
             "Renforcer votre patience et votre sens stratégique",
             "Profiter d'un moment ludique, seul ou entre amis",
-            "Vous préparer pour des compétitions et défis"
+            "Vous participer à des compétitions"
         ]
     },
     {
@@ -19,7 +19,7 @@ export const HELP_SECTIONS = [
         title: "Principe du jeu",
         type: "text" as const,
         badge: null,
-        content: "Déplacez les éléments à l'intérieur du plateau P2 pour retrouver exactement les mêmes dispositions que sur le plateau P1. Utilisez votre mémoire visuelle et votre logique pour résoudre le puzzle le plus rapidement possible."
+        content: "Déplacez les éléments à l'intérieur du plateau P2 pour retrouver exactement les mêmes dispositions que sur le plateau P1."
     },
     {
         id: "comment-jouer",
@@ -29,8 +29,8 @@ export const HELP_SECTIONS = [
         badge: "Guide",
         badgeColor: "purple" as const,
         content: [
-            "Mémorisez la disposition du plateau P1 pendant quelques secondes",
-            "Cliquez sur deux cases du plateau P2 pour les échanger",
+            "Mémorisez la disposition  des cases du plateau P1 ",
+            "Cliquez sur la case du plateau P2 à deplacer ",
             "Utilisez le bouton 'Voir P1' pour vérifier votre progression",
             "Verrouillez les cases correctement placées avec 'Ajuster'",
             "Complétez le puzzle avant la fin du temps imparti"
