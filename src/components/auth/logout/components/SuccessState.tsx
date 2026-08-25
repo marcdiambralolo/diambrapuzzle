@@ -1,14 +1,7 @@
 'use client';
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
-import { cardVariants } from "./constantes";
-
-const checkVariants: Variants = {
-    hidden: { scale: 0, rotate: -180, opacity: 0 },
-    visible: { scale: 1, rotate: 0, opacity: 1, transition: { delay: 0.15, type: "spring", stiffness: 220, damping: 18 } }
-};
-
-const CELEBRATION_STARS = 6;
+import { cardVariants, CELEBRATION_STARS, checkVariants } from "./constantes";
 
 export const SuccessState = () => (
     <motion.div
@@ -34,7 +27,6 @@ export const SuccessState = () => (
         </motion.div>
 
         <motion.h2 initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="text-xl sm:text-2xl font-bold text-slate-900 mb-2 sm:mb-3">Déconnexion réussie !</motion.h2>
-
         <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="text-slate-600 text-sm sm:text-base">À bientôt sur Diambra Puzzle</motion.p>
 
         <div className="mt-5 sm:mt-6 flex items-center justify-center gap-1.5 sm:gap-2">

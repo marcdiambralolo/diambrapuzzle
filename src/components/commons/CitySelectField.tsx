@@ -155,7 +155,6 @@ function CitySelectFieldBase({
     return () => document.removeEventListener("mousedown", onDoc);
   }, []);
 
-  // Nettoyage au démontage
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
@@ -204,7 +203,6 @@ function CitySelectFieldBase({
           headers: cityApiKey ? { Authorization: `Bearer ${cityApiKey}` } : undefined,
         });
 
-        // Si la requête est obsolète, ignorer le résultat
         if (lastQueryRef.current !== qKey) return;
 
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -215,7 +213,6 @@ function CitySelectFieldBase({
         setLoading(false);
         setNetError(null);
       } catch (err: unknown) {
-        // Ignorer si la requête n'est plus pertinente
         if (lastQueryRef.current !== qKey) return;
 
         if (fallbackFiltered.length) {

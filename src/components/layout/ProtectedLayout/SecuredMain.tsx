@@ -1,6 +1,6 @@
 'use client';
 import { memo } from 'react';
-import { ProtectedRoute } from '@/components/layout/ProtectedRoute';
+import { ProtectedRoute } from '@/components/layout/ProtectedRoute/ProtectedRoute';
 
 interface SecuredMainProps {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 "use client";
 import CacheLink from "@/components/commons/CacheLink";
-import { ProtectedRoute } from '@/components/layout/ProtectedRoute';
+import { ProtectedRoute } from '@/components/layout/ProtectedRoute/ProtectedRoute';
 import { useAdminShellSidebar } from '@/hooks/admin/commons/useAdminShellSidebar';
 import { cx } from "@/lib/functions";
 import { useAuth } from '@/lib/hooks';

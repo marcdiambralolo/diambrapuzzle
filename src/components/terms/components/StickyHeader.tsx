@@ -1,13 +1,13 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const StickyHeader = () => {
     const router = useRouter();
 
-    const handleGoBack = () => {
-        router.back();
+    const handleNavigateToRegister = () => {
+        router.push('/auth/register');
     };
 
     return (
@@ -23,12 +23,12 @@ const StickyHeader = () => {
                         whileTap={{ scale: 0.97 }}
                     >
                         <button
-                            onClick={handleGoBack}
-                            className="group inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 relative overflow-hidden cursor-pointer"
+                            onClick={handleNavigateToRegister}
+                            className="group inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-600 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 relative overflow-hidden cursor-pointer"
                         >
                             <span className="relative z-10 flex items-center gap-2">
-                                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                                Retour
+                                <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                                Retour à l'inscription
                             </span>
                             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                         </button>

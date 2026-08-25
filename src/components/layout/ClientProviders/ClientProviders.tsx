@@ -1,10 +1,10 @@
 "use client";
-import { ErrorBoundary, LoadingFallback } from '@/components/layout/ErrorBoundary';
 import { AuthProvider } from '@/lib/auth/AuthContext';
 import { registerServiceWorker } from '@/lib/cache/serviceWorker.utils';
 import { CLIENT_NAVIGATION_EVENT, type ClientNavigationDetail } from '@/lib/navigation/clientNavigation';
 import { useRouter } from 'next/navigation';
 import { startTransition, Suspense, useEffect, useState } from 'react';
+import { ErrorBoundary, LoadingFallback } from '../ErrorBoundary/ErrorBoundary';
 
 export function ClientNavigationEvents() {
   const router = useRouter();
@@ -59,7 +59,7 @@ export function ServiceWorkerInitializer() {
       <div className="fixed bottom-4 left-4 z-50 bg-black/80 text-white text-xs px-3 py-2 rounded-lg backdrop-blur-sm">
         <div className="flex items-center gap-2">
           <div className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'}`} />
-          <span>{isOnline ? 'E' : 'Hors ligne'}</span>
+          <span>{isOnline ? 'E' : 'HS'}</span>
         </div>
       </div>
     );

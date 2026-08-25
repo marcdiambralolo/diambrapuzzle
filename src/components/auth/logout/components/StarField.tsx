@@ -1,8 +1,7 @@
 'use client';
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-
-const STARS_COUNT = 10;
+import { STARS_COUNT } from "./constantes";
 
 export const StarField = () => {
     const [stars, setStars] = useState<Array<{
@@ -27,8 +26,7 @@ export const StarField = () => {
     return (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {stars.map((star) => (
-                <motion.div
-                    key={star.id}
+                <motion.div key={star.id}
                     className="absolute w-0.5 h-0.5 sm:w-1 sm:h-1 bg-white rounded-full"
                     style={star.style}
                     animate={{ opacity: [0, 0.8, 0], scale: [0, 1.2, 0] }}

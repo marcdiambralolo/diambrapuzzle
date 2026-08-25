@@ -3,8 +3,8 @@ import CacheLink from '@/components/commons/CacheLink';
 import { HelpCircle } from 'lucide-react';
 import { memo } from 'react';
 import ResultsCallToAction from "./components/ResultsCallToAction";
-import HorlogeInit from "./home/dashboard/HorlogeInit";
-
+import HorlogeInit from '../home/dashboard/HorlogeInit';
+ 
 const ProfilPageLearning = memo(() => {
   return (
     <div className="w-full mx-auto max-w-md mb-8 mt-8">

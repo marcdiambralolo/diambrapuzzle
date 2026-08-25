@@ -1,6 +1,6 @@
 'use client';
 import { Suspense } from 'react';
-import { LoadingFallback } from '@/components/layout/ErrorBoundary';
+import { LoadingFallback } from '../ErrorBoundary/ErrorBoundary';
 
 interface SecuredMainSuspenseProps {
   children: React.ReactNode;
