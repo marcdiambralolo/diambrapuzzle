@@ -38,6 +38,7 @@ const Loader = memo(function Loader() {
               src="/logo.png"
               alt="Diambra Puzzle"
               fill
+              sizes="(max-width: 768px) 100vw, 33vw" // Ajoutez cette ligne
               className="object-contain drop-shadow-xl"
               priority
             />

@@ -32,11 +32,7 @@ const EditionHeader = memo(({ startDate, endDate, participantsCount }: EditionHe
                 <div className="pt-2">
                     <DateRange startDate={startDate} endDate={endDate} />
                 </div>
-            </div>
-
-            {participantsCount !== undefined && (
-                <ParticipantsBadge count={participantsCount} />
-            )}
+            </div> 
         </div>
     </div>
 ));

@@ -11,9 +11,10 @@ import EditionHeader from "./components/EditionHeader";
 import { StatisticsSection } from "./components/StatisticsSection";
 import ErrorMessage from "@/components/learning/commons/ErrorMessage";
 import EditionCard from "@/components/learning/historique/components/EditionCard";
-import ParticipationsSection from "@/components/learning/historique/components/ParticipationsSection";
 import TitleSection from "@/components/learning/historique/components/TitleSection";
 import WinnersSection from "@/components/learning/historique/components/WinnersSection";
+import ParticipationsSection from "@/components/learning/historique/components/ParticipationsSection";
+ 
 
 
 const HistoriquePageClient = memo(() => {

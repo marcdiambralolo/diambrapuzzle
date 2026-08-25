@@ -10,7 +10,6 @@ import TitleSection from "../components/TitleSection";
 import WinnersSection from "../components/WinnersSection";
 import { BackButton } from "./components/BackButton";
 import { ConsultationList } from "./components/ConsultationList";
-import EditionBadge from "./components/EditionBadge";
 import EditionHeader from "./components/EditionHeader";
 import { StatisticsSection } from "./components/StatisticsSection";
 
@@ -31,10 +30,7 @@ const HistoriquePageClient = memo(() => {
 
   return (
     <div className="max-w-4xl mx-auto px-3 py-4 sm:px-4 sm:py-8">
-      <div className="text-center">
-        <EditionBadge />
-      </div>
-
+       
       {activeEdition && (
         <div className="w-full mx-auto max-w-xl px-4">
           <EditionCard activeEdition={activeEdition} />
