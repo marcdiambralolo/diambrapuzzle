@@ -18,13 +18,7 @@ export function useGameActions(gameConfig?: LearningConfiguration | null) {
     setAfficheGame,
     resetGameState,
     competitions,
-  } = useDiambraStore((state) => ({
-    setGameIsFinished: state.setGameIsFinished,
-    setAfficheChoix: state.setAfficheChoix,
-    setAfficheGame: state.setAfficheGame,
-    resetGameState: state.resetGameState,
-    competitions: state.competitions,
-  }));
+  } = useDiambraStore();
 
   // Fonction de nettoyage simplifiée et stable (plus besoin d'écouter les valeurs d'état)
   const completeGameCleanup = useCallback(() => {

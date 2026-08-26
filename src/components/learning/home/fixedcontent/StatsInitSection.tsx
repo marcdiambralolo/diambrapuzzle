@@ -2,7 +2,6 @@
 import Loader from '@/app/loading';
 import { useStatsDataWithCache } from '@/hooks/cache/useStatsDataWithCache';
 import { COLORS } from '@/lib/learning/constantes';
-import { useDiambraStore } from '@/lib/store/diambra.store';
 import { Users } from 'lucide-react';
 import { memo } from 'react';
 import ErrorMessage from '../../commons/ErrorMessage';
@@ -12,9 +11,7 @@ export const StatsInitSection = memo(function StatsSection() {
  
   const { stats, isLoading, error } = useStatsDataWithCache();
 
- 
-
-  if (error) return <ErrorMessage />;
+   if (error) return <ErrorMessage />;
 
   if (isLoading) return <Loader />;
 

@@ -5,7 +5,7 @@ import { api } from '@/lib/api/client';
 import { LearningConfiguration } from '@/lib/interfaces';
 import { useDiambraStore } from '@/lib/store/diambra.store';
 import { useQuery } from "@tanstack/react-query";
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useGameActions } from './useGameActions';
 import { useGameStatus } from './useGameStatus';
 import { useGameTimers } from './useGameTimers';
@@ -17,23 +17,16 @@ const REFRESH_CONFIG_INTERVAL = 5000;
 const CONFIG_GC_TIME = 60 * 1000;
 
 export function useAdminConsultationsPageFinished() {
-  // Sélecteur Zustand regroupé pour réduire le nombre de souscriptions
-  const { setGameConfig, afficheGame } = useDiambraStore((state) => ({
-    setGameConfig: state.setGameConfig,
-    afficheGame: state.afficheGame,
-  }));
+  // 1. Sélecteurs Zustand isolés (références stables)
+  const setGameConfig = useDiambraStore((state) => state.setGameConfig);
+  const afficheGame = useDiambraStore((state) => state.afficheGame);
 
   const { stats, isLoading: isStatsLoading, error } = useStatsDataWithCache();
 
-  // Utilisation de `select` pour synchroniser le store sans déclencher de useEffect
   const { data: gameConfig = null, isLoading: isConfigLoading } = useQuery<LearningConfiguration | null>({
     queryKey: ['game', 'config'],
     queryFn: async () => {
       const { data } = await api.get<LearningConfiguration>('learning-configurations/current-config');
-      return data;
-    },
-    select: (data) => {
-      setGameConfig(data);
       return data;
     },
     staleTime: QUERY_STALE_TIME,
@@ -43,6 +36,13 @@ export function useAdminConsultationsPageFinished() {
     retry: RETRY_ATTEMPTS,
     gcTime: CONFIG_GC_TIME,
   });
+
+  // 2. Synchronisation de la config dans Zustand sans effets secondaires dans le rendu
+  useEffect(() => {
+    if (gameConfig) {
+      setGameConfig(gameConfig);
+    }
+  }, [gameConfig, setGameConfig]);
 
   const { lastEndedGame, isLoading: isLastEndedLoading } = useLastEndedGame();
   const { currentTimestamp, dates, countdowns } = useGameTimers(gameConfig);
