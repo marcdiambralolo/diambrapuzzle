@@ -22,7 +22,7 @@ const StatusBadge = memo(({ text, color }: StatusBadgeProps) => {
         <div
             role="status"
             aria-label={`Statut de connexion : ${text}`}
-            className={`px-3 py-1 rounded-full text-xs font-bold shadow-md ${bgClass} text-white flex items-center gap-2 transition-colors duration-300`}
+            className={`px-3 py-2 rounded-full text-xs font-bold shadow-md ${bgClass} text-white flex items-center gap-2 transition-colors duration-300`}
         >
             <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />

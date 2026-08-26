@@ -1,6 +1,6 @@
 'use client';
 import CacheLink from "@/components/commons/CacheLink";
-import { ChevronRight, Trophy } from "lucide-react";
+import { ChevronRight, Trophy, } from "lucide-react";
 import { memo } from 'react';
 
 const ResultsCallToAction = memo(() => {

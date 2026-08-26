@@ -3,7 +3,7 @@ import Loader from '@/app/loading';
 import ErrorMessage from '@/components/learning/commons/ErrorMessage';
 import { useLaMise } from '@/hooks/learning/lamise/useLaMise';
 import { memo } from 'react';
-import { MarketButton, PlayButton } from './lamise/ActionButtons';
+import { MarketButton, PlayButton, } from './lamise/ActionButtons';
 import { StatusBanner } from './lamise/StatusBanner';
 import { TokenCard } from './lamise/TokenCard';
 

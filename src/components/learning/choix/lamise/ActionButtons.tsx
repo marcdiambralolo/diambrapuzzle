@@ -1,5 +1,5 @@
 'use client';
-import { ArrowRight, ChevronRight, ShoppingBag } from 'lucide-react';
+import { ChevronRight, ArrowRight, ShoppingBag } from 'lucide-react';
 import { memo } from 'react';
 
 interface ButtonSpinnerProps {

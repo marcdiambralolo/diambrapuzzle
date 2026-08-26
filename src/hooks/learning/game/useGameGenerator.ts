@@ -6,7 +6,9 @@ import useGameActions from './useGameActions';
 import useGameMetrics from './useGameMetrics';
 import useMatchManagement from './useMatchManagement';
 
-const useGameState = () => {
+export const useGameGenerator = () => {
+    const { gameConfig } = useDiambraStore();
+
     const [state, setState] = useState<GameState>({
         tpsglobal: 0,
         casesdujeuencours: [],
@@ -27,13 +29,6 @@ const useGameState = () => {
         setState(prev => ({ ...prev, ...updates }));
     }, []);
 
-    return { state, setState, updateState };
-};
-
-export const useGameGenerator = () => {
-    const { gameConfig } = useDiambraStore();
-    const { state, setState, updateState } = useGameState();
-
     const isFirstRender = useRef<boolean>(true);
 
     useEffect(() => {
@@ -50,13 +45,8 @@ export const useGameGenerator = () => {
         }
     }, [state.showPun, setState]);
 
-    useEffect(() => {
-        if (!state.start) updateState({ start: true });
-    }, [state.start, updateState]);
-
     const { selectCase, toggleShowPun, lockSelectedCase } = useGameActions(state, setState, updateState);
     const { timeElapsed } = useMatchManagement(state, setState, updateState);
-
     const metrics = useGameMetrics(state);
 
     return {

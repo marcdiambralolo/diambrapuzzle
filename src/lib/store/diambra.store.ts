@@ -56,6 +56,9 @@ interface MonEtoileStore {
   gameIsFinished: boolean;
   gameJustEnded: boolean;
 
+  // NOUVEAU : Compteur pour les séquences de jeu
+  gameSequenceCounter: number;
+
   // Actions - Configuration
   setGameConfig: (config: LearningConfiguration | null) => void;
   resetGameConfig: () => void;
@@ -96,6 +99,11 @@ interface MonEtoileStore {
   setCurrentConsultationId: (id: string | null) => void;
   resetGameState: () => void;
   resetAll: () => void;
+
+  // NOUVEAU : Actions pour le compteur de séquence
+  incrementGameSequenceCounter: () => void;
+  resetGameSequenceCounter: () => void;
+  getGameSequenceCounter: () => number;
 }
 
 // Helpers
@@ -184,6 +192,7 @@ const INITIAL_STATE = {
   afficheChoix: false,
   afficheGame: false,
   gameJustEnded: false,
+  gameSequenceCounter: 0, // NOUVEAU
 };
 
 export const useDiambraStore = create<MonEtoileStore>()(
@@ -297,6 +306,17 @@ export const useDiambraStore = create<MonEtoileStore>()(
       },
       setCurrentConsultationId: (id) => set({ currentConsultationId: id }),
 
+      // NOUVEAU : Actions du compteur de séquence
+      incrementGameSequenceCounter: () =>
+        set((state) => ({
+          gameSequenceCounter: state.gameSequenceCounter + 1,
+        })),
+
+      resetGameSequenceCounter: () =>
+        set({ gameSequenceCounter: 0 }),
+
+      getGameSequenceCounter: () => get().gameSequenceCounter,
+
       resetGameState: () =>
         set({
           gameStarted: false,
@@ -314,6 +334,7 @@ export const useDiambraStore = create<MonEtoileStore>()(
           competitionsVersion: 0,
           currentMatchInfo: [],
           gameJustEnded: false,
+          gameSequenceCounter: 0, // NOUVEAU
         }),
     }),
     {
@@ -325,6 +346,8 @@ export const useDiambraStore = create<MonEtoileStore>()(
         afficheStat: state.afficheStat,
         gameIsFinished: state.gameIsFinished,
         currentConsultationId: state.currentConsultationId,
+        // NOUVEAU : Persister le compteur
+        gameSequenceCounter: state.gameSequenceCounter,
       }),
       onRehydrateStorage: () => (state) => {
         if (state && Array.isArray(state.competitions)) {
@@ -341,6 +364,10 @@ export const useDiambraStore = create<MonEtoileStore>()(
         if (state) {
           state.currentMatchInfo = state.currentMatchInfo || [];
           state.gameJustEnded = false;
+          // NOUVEAU : Initialiser le compteur si non défini
+          if (state.gameSequenceCounter === undefined) {
+            state.gameSequenceCounter = 0;
+          }
         }
       },
     }

@@ -4,7 +4,7 @@ import { HelpCircle } from 'lucide-react';
 import { memo } from 'react';
 import ResultsCallToAction from "./components/ResultsCallToAction";
 import HorlogeInit from '../home/dashboard/HorlogeInit';
- 
+
 const ProfilPageLearning = memo(() => {
   return (
     <div className="w-full mx-auto max-w-md mb-8 mt-8">
@@ -20,7 +20,7 @@ const ProfilPageLearning = memo(() => {
         >
           <span className="relative z-10 flex items-center gap-2">
             <HelpCircle className="w-4 h-4" />
-            Aide du jeu DIAMBRA PUZZLE
+            Aide du Jeu DIAMBRA PUZZLE
           </span>
           <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </CacheLink>
