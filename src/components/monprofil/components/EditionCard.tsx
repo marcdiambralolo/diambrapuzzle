@@ -1,6 +1,6 @@
 "use client";
 import { formatEditionDate } from "@/lib/functions";
-import { CalendarDays, ChevronRight, Crown, Flame, Trophy } from "lucide-react";
+import { CalendarDays, ChevronRight, Crown, Flame, Trophy, } from "lucide-react";
 import Link from "next/link";
 import { memo } from "react";
 

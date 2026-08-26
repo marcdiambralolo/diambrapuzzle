@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 
 const LOADING_STEPS = [
-    { icon: '🎯', text: 'Analyse de vos jeux', delay: 0 },
+    { icon: '🎯', text: 'Analyse de vos jeux en cours', delay: 0 },
     { icon: '🧩', text: 'Calcul des points', delay: 0.3 },
     { icon: '✨', text: 'Préparation de votre espace', delay: 0.6 }
 ];

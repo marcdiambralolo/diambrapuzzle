@@ -1,11 +1,6 @@
 "use client";
 import RegisterSelectField from "@/components/commons/RegisterSelectField";
-
-const GENDER_OPTIONS = [
-    { value: "", label: "Sélectionner" },
-    { value: "male", label: "Homme" },
-    { value: "female", label: "Femme" },
-] as const;
+import { GENDER_OPTIONS } from "./constantes";
 
 const LocationAndGenderFields = ({
     country,
@@ -29,7 +24,6 @@ const LocationAndGenderFields = ({
             error={errors.country}
             options={countryOptions}
         />
-
         <RegisterSelectField
             label="Genre"
             name="gender"

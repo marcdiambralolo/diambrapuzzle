@@ -1,18 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import { CreditCard } from "lucide-react";
-
-const ANIMATIONS = {
-    fadeInUp: {
-        initial: { y: 20, opacity: 0 },
-        animate: { y: 0, opacity: 1 }
-    },
-    scaleIn: {
-        initial: { scale: 0.95, opacity: 0 },
-        animate: { scale: 1, opacity: 1 },
-        exit: { scale: 0.95, opacity: 0 }
-    }
-};
+import { ANIMATIONS } from "./constantes";
+import DetailRow from "./DetailRow";
 
 const OrderSummary = ({ transaction, totalAmount }: { transaction: any; totalAmount: number }) => (
     <motion.div
@@ -40,6 +30,7 @@ const OrderSummary = ({ transaction, totalAmount }: { transaction: any; totalAmo
                     <DetailRow label="Téléphone" value={transaction.numeroSend || transaction.phone} mono />
                 )}
                 <DetailRow label="Référence" value={transaction.transactionId} mono small />
+
                 <DetailRow
                     label="Date"
                     value={new Date(transaction.createdAt).toLocaleString("fr-FR", {
@@ -66,15 +57,6 @@ const OrderSummary = ({ transaction, totalAmount }: { transaction: any; totalAmo
             )}
         </div>
     </motion.div>
-);
-
-const DetailRow = ({ label, value, mono = false, small = false }: { label: string; value: string; mono?: boolean; small?: boolean }) => (
-    <div className="flex justify-between text-sm">
-        <span className="text-gray-500">{label}</span>
-        <span className={`font-medium text-gray-800 ${mono ? 'font-mono' : ''} ${small ? 'text-xs bg-gray-100 px-2 py-1 rounded' : ''}`}>
-            {value}
-        </span>
-    </div>
 );
 
 export default OrderSummary;

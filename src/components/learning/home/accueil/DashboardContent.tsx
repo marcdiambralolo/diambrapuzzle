@@ -1,11 +1,9 @@
 'use client';
-import Loader from "@/app/loading";
 import { Stats } from "@/hooks/cache/useStatsDataWithCache";
-import { useAdminConsultationsPageFinished } from "@/hooks/learning/home/useAdminConsultationsPageFinished";
 import { memo } from 'react';
-import ActiveBanner from "./ActiveBanner";
-import NoCompetitionBanner from "./NoCompetitionBanner";
-import NotStartedBanner from "./NotStartedBanner";
+import ActiveBanner from "../dashboard/ActiveBanner";
+import NoCompetitionBanner from "../dashboard/NoCompetitionBanner";
+import NotStartedBanner from "../dashboard/NotStartedBanner";
 
 type GameStatus = 'results_available' | 'no_competition' | 'not_started' | 'ended_no_proclamation' | 'active';
 
@@ -65,24 +63,4 @@ const DashboardContent = memo(({
     }
 });
 
-const HorlogeInit = memo(() => {
-    const {
-        demarrerJeuInit, completeGameCleanup, startDate, endDate, isLoading, gameState, countdown, stats,
-    } = useAdminConsultationsPageFinished();
-
-    if (isLoading) return <Loader />;
-
-    return (
-        <DashboardContent
-            status={gameState.status}
-            startDate={startDate}
-            endDate={endDate}
-            countdown={countdown}
-            onDemarrerJeu={demarrerJeuInit}
-            onCompleteGameCleanup={completeGameCleanup}
-            stats={stats}
-        />
-    );
-});
-
-export default HorlogeInit;
+export default DashboardContent;

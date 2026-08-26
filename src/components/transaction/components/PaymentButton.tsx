@@ -1,18 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
-const ANIMATIONS = {
-    fadeInUp: {
-        initial: { y: 20, opacity: 0 },
-        animate: { y: 0, opacity: 1 }
-    },
-    scaleIn: {
-        initial: { scale: 0.95, opacity: 0 },
-        animate: { scale: 1, opacity: 1 },
-        exit: { scale: 0.95, opacity: 0 }
-    }
-};
+import { ANIMATIONS } from "./constantes";
 
 const PaymentButton = ({
     totalAmount,
@@ -32,6 +21,7 @@ const PaymentButton = ({
             Payer {totalAmount.toLocaleString()} FCFA
             <ArrowRight className="w-5 h-5" />
         </button>
+
         <p className="text-xs text-gray-400 text-center mt-4">
             En cliquant sur "Payer", vous serez redirigé vers une page de paiement sécurisée.
             Aucune information bancaire n'est stockée sur notre plateforme.

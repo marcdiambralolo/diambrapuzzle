@@ -1,5 +1,5 @@
 "use client";
-import { Clock, Trophy } from 'lucide-react';
+import { Clock, Trophy, } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
 
 const EvaluationSection = () => (

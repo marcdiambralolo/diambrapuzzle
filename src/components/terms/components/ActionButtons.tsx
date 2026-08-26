@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Brain, Gamepad2 } from 'lucide-react';
+import { Brain, Gamepad2, } from 'lucide-react';
 import { ANIMATION_VARIANTS } from './constantes';
 import CacheLink from '@/components/commons/CacheLink';
 

@@ -9,7 +9,6 @@ import { GlowButton } from "../../commons/Boutons";
 import { CountdownTimer } from './CountdownTimer';
 import { GameStatsGridPlay } from "./GameStatsGridPlay";
 
-// ============= TYPES =============
 interface ActiveBannerProps {
     endDate: Date;
     onFinish: () => void;
@@ -20,12 +19,8 @@ interface ActiveBannerProps {
     demarrerJeu: () => void;
 }
 
-// ============= CONSTANTES =============
 const WARNING_THRESHOLD = 300; // 5 minutes en secondes
 
-// ============= SOUS-COMPOSANTS =============
-
-/** État "Édition terminée" */
 const FinishedState = () => (
     <div className="w-full rounded-3xl bg-gradient-to-br from-purple-600 to-indigo-600 p-6 mb-6 shadow-xl animate-in fade-in duration-500">
         <div className="flex flex-col items-center gap-4 text-center">
@@ -51,8 +46,7 @@ const FinishedState = () => (
     </div>
 );
 
-/** Bannière d'avertissement de fin imminente */
-const WarningBanner = ({ countdown }: { countdown: number }) => {
+ const WarningBanner = ({ countdown }: { countdown: number }) => {
     if (countdown >= WARNING_THRESHOLD || countdown <= 0) return null;
 
     return (
@@ -63,8 +57,7 @@ const WarningBanner = ({ countdown }: { countdown: number }) => {
     );
 };
 
-/** Contenu principal du jeu actif */
-const ActiveGameContent = ({
+ const ActiveGameContent = ({
     endDate,
     onFinish,
     countdown,
@@ -107,13 +100,7 @@ const ActiveGameContent = ({
         </div>
     );
 };
-
-// ============= HOOK PERSONNALISÉ =============
-
-/**
- * Gère l'affichage de l'historique après la fin du jeu
- */ 
-
+ 
 const ActiveBannerPlay = ({
     endDate,
     onFinish,

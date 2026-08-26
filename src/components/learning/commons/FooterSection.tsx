@@ -97,7 +97,6 @@ const Copyright = memo(() => {
     );
 });
 
-
 export const FooterSection = memo(() => {
     const isOnline = useOnlineStatus();
     const status = isOnline ? STATUS_CONFIG.online : STATUS_CONFIG.offline;
@@ -131,7 +130,6 @@ export const FooterSection = memo(() => {
                 </motion.div>
 
                 <Divider />
-
                 <div className="flex items-center gap-4">
                     <Copyright />
                 </div>

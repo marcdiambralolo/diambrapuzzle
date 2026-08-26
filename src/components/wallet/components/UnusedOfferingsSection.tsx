@@ -1,11 +1,7 @@
 "use client";
 import { motion, Variants } from "framer-motion";
 import { Gift } from "lucide-react";
-
-const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-};
+import { fadeInUp } from "./constantes";
 
 function UnusedOfferingsSection({
     unusedError,

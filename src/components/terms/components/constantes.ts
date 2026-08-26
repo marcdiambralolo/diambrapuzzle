@@ -10,3 +10,8 @@ export const ANIMATION_VARIANTS = {
         whileTap: { scale: 0.98 }
     } as Variants
 }; 
+
+export const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};

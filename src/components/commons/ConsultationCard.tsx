@@ -2,7 +2,7 @@
 import { useConsultationCard } from "@/hooks/profil/useConsultationCard";
 import { cx } from "@/lib/functions";
 import type { Consultation } from "@/lib/interfaces";
-import { Calendar, Eye, Globe, Timer, UserRound } from "lucide-react";
+import { Calendar, Eye, Globe, Timer, UserRound, } from "lucide-react";
 import { memo } from "react";
 
 interface ConsultationCardProps {

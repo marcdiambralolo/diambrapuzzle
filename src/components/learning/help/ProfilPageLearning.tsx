@@ -1,7 +1,7 @@
 'use client';
 import { useHelp } from '@/hooks/learning/help/useHelp';
 import { memo } from 'react';
-import { FooterSection } from "../commons/Features";
+import { FooterSection } from "../commons/FooterSection";
 import HelpPanel from "./components/HelpPanel";
 
 const HelpPage = () => {

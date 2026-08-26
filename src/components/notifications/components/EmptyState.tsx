@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Bell } from "lucide-react";
+import { Bell, } from "lucide-react";
 import { memo } from "react";
 
 const EmptyState = memo(function EmptyState({ filter }: { filter: string }) {

@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowLeft, UserPlus } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const StickyHeader = () => {

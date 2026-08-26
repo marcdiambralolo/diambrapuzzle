@@ -43,6 +43,7 @@ interface MonEtoileStore {
   competitions: CompetitionInfo[];
   competitionsVersion: number;
   currentConsultationId: string | null;
+  idEditionencours: string | null; // NOUVEAU
   gameStarted: boolean;
   jeuAcommencer: boolean;
   afficheaide: boolean;
@@ -56,7 +57,7 @@ interface MonEtoileStore {
   gameIsFinished: boolean;
   gameJustEnded: boolean;
 
-  // NOUVEAU : Compteur pour les séquences de jeu
+  // Compteur pour les séquences de jeu
   gameSequenceCounter: number;
 
   // Actions - Configuration
@@ -84,7 +85,8 @@ interface MonEtoileStore {
   notifyGameEnd: () => void;
   resetGameJustEnded: () => void;
 
-  // Actions - UI
+  // Actions - UI & Édition
+  setIdEditionencours: (id: string | null) => void; // NOUVEAU
   setAfficheBanana: (value: boolean) => void;
   setAfficheStat: (value: boolean) => void;
   setAfficheGame: (value: boolean) => void;
@@ -100,7 +102,7 @@ interface MonEtoileStore {
   resetGameState: () => void;
   resetAll: () => void;
 
-  // NOUVEAU : Actions pour le compteur de séquence
+  // Actions pour le compteur de séquence
   incrementGameSequenceCounter: () => void;
   resetGameSequenceCounter: () => void;
   getGameSequenceCounter: () => number;
@@ -180,6 +182,7 @@ const INITIAL_STATE = {
   competitions: [] as CompetitionInfo[],
   competitionsVersion: 0,
   currentConsultationId: null,
+  idEditionencours: null, // NOUVEAU
   gameStarted: false,
   jeuAcommencer: false,
   afficheaide: false,
@@ -192,7 +195,7 @@ const INITIAL_STATE = {
   afficheChoix: false,
   afficheGame: false,
   gameJustEnded: false,
-  gameSequenceCounter: 0, // NOUVEAU
+  gameSequenceCounter: 0,
 };
 
 export const useDiambraStore = create<MonEtoileStore>()(
@@ -285,6 +288,7 @@ export const useDiambraStore = create<MonEtoileStore>()(
       resetGameJustEnded: () => set({ gameJustEnded: false }),
 
       // UI Actions
+      setIdEditionencours: (id) => set({ idEditionencours: id }), // NOUVEAU
       setAfficheBanana: (value) => set({ afficheBanana: value }),
       setAfficheStat: (value) => set({ afficheStat: value }),
       setAfficheChoix: (value) => set({ afficheChoix: value }),
@@ -299,14 +303,13 @@ export const useDiambraStore = create<MonEtoileStore>()(
         const previousAfficheGame = get().afficheGame;
         set({ afficheGame: value });
 
-        // Si le jeu vient de se fermer et qu'il était terminé
         if (previousAfficheGame && !value && get().gameIsFinished) {
           get().notifyGameEnd();
         }
       },
       setCurrentConsultationId: (id) => set({ currentConsultationId: id }),
 
-      // NOUVEAU : Actions du compteur de séquence
+      // Actions du compteur de séquence
       incrementGameSequenceCounter: () =>
         set((state) => ({
           gameSequenceCounter: state.gameSequenceCounter + 1,
@@ -325,6 +328,7 @@ export const useDiambraStore = create<MonEtoileStore>()(
           lamise: false,
           currentMatchInfo: [],
           gameJustEnded: false,
+          idEditionencours: null, // NOUVEAU
         }),
 
       resetAll: () =>
@@ -334,11 +338,13 @@ export const useDiambraStore = create<MonEtoileStore>()(
           competitionsVersion: 0,
           currentMatchInfo: [],
           gameJustEnded: false,
-          gameSequenceCounter: 0, // NOUVEAU
+          gameSequenceCounter: 0,
+          idEditionencours: null, // NOUVEAU
         }),
     }),
     {
       name: STORAGE_NAME,
+      version: 5,
       partialize: (state) => ({
         gameConfig: state.gameConfig,
         competitions: state.competitions.map(compressCompetition),
@@ -346,8 +352,8 @@ export const useDiambraStore = create<MonEtoileStore>()(
         afficheStat: state.afficheStat,
         gameIsFinished: state.gameIsFinished,
         currentConsultationId: state.currentConsultationId,
-        // NOUVEAU : Persister le compteur
         gameSequenceCounter: state.gameSequenceCounter,
+        idEditionencours: state.idEditionencours, // NOUVEAU
       }),
       onRehydrateStorage: () => (state) => {
         if (state && Array.isArray(state.competitions)) {
@@ -364,9 +370,11 @@ export const useDiambraStore = create<MonEtoileStore>()(
         if (state) {
           state.currentMatchInfo = state.currentMatchInfo || [];
           state.gameJustEnded = false;
-          // NOUVEAU : Initialiser le compteur si non défini
           if (state.gameSequenceCounter === undefined) {
             state.gameSequenceCounter = 0;
+          }
+          if (state.idEditionencours === undefined) {
+            state.idEditionencours = null; // NOUVEAU
           }
         }
       },

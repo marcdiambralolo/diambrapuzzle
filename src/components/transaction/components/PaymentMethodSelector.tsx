@@ -2,18 +2,7 @@
 import { PAYMENT_METHODS } from "@/hooks/transaction/useTransactionPage";
 import { motion } from "framer-motion";
 import { CheckCircle2, Shield, Smartphone } from "lucide-react";
-
-const ANIMATIONS = {
-    fadeInUp: {
-        initial: { y: 20, opacity: 0 },
-        animate: { y: 0, opacity: 1 }
-    },
-    scaleIn: {
-        initial: { scale: 0.95, opacity: 0 },
-        animate: { scale: 1, opacity: 1 },
-        exit: { scale: 0.95, opacity: 0 }
-    }
-};
+import { ANIMATIONS } from "./constantes";
 
 const PaymentMethodSelector = ({
     selectedMethod,
@@ -58,7 +47,6 @@ const PaymentMethodSelector = ({
                     </button>
                 ))}
             </div>
-
             <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400">
                 <Shield className="w-3 h-3" />
                 <span>Paiement 100% sécurisé par Money Fusion</span>

@@ -44,6 +44,7 @@ export function useLaMise() {
     // Abonnements granulaires au store Zustand
     const gameConfig = useDiambraStore((state) => state.gameConfig);
     const setAfficheGame = useDiambraStore((state) => state.setAfficheGame);
+    const setIdEditionencours = useDiambraStore((state) => state.setIdEditionencours);
     const setCurrentConsultationId = useDiambraStore((state) => state.setCurrentConsultationId);
     const resetGameSequenceCounter = useDiambraStore((state) => state.resetGameSequenceCounter);
 
@@ -102,7 +103,7 @@ export function useLaMise() {
             setAfficheGame(true);
             resetGameSequenceCounter();
             setCurrentConsultationId(consultationId);
-
+            setIdEditionencours(gameConfig?._id ?? gameConfig?.id ?? '');
             queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.WALLET_TRANSACTIONS] });
             queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.WALLET_UNUSED_OFFERINGS] });
 

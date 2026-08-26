@@ -3,7 +3,7 @@ import { AuthProvider } from '@/lib/auth/AuthContext';
 import { registerServiceWorker } from '@/lib/cache/serviceWorker.utils';
 import { CLIENT_NAVIGATION_EVENT, type ClientNavigationDetail } from '@/lib/navigation/clientNavigation';
 import { useRouter } from 'next/navigation';
-import { startTransition, Suspense, useEffect, useState } from 'react';
+import { startTransition, Suspense, useEffect, useState, } from 'react';
 import { ErrorBoundary, LoadingFallback } from '../ErrorBoundary/ErrorBoundary';
 
 export function ClientNavigationEvents() {

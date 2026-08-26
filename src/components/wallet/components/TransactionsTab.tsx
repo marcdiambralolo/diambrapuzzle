@@ -1,40 +1,12 @@
 "use client";
 import { staggerContainer } from "@/lib/animations";
 import { motion } from "framer-motion";
-import { ShoppingBag, TrendingUp } from "lucide-react";
-import StatsCard from "./StatsCard";
-import TransactionCard from "./TransactionCard";
+import StatsSection from "./StatsSection";
 import TransactionEmptyState from "./TransactionEmptyState";
+import TransactionList from "./TransactionList";
 import TransactionsToolbar from "./TransactionsToolbar";
 
 type SortOrder = "newest" | "oldest" | "amount_high" | "amount_low";
-
-const StatsSection = ({ totalTransactions, totalSpent }: { totalTransactions: number; totalSpent: number }) => (
-    <div className="flex gap-4">
-        <StatsCard
-            label="transactions"
-            value={totalTransactions}
-            icon={ShoppingBag}
-        />
-        <StatsCard
-            label="dépense"
-            value={`${totalSpent.toLocaleString()} F`}
-            icon={TrendingUp}
-        />
-    </div>
-);
-
-const TransactionList = ({ transactions }: { transactions: any[] }) => (
-    <div className="space-y-3">
-        {transactions.map((transaction, index) => (
-            <TransactionCard
-                key={transaction._id}
-                transaction={transaction}
-                index={index}
-            />
-        ))}
-    </div>
-);
 
 const TransactionsTab = ({
     stats,

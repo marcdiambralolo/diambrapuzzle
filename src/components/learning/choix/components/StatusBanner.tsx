@@ -1,4 +1,5 @@
 'use client';
+import { pluralize } from '@/lib/functions';
 import { AlertTriangle, CheckCircle2, type LucideIcon } from 'lucide-react';
 import { memo } from 'react';
 
@@ -35,9 +36,6 @@ const STATUS_BANNER_CONFIG: Record<'sufficient' | 'insufficient', StatusConfig> 
         title: 'Jetons insuffisants',
     },
 } as const;
-
-const pluralize = (count: number, singular: string, plural: string) =>
-    `${count} ${count > 1 ? plural : singular}`;
 
 const getStatusMessage = (
     isSufficient: boolean,

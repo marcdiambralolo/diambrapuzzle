@@ -1,7 +1,7 @@
 'use client';
 import { SimulationStep } from '@/hooks/marcheoffrandes/useMarcheOffrandesMain';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CheckCircle2, Loader2 } from 'lucide-react';
+import { CheckCircle2, Loader2, } from 'lucide-react';
 import { memo } from 'react';
 import SimulationProgress from './SimulationProgress';
 

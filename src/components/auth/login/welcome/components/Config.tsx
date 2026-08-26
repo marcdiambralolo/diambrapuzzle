@@ -1,7 +1,7 @@
 "use client";
 import {
-    Brain, Clock, Eye, Grid, Image as ImageIcon,
-    Layers, Lock, Palette, Rocket, Shuffle, Sparkles, Target, Trophy, Type, Zap
+    Brain, Clock, Eye, Grid, Image as ImageIcon, Rocket,
+    Layers, Lock, Palette, Shuffle, Sparkles, Target, Trophy, Type, Zap
 } from 'lucide-react';
 
 export const CONFIG = {

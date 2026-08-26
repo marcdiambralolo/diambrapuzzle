@@ -1,12 +1,8 @@
 "use client";
 import CacheLink from "@/components/commons/CacheLink";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowLeftCircle, ShoppingBag } from "lucide-react";
-
-const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-};
+import { fadeInUp } from "./constantes";
 
 function BottomCtas({ href, label }: { href: string; label: string }) {
     return (

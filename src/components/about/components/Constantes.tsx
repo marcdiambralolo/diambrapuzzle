@@ -49,7 +49,6 @@ export const CONFIG = {
     ],
 };
 
-
 export const BUTTON_CLASSES = {
     primary: [
         "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold text-white",

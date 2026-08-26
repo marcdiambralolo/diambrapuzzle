@@ -10,7 +10,6 @@ import PrinciplesSection from './components/PrinciplesSection';
 import TipsSection from './components/TipsSection';
 
 export default function WelcomePageClientContent() {
-
     useScrollReveal();
 
     return (

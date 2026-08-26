@@ -2,18 +2,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-const ANIMATIONS = {
-    fadeInUp: {
-        initial: { y: 20, opacity: 0 },
-        animate: { y: 0, opacity: 1 }
-    },
-    scaleIn: {
-        initial: { scale: 0.95, opacity: 0 },
-        animate: { scale: 1, opacity: 1 },
-        exit: { scale: 0.95, opacity: 0 }
-    }
-};
+import { ANIMATIONS } from "./constantes";
 
 const SuccessState = ({ consultationId, router }: { consultationId?: string; router: ReturnType<typeof useRouter> }) => (
     <motion.div
@@ -24,6 +13,7 @@ const SuccessState = ({ consultationId, router }: { consultationId?: string; rou
         <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-12 h-12 text-green-600" />
         </div>
+
         <h1 className="text-3xl font-bold text-gray-900 mb-3">Paiement confirmé!</h1>
         <p className="text-gray-600 text-lg">Merci pour votre confiance. Votre transaction a été enregistrée.</p>
 
