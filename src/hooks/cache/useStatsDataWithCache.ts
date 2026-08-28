@@ -1,45 +1,43 @@
-import { useQuery } from '@tanstack/react-query';
 import { api } from '@/lib/api/client';
+import { useQuery } from '@tanstack/react-query';
 
-
-type StatsResponse = {
-  subscribers?: number;
-  visits?: number;
-};
 export interface Stats {
   subscribers: number;
   visits: number;
 }
- 
+
+type StatsResponse = Partial<Stats>;
+
+const STATS_STALE_TIME = 1000 * 60 * 5;  
+const STATS_GC_TIME = 1000 * 60 * 30;   
+
+async function fetchStats(): Promise<Stats> {
+  const { data } = await api.post<StatsResponse>('/stats');
+
+  if (!data) {
+    throw new Error('Aucune donnée reçue');
+  }
+
+  return {
+    subscribers: data.subscribers ?? 0,
+    visits: data.visits ?? 0,
+  };
+}
 
 export function useStatsDataWithCache() {
-  const {
-    data: stats = null,
-    isLoading,
-    isError,
-    error,
-    refetch,
-    isSuccess,
-  } = useQuery<Stats | null>({
+  const query = useQuery<Stats>({
     queryKey: ['stats'],
-    queryFn: async () => {
-      const res = await api.post<StatsResponse>('/stats');
-      if (!res.data) throw new Error('Aucune donnée reçue');
-      return {
-        subscribers: res.data.subscribers ?? 0,
-        visits: res.data.visits ?? 0,
-      };
-    },
-    staleTime: 1000 * 60 * 5, // 5 min
-    gcTime: 1000 * 60 * 30,   // 30 min
+    queryFn: fetchStats,
+    staleTime: STATS_STALE_TIME,
+    gcTime: STATS_GC_TIME,
   });
 
   return {
-    stats,
-    isLoading,
-    isError,
-    isSuccess,
-    error,
-    refetch,
+    stats: query.data ?? null,
+    isLoading: query.isLoading,
+    isError: query.isError,
+    isSuccess: query.isSuccess,
+    error: query.error,
+    refetch: query.refetch,
   };
 }

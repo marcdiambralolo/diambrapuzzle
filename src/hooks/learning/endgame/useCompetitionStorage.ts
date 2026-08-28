@@ -1,7 +1,6 @@
 'use client';
 import { useCallback, useState } from "react";
 
-// Clé unique globale pour ne garder qu'une seule compétition validée
 const ACTIVE_VALIDATED_GAME_KEY = 'active_validated_competition_id';
 
 const isCompetitionValidated = (competitionId: string): boolean => {
@@ -13,7 +12,6 @@ const useCompetitionStorage = () => {
     const [refreshKey, setRefreshKey] = useState(0);
 
     const updateLocalCache = useCallback((competitionId: string) => {
-        // Enregistre la nouvelle compétition validée (écrase l'ancienne)
         localStorage.setItem(ACTIVE_VALIDATED_GAME_KEY, competitionId);
         setRefreshKey(prev => prev + 1);
     }, []);
@@ -23,8 +21,8 @@ const useCompetitionStorage = () => {
     }, []);
 
     return {
-        refreshKey, 
-        updateLocalCache, 
+        refreshKey,
+        updateLocalCache,
         isCompetitionValidated: isCompetitionValidatedMemo,
     };
 };

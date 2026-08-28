@@ -3,13 +3,18 @@ import { extractSecondsFromTimeSpent } from "@/lib/learning/functions";
 import { DuplicateInfo } from "@/lib/learning/interface";
 import { useMemo } from "react";
 
-export const timeCache = new Map<string, number>();
+const TIME_CACHE_MAX_SIZE = 1000;
+const timeCache = new Map<string, number>();
 
 export const getCachedTime = (timeSpent: string | undefined): number => {
   if (!timeSpent) return 0;
 
-  if (timeCache.has(timeSpent)) {
-    return timeCache.get(timeSpent)!;
+  const cached = timeCache.get(timeSpent);
+  if (cached !== undefined) return cached;
+
+  if (timeCache.size >= TIME_CACHE_MAX_SIZE) {
+    const firstKey = timeCache.keys().next().value;
+    if (firstKey) timeCache.delete(firstKey);
   }
 
   const seconds = extractSecondsFromTimeSpent(timeSpent);
@@ -19,41 +24,37 @@ export const getCachedTime = (timeSpent: string | undefined): number => {
 
 export function useConsultationDuplicates(rawConsultations: Consultation[] = []) {
   return useMemo(() => {
-    if (rawConsultations.length === 0) {
+    if (!rawConsultations.length) {
       return {
         sortedConsultations: [],
         duplicateMap: new Map<string, DuplicateInfo>(),
       };
     }
 
-    const sortedConsultations = [...rawConsultations].sort((a, b) => {
-      return getCachedTime(b.timeSpent) - getCachedTime(a.timeSpent);
-    });
+    const duplicateMap = new Map<string, DuplicateInfo>();
 
-    const combinaisonMap = new Map<string, { count: number; totalTimeSpent: number }>();
-
-    for (const consultation of sortedConsultations) {
+    for (let i = 0; i < rawConsultations.length; i++) {
+      const consultation = rawConsultations[i];
       const comb = consultation.timeSpent || "0";
       const seconds = getCachedTime(consultation.timeSpent);
 
-      const existing = combinaisonMap.get(comb);
+      const existing = duplicateMap.get(comb);
       if (existing) {
         existing.count += 1;
         existing.totalTimeSpent += seconds;
+        existing.isDuplicate = true;
       } else {
-        combinaisonMap.set(comb, { count: 1, totalTimeSpent: seconds });
+        duplicateMap.set(comb, {
+          count: 1,
+          isDuplicate: false,
+          totalTimeSpent: seconds,
+        });
       }
     }
 
-    const duplicateMap = new Map<string, DuplicateInfo>();
-
-    for (const [comb, { count, totalTimeSpent }] of combinaisonMap) {
-      duplicateMap.set(comb, {
-        count,
-        isDuplicate: count >= 2,
-        totalTimeSpent,
-      });
-    }
+    const sortedConsultations = [...rawConsultations].sort(
+      (a, b) => getCachedTime(b.timeSpent) - getCachedTime(a.timeSpent)
+    );
 
     return { sortedConsultations, duplicateMap };
   }, [rawConsultations]);

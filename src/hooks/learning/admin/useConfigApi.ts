@@ -1,7 +1,7 @@
 import { api } from '@/lib/api/client';
 import { LearningConfiguration } from '@/lib/interfaces';
 import { normalizeConfigDates } from '@/lib/learning/configUtils';
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 export function useConfigApi() {
     const [isLoading, setIsLoading] = useState(false);

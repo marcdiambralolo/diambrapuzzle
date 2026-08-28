@@ -1,11 +1,6 @@
 "use client";
 import { useEffect } from "react";
 
-/**
- * Hook personnalisé pour l'animation au défilement (scroll reveal)
- * Ajoute les classes 'opacity-100' et 'translate-y-0' aux éléments
- * portant la classe 'reveal-on-scroll' lorsqu'ils deviennent visibles.
- */
 export const useScrollReveal = () => {
     useEffect(() => {
         const observer = new IntersectionObserver(

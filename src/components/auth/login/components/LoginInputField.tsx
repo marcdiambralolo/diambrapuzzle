@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Eye, EyeOff } from 'lucide-react';
+import { EyeOff, Eye, } from 'lucide-react';
 import React, { memo } from "react";
 
 interface InputFieldProps {

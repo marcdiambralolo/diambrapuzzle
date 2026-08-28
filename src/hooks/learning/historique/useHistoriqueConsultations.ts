@@ -4,9 +4,7 @@ import { useConsultationStats } from "./useConsultationStats";
 import { useConsultationsApi } from "./useConsultationsApi";
 import { useEditionFormat } from "./useEditionFormat";
 
-export function useHistoriqueConsultations() {
-
-  
+export function useHistoriqueConsultations() {  
   const { data, loading, error, refetch } = useConsultationsApi();
   const { sortedConsultations, duplicateMap } = useConsultationDuplicates(data?.consultations);
   const { timeSpentStats, participantStats, advancedStats, rankedConsultations } =

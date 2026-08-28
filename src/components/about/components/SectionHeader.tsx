@@ -1,5 +1,4 @@
 "use client";
-
 const sectionTitleClass = "text-2xl font-black text-purple-900";
 const sectionSubtitleClass = "mx-auto mt-2 max-w-2xl text-sm text-purple-600";
 
@@ -15,6 +14,7 @@ const SectionHeader = ({ title, subtitle, icon }: SectionHeaderProps) => (
             {icon && <span className="text-2xl">{icon}</span>}
             <h2 className={sectionTitleClass}>{title}</h2>
         </div>
+
         {subtitle && <p className={sectionSubtitleClass}>{subtitle}</p>}
     </div>
 );

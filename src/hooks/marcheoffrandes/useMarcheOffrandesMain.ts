@@ -159,7 +159,7 @@ export function useMarcheOffrandesMain() {
       setSimulationStep("saving");
       await sleep(200);
       const response = await api.post<any>("/wallet/transactions", transactionData, {
-        timeout: 30000, // 30 secondes timeout
+        timeout: 30000, 
         headers: {
           'Content-Type': 'application/json',
         }

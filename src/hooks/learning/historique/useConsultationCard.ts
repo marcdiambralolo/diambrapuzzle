@@ -1,5 +1,5 @@
 import { Consultation } from "@/lib/interfaces";
-import { formatRelativeDate, formatTimeFromSeconds, formatToHMS, parseTimeToSeconds } from "@/lib/learning/functions";
+import { formatRelativeDate, formatToHMS, parseTimeToSeconds } from "@/lib/learning/functions";
 
 export function useConsultationCard(consultation: Consultation, rank?: number) {
     const client = consultation.clientId;

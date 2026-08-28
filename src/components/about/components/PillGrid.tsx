@@ -1,13 +1,7 @@
 "use client";
+import { PillItem } from "@/lib/interfaces";
 import GridRenderer from "./GridRenderer";
 import Pill from "./Pill";
-
-interface PillItem {
-    icon: React.ElementType;
-    title: string;
-    desc: string;
-    tooltip?: string;
-}
 
 interface PillGridProps {
     items: PillItem[];

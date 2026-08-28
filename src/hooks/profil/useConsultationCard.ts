@@ -9,10 +9,10 @@ export function useConsultationCard(consultation: Consultation) {
     const relativeDate = formatRelativeDate(consultation.createdAt);
     const timeInSeconds = parseTimeToSeconds(timeSpent);
     const formattedTime = formatToHMS(timeInSeconds);
-    const nombredevues = consultation.nombredevues || 0;     
+    const nombredevues = consultation.nombredevues || 0;
 
     return {
         client, nomJoueur, country, timeSpent, relativeDate,
-        timeInSeconds, formattedTime,   nombredevues
+        timeInSeconds, formattedTime, nombredevues
     };
 }

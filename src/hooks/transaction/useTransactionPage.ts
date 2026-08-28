@@ -227,4 +227,4 @@ export function useTransactionPage() {
         transaction, isLoading, error, consultationId, router, paymentError, selectedPaymentMethod,
         paymentStatus, totalAmount: transaction?.totalAmount || 0,
     };
-}
+}  

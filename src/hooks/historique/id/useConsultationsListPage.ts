@@ -30,11 +30,9 @@ export function useConsultationsListPage(): UseConsultationsListPageReturn {
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  // Ref pour éviter les appels multiples
   const isMountedRef = useRef(true);
   const isLoadingRef = useRef(false);
 
-  // Fonction pour charger une page spécifique
   const fetchPage = useCallback(async (page: number): Promise<ConsultationListResponse> => {
     const params = new URLSearchParams({
       page: String(page),
@@ -55,7 +53,6 @@ export function useConsultationsListPage(): UseConsultationsListPageReturn {
     };
   }, []);
 
-  // Fonction pour charger les données initiales
   const loadInitialData = useCallback(async () => {
     if (isLoadingRef.current) return;
 
@@ -85,7 +82,6 @@ export function useConsultationsListPage(): UseConsultationsListPageReturn {
     }
   }, [fetchPage]);
 
-  // Fonction pour charger plus de données (infinite scroll)
   const loadMore = useCallback(async () => {
     if (isLoadingMore || !hasMore || loading) return;
 
@@ -111,7 +107,6 @@ export function useConsultationsListPage(): UseConsultationsListPageReturn {
     }
   }, [currentPage, hasMore, isLoadingMore, loading, total, consultations.length, fetchPage]);
 
-  // Fonction pour rafraîchir les données
   const refresh = useCallback(async () => {
     await loadInitialData();
   }, [loadInitialData]);

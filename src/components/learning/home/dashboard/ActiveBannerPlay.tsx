@@ -19,7 +19,7 @@ interface ActiveBannerProps {
     demarrerJeu: () => void;
 }
 
-const WARNING_THRESHOLD = 300; // 5 minutes en secondes
+const WARNING_THRESHOLD = 300;
 
 const FinishedState = () => (
     <div className="w-full rounded-3xl bg-gradient-to-br from-purple-600 to-indigo-600 p-6 mb-6 shadow-xl animate-in fade-in duration-500">
@@ -46,7 +46,7 @@ const FinishedState = () => (
     </div>
 );
 
- const WarningBanner = ({ countdown }: { countdown: number }) => {
+const WarningBanner = ({ countdown }: { countdown: number }) => {
     if (countdown >= WARNING_THRESHOLD || countdown <= 0) return null;
 
     return (
@@ -57,7 +57,7 @@ const FinishedState = () => (
     );
 };
 
- const ActiveGameContent = ({
+const ActiveGameContent = ({
     endDate,
     onFinish,
     countdown,
@@ -77,22 +77,18 @@ const FinishedState = () => (
     return (
         <div className="w-full rounded-3xl bg-gradient-to-br from-indigo-600 to-indigo-800 p-3 mb-6 shadow-xl">
             <div className="flex flex-col items-center gap-3">
-                {/* Timer */}
                 <div className="text-center w-full">
                     <CountdownTimer targetDate={endDate} onFinish={onFinish} />
                 </div>
 
-                {/* Bouton "Jouer à nouveau" */}
                 {showBandeauButton && countdown !== 0 && (
                     <GlowButton onClick={demarrerJeu} variant="danger" size="lg">
                         JOUER A NOUVEAU
                     </GlowButton>
                 )}
 
-                {/* Statistiques du jeu */}
                 <GameStatsGridPlay gameConfig={gameConfig!} stats={stats} />
 
-                {/* Avertissement de fin imminente */}
                 {countdown !== null && (
                     <WarningBanner countdown={countdown!} />
                 )}
@@ -100,7 +96,7 @@ const FinishedState = () => (
         </div>
     );
 };
- 
+
 const ActiveBannerPlay = ({
     endDate,
     onFinish,
@@ -113,12 +109,10 @@ const ActiveBannerPlay = ({
     const { showHistory } = useFinishState(isTimeUp);
     const isFinished = isTimeUp || showHistory;
 
-    // Si le jeu est terminé, afficher l'état "Édition terminée"
     if (isFinished) {
         return <FinishedState />;
     }
 
-    // Sinon, afficher le contenu actif
     return (
         <ActiveGameContent
             endDate={endDate}

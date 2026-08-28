@@ -1,4 +1,4 @@
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useRef, useEffect } from 'react';
 
 export function useNotificationSound(url: string) {
   const audioRef = useRef<HTMLAudioElement | null>(null);

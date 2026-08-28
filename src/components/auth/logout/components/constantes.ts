@@ -12,4 +12,5 @@ export const checkVariants: Variants = {
 };
 
 export const CELEBRATION_STARS = 6;
+
 export const STARS_COUNT = 10;

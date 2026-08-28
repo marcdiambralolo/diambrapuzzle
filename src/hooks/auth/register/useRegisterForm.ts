@@ -63,7 +63,7 @@ const calculatePasswordStrength = (password: string): number => {
 const validateForm = (formData: FormData): FormErrors => {
   const errors: FormErrors = {};
   const email = formData.username.trim();
-  
+
   if (!email) {
     errors.username = "Email requis";
   } else if (email.length < 5) {
@@ -73,24 +73,20 @@ const validateForm = (formData: FormData): FormErrors => {
   } else if (/\s/.test(email)) {
     errors.username = "L'email ne peut pas contenir d'espaces";
   } else {
-    // Regex plus complète pour validation email
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
       errors.username = "Format d'email invalide. Exemple: utilisateur@domaine.com";
     }
-    
-    // Vérification supplémentaire : double @
+
     if ((email.match(/@/g) || []).length !== 1) {
       errors.username = "L'email doit contenir exactement un @";
     }
-    
-    // Vérification du point final
+
     if (email.endsWith('.')) {
       errors.username = "L'email ne peut pas se terminer par un point";
     }
   }
-  
-  // Validation du mot de passe
+
   if (!formData.password) {
     errors.password = 'Mot de passe requis';
   } else if (formData.password.length < PASSWORD_MIN_LENGTH) {
@@ -98,8 +94,7 @@ const validateForm = (formData: FormData): FormErrors => {
   } else if (formData.password.length > 128) {
     errors.password = 'Mot de passe trop long (maximum 128 caractères)';
   }
-  
-  // Validation de la confirmation
+
   if (!formData.confirmPassword) {
     errors.confirmPassword = 'Confirmation requise';
   } else if (formData.password !== formData.confirmPassword) {

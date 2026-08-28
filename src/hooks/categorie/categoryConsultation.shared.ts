@@ -12,8 +12,8 @@ export type CreateConsultationLearningPayload = {
     tpsglobal?: number;
     niveau?: number;
     status?: 'pending' | 'in_progress' | 'completed' | 'abandoned';
-    country?: string;
     clientId?: string;
+    country?: string;
 };
 
 export function getCategoryErrorMessage(error: unknown, fallback: string): string {

@@ -41,7 +41,6 @@ export function useLaMise() {
     const router = useRouter();
     const [isPendingNavigation, startNavigationTransition] = useTransition();
 
-    // Abonnements granulaires au store Zustand
     const gameConfig = useDiambraStore((state) => state.gameConfig);
     const setAfficheGame = useDiambraStore((state) => state.setAfficheGame);
     const setIdEditionencours = useDiambraStore((state) => state.setIdEditionencours);
@@ -50,7 +49,6 @@ export function useLaMise() {
 
     const monidjeu = gameConfig?._id ?? gameConfig?.id ?? '';
 
-    // Réinitialisation de l'affichage du jeu une seule fois au montage
     const isMountedRef = useRef(false);
     useEffect(() => {
         if (!isMountedRef.current) {

@@ -1,5 +1,4 @@
 'use client';
-
 import { CompetitionInfo, MatchInfo } from '@/lib/interfaces';
 import { decoupelimage } from "@/lib/learning/functions";
 import { GameState } from '@/lib/learning/interface';
@@ -12,12 +11,10 @@ const TRANSITION_DELAY = 100;
 const DEFAULT_IMAGE_PATH = "/ephotosept.jpg";
 const DEFAULT_MATCH_NUM = 123456789;
 const TOTAL_ORDERS = 24;
-
 const SIMPLE_A = 9301;
 const SIMPLE_C = 49297;
 const SIMPLE_M = 233280;
 
-// Mélange LCG pour mélanger la séquence globale 0..23
 const shuffleWithSeed = <T,>(array: T[], seed: number): T[] => {
     const result = [...array];
     let currentSeed = seed;
@@ -31,10 +28,6 @@ const shuffleWithSeed = <T,>(array: T[], seed: number): T[] => {
     return result;
 };
 
-/**
- * Génère de manière déterministe et exacte la k-ième permutation de [0, 1, 2, 3].
- * Pour k variant de 0 à 23, les 24 ordres générés sont TOUS différents.
- */
 const getPermutation4 = (k: number): number[] => {
     const items = [0, 1, 2, 3];
     const result: number[] = [];
@@ -63,32 +56,25 @@ const useMatchManagement = (
     updateState: (updates: Partial<GameState>) => void
 ) => {
     const {
-        gameConfig,
-        addCompetition,
-        setAfficheGame,
-        currentConsultationId,
-        gameSequenceCounter,
-        incrementGameSequenceCounter,
+        addCompetition, incrementGameSequenceCounter, setAfficheGame,
+        currentConsultationId, gameSequenceCounter, gameConfig,
     } = useDiambraStore();
 
     const timeElapsed = useTimer(state.start);
     const lancementRef = useRef(false);
     const isLoadingMatch = useRef(false);
 
-    // Mélange des indices de 0 à 23 selon le numeromatch
     const pseudoRandomSequence = useMemo(() => {
         const matchNumber = getMatchNumber(gameConfig?.numeromatch);
         const baseSequence = Array.from({ length: TOTAL_ORDERS }, (_, i) => i);
         return shuffleWithSeed(baseSequence, matchNumber);
     }, [gameConfig?.numeromatch]);
 
-    // Sélectionne l'index d'ordre courant (0 à 23)
     const currentOrderValue = useMemo(() => {
         const index = gameSequenceCounter % TOTAL_ORDERS;
         return pseudoRandomSequence[index];
     }, [gameSequenceCounter, pseudoRandomSequence]);
 
-    // Génère l'ordre des 4 matchs (permutation garantie unique)
     const matchOrder = useMemo(() => {
         return getPermutation4(currentOrderValue);
     }, [currentOrderValue]);
@@ -162,7 +148,6 @@ const useMatchManagement = (
         addCompetition(competition);
     }, [allMatchesFinished, state.infomatch, state.datedebut, state.punChangeCount, gameConfig, addCompetition, currentConsultationId]);
 
-    // Initialisation du jeu
     useEffect(() => {
         if (lancementRef.current) return;
         lancementRef.current = true;
@@ -193,7 +178,6 @@ const useMatchManagement = (
         lancerJeu();
     }, [gameConfig?.niveau, generateMatchList, loadMatch, chargerMatch, updateState]);
 
-    // Changement de match au sein d'une session
     useEffect(() => {
         const { matchEnCours, infomatch } = state;
         if (matchEnCours === -1 || !infomatch[matchEnCours] || isLoadingMatch.current) return;
@@ -209,7 +193,6 @@ const useMatchManagement = (
         return () => clearTimeout(timer);
     }, [state.matchEnCours, state.infomatch, chargerMatch, updateState]);
 
-    // Vérification des conditions de victoire sur le match en cours
     useEffect(() => {
         const { casesdujeuencours, isTransitioning, matchEnCours, infomatch } = state;
         if (casesdujeuencours.length === 0 || isTransitioning) return;
@@ -231,7 +214,6 @@ const useMatchManagement = (
         }
     }, [state.casesdujeuencours, state.isTransitioning, state.matchEnCours, state.infomatch.length, updateState, setState]);
 
-    // Sauvegarde et clôture globale
     useEffect(() => {
         if (allMatchesFinished && state.infomatch.length > 0 && !state.isGameover) {
             updateState({ isGameover: true });

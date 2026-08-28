@@ -1,4 +1,4 @@
-export type DateLike = Date | string | number | null | undefined; 
+export type DateLike = Date | string | number | null | undefined;
 export type LearningConfigStatus = 'pending' | 'active' | 'ended' | 'cancelled';
 export type ToastType = 'success' | 'error' | 'info';
 export type ConfigStatus = 'pending' | 'active' | 'ended' | 'cancelled';
@@ -252,7 +252,7 @@ export interface ActiveEdition {
   endDate: string;
   status: string;
   isActive: boolean;
-} 
+}
 
 export interface LastEndedResponse {
   success: boolean;
@@ -265,7 +265,7 @@ export interface EditionInfo {
   startDate: string;
   endDate: string;
   status: string;
-  isActive: boolean; 
+  isActive: boolean;
 }
 
 export interface ReportMetric {
@@ -361,3 +361,42 @@ export interface GameState {
   showGameFinishedBanner: boolean;
   countdown: number | null;
 }
+
+export interface AdminConsultationsResponse {
+  consultations: Consultation[];
+  activeEdition: ActiveEdition | null;
+}
+
+export interface FeatureItem {
+  icon: React.ElementType;
+  title: string;
+  desc: string;
+}
+
+export interface PillItem {
+  icon: React.ElementType;
+  title: string;
+  desc: string;
+  tooltip?: string;
+}
+
+export interface StepItem {
+  icon: React.ElementType;
+  title: string;
+  desc: string;
+}
+
+export interface TipItem {
+  icon: React.ElementType;
+  title: string;
+  desc: string;
+  color: "purple" | "indigo";
+}
+
+export type CityItem = {
+  id: string;
+  name: string;
+  countryName?: string;
+  countryCode?: string;
+  region?: string;
+};

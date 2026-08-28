@@ -1,12 +1,7 @@
 "use client";
+import { FeatureItem } from "@/lib/interfaces";
 import FeatureCard from "./FeatureCard";
 import GridRenderer from "./GridRenderer";
-
-interface FeatureItem {
-    icon: React.ElementType;
-    title: string;
-    desc: string;
-}
 
 interface FeatureGridProps {
     items: FeatureItem[];

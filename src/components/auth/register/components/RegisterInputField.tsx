@@ -1,6 +1,6 @@
 'use client';
 import { motion } from "framer-motion";
-import { AlertCircle, Check, Eye, EyeOff } from 'lucide-react';
+import { Check, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { memo, default as React } from 'react';
 
 interface InputFieldProps {

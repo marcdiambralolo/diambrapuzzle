@@ -1,18 +1,8 @@
 import { api } from '@/lib/api/client';
 import { coerceIsoDate, formatDateFR, processUserData, safeTrim } from '@/lib/functions';
 import { useAuth } from '@/lib/hooks';
-import { Consultation } from '@/lib/interfaces';
+import { Consultation, EditionInfo } from '@/lib/interfaces';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-
-interface EditionInfo {
-  id: string;
-  startDate: string;
-  endDate: string;
-  status: string;
-  isActive: boolean;
-  winningCombination: string | null;
-}
-
 
 export function useConsultationsListPage() {
   const [activeTab, setActiveTab] = useState<'history' | 'games'>('games');
@@ -53,7 +43,6 @@ export function useConsultationsListPage() {
     fetchData();
   }, [fetchData]);
 
-  // 🔥 Tri des éditions : en cours d'abord, puis par date décroissante
   const sortedEditions = useMemo(() => {
     const now = new Date();
 

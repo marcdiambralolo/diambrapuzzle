@@ -1,16 +1,7 @@
 import CacheLink from '@/components/commons/CacheLink';
 import {
-  AlertCircle,
-  Award,
-  Eye,
-  FileText,
-  Gamepad2,
-  Layers,
-  Shield,
-  Sparkles,
-  Target,
-  Trophy,
-  Zap
+  AlertCircle, Award, Eye, FileText, Gamepad2, Layers, Shield,
+  Sparkles, Target, Trophy, Zap
 } from 'lucide-react';
 import React from 'react';
 
@@ -55,11 +46,11 @@ export function useTermsSections(): TermsSection[] {
       content: (
         <>
           <p>
-            <strong>Diambra Puzzle</strong> est un jeu de mémoire visuelle où vous devez reproduire 
+            <strong>Diambra Puzzle</strong> est un jeu de mémoire visuelle où vous devez reproduire
             la disposition d'un <strong>plateau P1</strong> sur un <strong>plateau P2</strong> en échangeant les cases.
           </p>
           <p className="mt-2">
-            Le jeu propose <strong>4 modes</strong> (Nombre, Couleur, Image, Lettre) et 
+            Le jeu propose <strong>4 modes</strong> (Nombre, Couleur, Image, Lettre) et
             <strong>4 niveaux de difficulté</strong> allant de 2×2 à 10×10.
           </p>
         </>
@@ -199,7 +190,7 @@ export function useTermsSections(): TermsSection[] {
       iconColor: 'bg-purple-100 text-purple-600',
       content: (
         <>
-          <p>Pour accéder à certaines fonctionnalités, vous pouvez créer un compte :</p>
+          <p>Pour accéder à certaines fonctionnalités, vous pouvez créer un compte:</p>
           <List items={[
             'Sauvegarder vos scores et statistiques',
             'Suivre votre progression dans les différents modes',
@@ -233,7 +224,7 @@ export function useTermsSections(): TermsSection[] {
       iconColor: 'bg-indigo-100 text-indigo-600',
       content: (
         <p>
-          Le jeu Diambra Puzzle, son code, son design, ses modes de jeu et son concept 
+          Le jeu Diambra Puzzle, son code, son design, ses modes de jeu et son concept
           sont la propriété exclusive de Diambra.
           Toute reproduction ou copie sans autorisation est interdite.
         </p>

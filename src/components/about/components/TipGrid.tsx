@@ -1,13 +1,7 @@
 "use client";
+import { TipItem } from "@/lib/interfaces";
 import GridRenderer from "./GridRenderer";
 import TipCard from "./TipCard";
-
-interface TipItem {
-    icon: React.ElementType;
-    title: string;
-    desc: string;
-    color: "purple" | "indigo";
-}
 
 function TipGrid({ items }: { items: TipItem[] }) {
     return (

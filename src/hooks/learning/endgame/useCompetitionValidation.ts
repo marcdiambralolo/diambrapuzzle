@@ -11,7 +11,6 @@ import useCompetitionStorage from "./useCompetitionStorage";
 import { useMessage } from "./useMessage";
 
 const PERMANENT_MESSAGE_DURATION = 10000;
-// Clé unique globale dans le localStorage pour s'assurer qu'un seul jeu est validé à la fois
 const ACTIVE_VALIDATED_GAME_KEY = 'active_validated_competition_id';
 
 interface ValidationMessage {
@@ -79,7 +78,6 @@ const calculateCompetitionStats = (competition: CompetitionInfo): CompetitionSta
 
 const getStoredValidationStatus = (competitionId: string): boolean => {
   if (typeof window === 'undefined') return false;
-  // Vérifie si la compétition sauvegardée correspond à la compétition courante
   return localStorage.getItem(ACTIVE_VALIDATED_GAME_KEY) === competitionId;
 };
 
@@ -181,7 +179,6 @@ export const useCompetitionValidation = (competition: CompetitionInfo) => {
 
       await api.put(`/consultations/${targetConsultationId}`, updatedPayload);
 
-      // Enregistre SEULEMENT l'ID de ce jeu validé dans le LocalStorage
       localStorage.setItem(ACTIVE_VALIDATED_GAME_KEY, comp.id);
 
       updateLocalCache(comp.id);
@@ -195,7 +192,7 @@ export const useCompetitionValidation = (competition: CompetitionInfo) => {
         queryClient.invalidateQueries({ queryKey: ['leaderboard'] }),
       ]);
 
-      
+
 
       return true;
     } catch (error: any) {
@@ -265,7 +262,6 @@ export const useCompetitionValidation = (competition: CompetitionInfo) => {
         });
       }
 
-      // Rafraîchissement de la page via le router Next.js
       router.refresh();
     } catch (error) {
       if (isMountedRef.current) {
@@ -316,18 +312,14 @@ export const useCompetitionValidation = (competition: CompetitionInfo) => {
     handleClosePermanentMessage,
     handleValidate,
     clearValidationStatus,
-
     isLoading: isLocalValidating,
     isValidated,
     validationMessage,
     showPermanentMessage,
-
     formattedStartDate,
     formattedFinishedDate,
-
     stats: competitionStats,
     allMatchesCompleted,
-
     totalMatches: competition.matchInfo?.length || 0,
     timeSpent: competition.timeSpent,
     niveau: competition.niveau,

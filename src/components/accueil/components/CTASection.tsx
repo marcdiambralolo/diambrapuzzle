@@ -1,6 +1,6 @@
 "use client";
 import CacheLink from '@/components/commons/CacheLink';
-import { ArrowRight, Gamepad2, Rocket } from 'lucide-react';
+import { Gamepad2, ArrowRight, Rocket } from 'lucide-react';
 
 const CTASection = () => (
     <section className="mt-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-800">

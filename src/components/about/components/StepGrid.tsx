@@ -1,12 +1,7 @@
 "use client";
+import { StepItem } from "@/lib/interfaces";
 import FeatureCard from "./FeatureCard";
 import GridRenderer from "./GridRenderer";
-
-interface StepItem {
-    icon: React.ElementType;
-    title: string;
-    desc: string;
-}
 
 function StepGrid({ items }: { items: StepItem[] }) {
 

@@ -103,6 +103,7 @@ export function useSlide4SectionDoors() {
     if (isSubmitting) return;
 
     const validationErrors = validateForm(form);
+    
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setApiError("Veuillez corriger le formulaire");
@@ -143,9 +144,6 @@ export function useSlide4SectionDoors() {
   const handleReset = useCallback(() => {
     router.back();
   }, [router]);
-
-
-  
 
   return {
     handleChange, setForm, handleReset, handleSubmit,
